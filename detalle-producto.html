@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Detalle de producto</title>
+  <meta name="description" content="Ficha profesional de producto EXEL Chile con beneficios, modo de uso, activos, productos relacionados y solicitud por WhatsApp.">
+  <meta property="og:title" content="EXEL Chile | Detalle de producto">
+  <meta property="og:description" content="Revisa beneficios, modo de uso e informacion clave antes de solicitar tu producto EXEL.">
+  <meta property="og:type" content="product">
+  <meta property="og:image" content="./assets/catalogo-web/ambiente/hero-productos.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            exel: {
+              ink: "#2f2b28",
+              muted: "#706861",
+              paper: "#fbf7f1",
+              cream: "#fffdf9",
+              sand: "#f3ece2",
+              warm: "#d8c8b4",
+              graphite: "#5c524a",
+              copper: "#b8895d",
+              line: "rgba(71, 55, 42, 0.13)"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
+            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
+          },
+          borderRadius: {
+            card: "8px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", serif;
+    }
+  </style>
+</head>
+<body class="text-exel-ink antialiased">
+  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <a class="flex items-center gap-4" href="./preview.html">
+        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+      </a>
+      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
+        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
+        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-exel-ink" href="./login.html?returnTo=./tienda.html">Login</a>
+      </nav>
+      <details class="group relative md:hidden">
+        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
+          Menu
+          <span class="transition group-open:rotate-180">⌄</span>
+        </summary>
+        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html?returnTo=./tienda.html">Login</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main id="productDetail">
+    <section class="mx-auto grid w-[min(1180px,calc(100%-32px))] gap-8 py-10 lg:grid-cols-[0.9fr_0.75fr] lg:py-16">
+      <div class="overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft">
+        <img id="productImage" class="aspect-square h-full w-full object-cover" src="" alt="">
+      </div>
+
+      <article class="flex flex-col justify-center">
+        <a class="mb-6 inline-flex w-max items-center gap-2 rounded-card border border-exel-line bg-white px-4 py-3 text-sm font-extrabold text-exel-muted transition hover:-translate-y-0.5 hover:text-exel-ink" href="./tienda.html">
+          &lt;- Volver a tienda
+        </a>
+        <p id="productLine" class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper"></p>
+        <h1 id="productName" class="serif text-6xl font-bold leading-none md:text-7xl"></h1>
+        <p id="productDescription" class="mt-5 text-lg leading-8 text-exel-muted"></p>
+
+        <div class="mt-6 flex flex-wrap gap-2">
+          <span id="productLabel" class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite"></span>
+          <span id="productSize" class="rounded-full bg-exel-sand px-3 py-2 text-xs font-extrabold text-exel-muted"></span>
+          <span id="productIdealBadge" class="rounded-full bg-white px-3 py-2 text-xs font-extrabold text-exel-muted shadow-soft"></span>
+        </div>
+
+        <div class="mt-8 rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
+          <span class="block text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Precio lista</span>
+          <strong id="productPrice" class="mt-1 block text-4xl"></strong>
+          <div class="mt-5 flex flex-wrap items-center justify-between gap-3 rounded-card bg-exel-sand p-3">
+            <div>
+              <span class="block text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Disponibilidad</span>
+              <strong id="productStock" class="text-lg"></strong>
+            </div>
+            <div class="flex items-center gap-2 rounded-card bg-white p-1 shadow-soft" aria-label="Selector de cantidad">
+              <button id="decreaseQuantity" class="grid h-10 w-10 place-items-center rounded-card border border-exel-line text-lg font-extrabold text-exel-muted transition hover:text-exel-ink" type="button" aria-label="Disminuir cantidad">-</button>
+              <span id="productQuantity" class="grid h-10 min-w-12 place-items-center rounded-card bg-exel-cream px-3 font-extrabold">1</span>
+              <button id="increaseQuantity" class="grid h-10 w-10 place-items-center rounded-card bg-exel-ink text-lg font-extrabold text-white transition hover:-translate-y-0.5" type="button" aria-label="Aumentar cantidad">+</button>
+            </div>
+          </div>
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <a id="quoteLink" class="inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#" target="_blank" rel="noreferrer">
+              Solicitar asesoria
+            </a>
+            <a id="addToCartLink" class="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" href="./carrito.html">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 6h2l1.5 9h8.5l2-6H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 20h.01M17 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+              Agregar al carrito
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section class="bg-exel-sand py-14">
+      <div class="mx-auto grid w-[min(1180px,calc(100%-32px))] gap-5 md:grid-cols-3">
+        <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Ideal para</p>
+          <ul id="idealForList" class="grid gap-3 text-sm font-bold text-exel-muted"></ul>
+        </article>
+
+        <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Beneficios clave</p>
+          <ul id="benefitList" class="grid gap-3 text-sm font-bold text-exel-muted"></ul>
+        </article>
+
+        <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Modo de uso</p>
+          <p id="productUse" class="leading-7 text-exel-muted"></p>
+        </article>
+
+        <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Activos / composicion</p>
+          <div id="ingredientList" class="flex flex-wrap gap-2"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mx-auto grid w-[min(1180px,calc(100%-32px))] gap-5 py-14 lg:grid-cols-[0.9fr_1.1fr]">
+      <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Preguntas frecuentes</p>
+        <div id="faqList" class="grid gap-3"></div>
+      </article>
+
+      <article class="rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Confianza</p>
+            <h2 class="serif text-4xl font-semibold leading-none">Reviews y experiencia real</h2>
+          </div>
+          <span class="rounded-full bg-exel-sand px-3 py-2 text-xs font-extrabold text-exel-muted">Fuente verificada</span>
+        </div>
+        <div id="reviewList" class="mt-5 grid gap-3"></div>
+      </article>
+    </section>
+
+    <section class="mx-auto w-[min(1180px,calc(100%-32px))] py-14">
+      <div class="mb-6 flex items-end justify-between gap-4">
+        <div>
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Completa tu seleccion</p>
+          <h2 class="serif text-5xl font-semibold leading-none">Productos relacionados</h2>
+        </div>
+      </div>
+      <div id="relatedProducts" class="grid gap-4 md:grid-cols-3"></div>
+    </section>
+  </main>
+
+  <section id="notFound" class="mx-auto hidden min-h-[70vh] w-[min(760px,calc(100%-32px))] place-items-center py-16 text-center">
+    <div>
+      <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Producto no encontrado</p>
+      <h1 class="serif text-6xl font-bold leading-none">No encontramos ese producto.</h1>
+      <a class="mt-8 inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft" href="./tienda.html">
+        Volver a tienda
+      </a>
+    </div>
+  </section>
+
+  <script src="./data/site-config.js"></script>
+  <script src="./data/product-data.js"></script>
+  <script src="./data/social-proof.js"></script>
+  <script>
+    const site = window.EXEL_SITE;
+    const formatter = site.currencyFormatter;
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const products = window.EXEL_PRODUCTS || [];
+    const product = products.find((item) => item.id === id);
+    let selectedQuantity = 1;
+
+    function text(selector, value) {
+      document.querySelector(selector).textContent = value;
+    }
+
+    function getIdealFor(product) {
+      if (product.line === "Insumos") return ["Centros de estetica, clinicas o cabinas", "Reposicion profesional y alto uso", "Equipos que necesitan compra asistida"];
+      if (product.concern === "hidratacion") return ["Piel seca o deshidratada", "Rutinas de hidratacion diaria", "Clientes que buscan confort y suavidad"];
+      if (product.concern === "limpieza") return ["Rutina de limpieza diaria", "Preparar la piel antes de activos", "Uso profesional o domiciliario"];
+      if (product.concern === "antioxidante") return ["Piel apagada o con falta de luminosidad", "Rutina de dia", "Apoyo frente a estres ambiental"];
+      if (product.concern === "reparacion") return ["Textura irregular", "Rutina de noche", "Piel que busca apariencia mas uniforme"];
+      if (product.concern === "pestanas") return ["Cuidado de pestanas y cejas", "Rutinas post higiene ocular", "Clientes que buscan fortalecer apariencia"];
+      return ["Rutina profesional EXEL", "Compra con asesoria", "Uso segun necesidad"];
+    }
+
+    function getFaqs(product) {
+      return [
+        {
+          question: "Como se usa?",
+          answer: product.use || "Usar segun indicacion profesional y necesidad de la rutina."
+        },
+        {
+          question: "Para quien es ideal?",
+          answer: getIdealFor(product).join(" · ")
+        },
+        {
+          question: "Puedo pedir asesoria antes de comprar?",
+          answer: "Si. Puedes solicitar orientacion por WhatsApp para confirmar disponibilidad, rutina sugerida y despacho."
+        }
+      ];
+    }
+
+    function getProductReviews(product) {
+      return (window.EXEL_REVIEWS || []).filter((review) => review.productId === product.id || review.line === product.line);
+    }
+
+    if (!product) {
+      document.querySelector("#productDetail").classList.add("hidden");
+      document.querySelector("#notFound").classList.remove("hidden");
+      document.querySelector("#notFound").classList.add("grid");
+    } else {
+      function updateQuoteLink() {
+        document.querySelector("#productQuantity").textContent = selectedQuantity;
+        const message = `Hola, quiero asesoria para ${selectedQuantity} unidad(es) de ${product.name} (${product.size}). Precio lista unitario: ${formatter.format(product.price)}. Total estimado: ${formatter.format(product.price * selectedQuantity)}`;
+        document.querySelector("#quoteLink").href = site.buildWhatsAppUrl(message);
+      }
+
+      document.title = `EXEL Chile | ${product.name}`;
+      document.querySelector("#productImage").src = product.image;
+      document.querySelector("#productImage").alt = product.name;
+      text("#productLine", product.line);
+      text("#productName", product.name);
+      text("#productDescription", product.description);
+      text("#productLabel", product.label);
+      text("#productSize", product.size);
+      text("#productIdealBadge", product.line === "Insumos" ? "Uso profesional" : `Ideal ${product.label}`);
+      text("#productPrice", formatter.format(product.price));
+      text("#productUse", product.use);
+      text("#productStock", "Disponible para solicitar");
+
+      document.querySelector("#decreaseQuantity").addEventListener("click", () => {
+        selectedQuantity = Math.max(1, selectedQuantity - 1);
+        updateQuoteLink();
+      });
+
+      document.querySelector("#increaseQuantity").addEventListener("click", () => {
+        selectedQuantity += 1;
+        updateQuoteLink();
+      });
+
+      document.querySelector("#addToCartLink").addEventListener("click", (event) => {
+        event.preventDefault();
+        const cart = site.loadCart();
+        const existing = cart.find((item) => item.name === product.name);
+        if (existing) {
+          existing.quantity += selectedQuantity;
+        } else {
+          cart.push({ ...product, quantity: selectedQuantity });
+        }
+        site.saveCart(cart);
+        window.location.href = "./carrito.html";
+      });
+
+      updateQuoteLink();
+
+      document.querySelector("#benefitList").innerHTML = product.benefits
+        .map((benefit) => `<li class="rounded-card bg-exel-sand px-4 py-3">${benefit}</li>`)
+        .join("");
+
+      document.querySelector("#idealForList").innerHTML = getIdealFor(product)
+        .map((item) => `<li class="rounded-card bg-exel-sand px-4 py-3">${item}</li>`)
+        .join("");
+
+      document.querySelector("#ingredientList").innerHTML = product.ingredients
+        .map((ingredient) => `<span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">${ingredient}</span>`)
+        .join("");
+
+      document.querySelector("#faqList").innerHTML = getFaqs(product)
+        .map((faq) => `
+          <details class="rounded-card border border-exel-line bg-exel-cream p-4">
+            <summary class="cursor-pointer font-extrabold">${faq.question}</summary>
+            <p class="mt-3 leading-7 text-exel-muted">${faq.answer}</p>
+          </details>
+        `)
+        .join("");
+
+      const reviews = getProductReviews(product);
+      document.querySelector("#reviewList").innerHTML = reviews.length
+        ? reviews.map((review) => `
+          <blockquote class="rounded-card bg-exel-sand p-4">
+            <p class="leading-7 text-exel-muted">"${review.text}"</p>
+            <footer class="mt-3 text-sm font-extrabold">${review.author} · ${review.source}</footer>
+          </blockquote>
+        `).join("")
+        : `
+          <div class="rounded-card bg-exel-sand p-5">
+            <strong class="block">Reviews reales pendientes de conexion</strong>
+            <p class="mt-2 leading-7 text-exel-muted">Aun no hay comentarios verificados para este producto. Cuando conectemos Google Business, Instagram o testimonios autorizados, apareceran aqui sin inventar contenido.</p>
+          </div>
+        `;
+
+      document.querySelector("#relatedProducts").innerHTML = products
+        .filter((item) => item.id !== product.id && (item.line === product.line || item.concern === product.concern))
+        .slice(0, 3)
+        .map((item) => `
+          <a class="group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="./detalle-producto.html?id=${encodeURIComponent(item.id)}">
+            <img class="h-56 w-full object-cover transition duration-700 group-hover:scale-105" src="${item.image}" alt="${item.name}">
+            <div class="p-5">
+              <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">${item.label}</span>
+              <h3 class="serif mt-4 text-3xl font-semibold leading-none">${item.name}</h3>
+              <p class="mt-3 text-sm leading-6 text-exel-muted">${item.description}</p>
+              <p class="mt-3 text-sm font-extrabold text-exel-muted">${formatter.format(item.price)}</p>
+            </div>
+          </a>
+        `)
+        .join("");
+    }
+  </script>
+</body>
+</html>

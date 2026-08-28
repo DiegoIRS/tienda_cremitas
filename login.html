@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Acceso clientes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            exel: {
+              ink: "#2f2b28",
+              muted: "#706861",
+              paper: "#fbf7f1",
+              cream: "#fffdf9",
+              sand: "#f3ece2",
+              warm: "#d8c8b4",
+              graphite: "#5c524a",
+              copper: "#b8895d",
+              line: "rgba(71, 55, 42, 0.13)"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
+            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
+          },
+          borderRadius: {
+            card: "8px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-exel-ink antialiased">
+  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <a class="flex items-center gap-4" href="./preview.html">
+        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+      </a>
+      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
+        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
+        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-exel-ink" href="./login.html">Login</a>
+      </nav>
+      <details class="group relative md:hidden">
+        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
+          Menu
+          <span class="transition group-open:rotate-180">⌄</span>
+        </summary>
+        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html">Login</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main class="mx-auto grid min-h-[calc(100vh-76px)] w-[min(1120px,calc(100%-32px))] items-center gap-8 py-10 lg:grid-cols-[0.9fr_500px]">
+    <section class="relative overflow-hidden rounded-card border border-exel-line bg-white/70 p-8 shadow-soft">
+      <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-exel-warm/40 blur-3xl"></div>
+      <div class="relative">
+        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Portal privado Vertys</p>
+        <h1 class="serif text-6xl font-bold leading-none md:text-7xl">Acceso exclusivo para cotizaciones profesionales.</h1>
+        <p class="mt-5 max-w-xl text-lg leading-8 text-exel-muted">Usamos Google como llave segura para identificar al cliente, guardar cotizaciones en Firebase y mantener el carrito vinculado a una cuenta real.</p>
+        <div class="mt-8 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
+            <strong class="block text-2xl">1 paso</strong>
+            <span class="text-sm font-bold text-exel-muted">Sin claves nuevas</span>
+          </div>
+          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
+            <strong class="block text-2xl">Seguro</strong>
+            <span class="text-sm font-bold text-exel-muted">Google Auth</span>
+          </div>
+          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
+            <strong class="block text-2xl">Historial</strong>
+            <span class="text-sm font-bold text-exel-muted">Cotizaciones</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-card border border-exel-line bg-white/95 p-6 shadow-lift">
+      <div id="statusBanner" class="mb-5 hidden rounded-card bg-exel-sand p-4 text-sm font-bold leading-6 text-exel-muted"></div>
+
+      <div id="userPanel" class="hidden">
+        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Sesion activa</p>
+        <div class="mt-4 flex items-center gap-4 rounded-card bg-exel-sand p-4">
+          <img id="userPhoto" class="hidden h-14 w-14 rounded-full object-cover shadow-soft" alt="">
+          <div>
+            <h2 id="userName" class="serif text-4xl font-semibold leading-none"></h2>
+            <p id="userEmail" class="mt-2 font-bold text-exel-muted"></p>
+          </div>
+        </div>
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          <a class="inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1" href="./carrito.html">Ir al carrito</a>
+          <button id="logoutButton" class="inline-flex min-h-[50px] items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">Cerrar sesion</button>
+        </div>
+      </div>
+
+      <div id="authForm" class="grid gap-4">
+        <div class="rounded-card bg-exel-sand p-5">
+          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Login de la pagina</p>
+          <h2 class="serif mt-2 text-4xl font-semibold leading-none">Ingresa con tu cuenta Google.</h2>
+          <p class="mt-3 leading-7 text-exel-muted">No pedimos contrasenas nuevas. Firebase valida tu identidad y nos permite guardar tus cotizaciones de forma ordenada.</p>
+        </div>
+        <button id="googleButton" class="inline-flex min-h-[54px] items-center justify-center gap-3 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" type="button">
+          <span class="grid h-7 w-7 place-items-center rounded-full bg-white text-exel-ink">G</span>
+          <span id="googleButtonText">Continuar con Google</span>
+        </button>
+        <div class="grid gap-3 rounded-card border border-exel-line bg-white p-4 text-sm font-bold text-exel-muted">
+          <span>Tu sesion permite guardar cotizaciones y recuperarlas despues.</span>
+          <span>El carrito local se mantiene aunque navegues por la tienda.</span>
+          <span>El equipo comercial puede usar la cotizacion para confirmar stock.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    import {
+      getFirebaseStatus,
+      loginWithGoogle,
+      logout,
+      onUserChange,
+      upsertUserProfile
+    } from "./data/firebase-client.js";
+
+    const statusBanner = document.querySelector("#statusBanner");
+    const authForm = document.querySelector("#authForm");
+    const userPanel = document.querySelector("#userPanel");
+    const userName = document.querySelector("#userName");
+    const userEmail = document.querySelector("#userEmail");
+    const userPhoto = document.querySelector("#userPhoto");
+    const googleButton = document.querySelector("#googleButton");
+    const googleButtonText = document.querySelector("#googleButtonText");
+    const returnTo = new URLSearchParams(window.location.search).get("returnTo") || "./carrito.html";
+
+    function setMessage(message) {
+      statusBanner.textContent = message;
+      statusBanner.classList.toggle("hidden", !message);
+    }
+
+    function setLoading(isLoading) {
+      googleButton.disabled = isLoading;
+      googleButton.classList.toggle("opacity-70", isLoading);
+      googleButton.classList.toggle("cursor-wait", isLoading);
+      googleButtonText.textContent = isLoading ? "Conectando con Google..." : "Continuar con Google";
+    }
+
+    async function handleAuth(action) {
+      try {
+        setMessage("");
+        setLoading(true);
+        const { user } = await action();
+        await upsertUserProfile(user);
+        setMessage("Sesion iniciada correctamente. Redirigiendo...");
+        window.location.href = returnTo;
+      } catch (error) {
+        if (error.code === "auth/configuration-not-found" || error.message.includes("configuration-not-found")) {
+          setMessage("El acceso Google aun no esta activo en Firebase Authentication. Habilita Google en Authentication > Sign-in method.");
+          return;
+        }
+
+        if (error.code === "auth/unauthorized-domain") {
+          setMessage("Este dominio local no esta autorizado en Firebase Authentication. Agrega 127.0.0.1 y localhost en Authorized domains.");
+          return;
+        }
+
+        if (error.code === "auth/popup-closed-by-user") {
+          setMessage("Cerraste la ventana de Google antes de terminar el acceso.");
+          return;
+        }
+
+        setMessage("No pudimos iniciar sesion con Google. Intenta nuevamente.");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    const status = getFirebaseStatus();
+    if (!status.configured) {
+      setMessage("Falta completar apiKey, messagingSenderId y appId en data/firebase-config.js.");
+    }
+
+    onUserChange((user) => {
+      authForm.classList.toggle("hidden", !!user);
+      userPanel.classList.toggle("hidden", !user);
+      if (user) {
+        userName.textContent = user.displayName || "Cliente EXEL";
+        userEmail.textContent = user.email || "Cuenta sin email visible";
+        if (user.photoURL) {
+          userPhoto.src = user.photoURL;
+          userPhoto.alt = user.displayName || "Foto de perfil";
+          userPhoto.classList.remove("hidden");
+        }
+      }
+    });
+
+    googleButton.addEventListener("click", () => {
+      handleAuth(() => loginWithGoogle());
+    });
+
+    document.querySelector("#logoutButton").addEventListener("click", async () => {
+      try {
+        await logout();
+        setMessage("Sesion cerrada.");
+      } catch (error) {
+        setMessage(error.message);
+      }
+    });
+  </script>
+</body>
+</html>

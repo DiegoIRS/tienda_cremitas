@@ -1,0 +1,22 @@
+{
+  "name": "pagina-cremitas",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node tools/copy-static-build.mjs",
+    "images:webp": "node tools/convert-assets-webp.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "framer-motion": "^11.3.19",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "sharp": "^0.35.3",
+    "vite": "^5.4.10"
+  }
+}

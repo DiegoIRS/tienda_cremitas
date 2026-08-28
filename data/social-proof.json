@@ -1,0 +1,17 @@
+{
+  "status": "pending_source",
+  "recommended_sources": [
+    "Google Business Profile",
+    "Instagram comments",
+    "Marketplace reviews",
+    "Website testimonials"
+  ],
+  "required_fields": [
+    "text",
+    "author",
+    "date",
+    "source",
+    "source_url"
+  ],
+  "reviews": []
+}

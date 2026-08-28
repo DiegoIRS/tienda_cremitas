@@ -1,0 +1,1 @@
+window.EXEL_REVIEWS = [];

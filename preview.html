@@ -1,0 +1,418 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Catalogo profesional</title>
+  <meta name="description" content="Presentacion de lineas EXEL Chile: dermocosmetica profesional, rutinas de cuidado, beneficios e informacion para comprar con asesoria.">
+  <meta property="og:title" content="EXEL Professional Line Chile">
+  <meta property="og:description" content="Conoce lineas, productos y beneficios EXEL para rutinas profesionales de belleza y cuidado.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/catalogo-web/ambiente/hero-productos.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            exel: {
+              ink: "#2f2b28",
+              muted: "#706861",
+              paper: "#fbf7f1",
+              cream: "#fffdf9",
+              sand: "#f3ece2",
+              warm: "#d8c8b4",
+              graphite: "#5c524a",
+              copper: "#b8895d",
+              line: "rgba(71, 55, 42, 0.13)"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
+            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
+          },
+          borderRadius: {
+            card: "8px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .hero-bg {
+      background:
+        linear-gradient(90deg, rgba(34, 28, 24, 0.78), rgba(67, 52, 42, 0.46) 44%, rgba(76, 61, 50, 0.18)),
+        url("./assets/catalogo-web/ambiente/hero-productos.webp") center / cover no-repeat;
+    }
+  </style>
+</head>
+<body class="text-exel-ink antialiased">
+  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <a class="flex items-center gap-4" href="./preview.html" aria-label="Ir al inicio">
+        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+      </a>
+      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
+        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
+        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-exel-ink" href="./login.html?returnTo=./preview.html">Login</a>
+      </nav>
+      <details class="group relative md:hidden">
+        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
+          Menu
+          <span class="transition group-open:rotate-180">⌄</span>
+        </summary>
+        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html?returnTo=./preview.html">Login</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-bg relative grid min-h-[calc(100vh-76px)] items-end overflow-hidden text-white" id="inicio">
+      <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent to-exel-paper"></div>
+      <div class="relative mx-auto w-[min(1180px,calc(100%-32px))] pb-24 pt-20">
+        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">EXEL Professional Line</p>
+        <h1 class="serif mb-5 max-w-3xl text-6xl font-bold leading-none md:text-7xl">
+          Lineas dermocosmeticas para consulta, cabina y rutina diaria.
+        </h1>
+        <p class="max-w-2xl text-lg leading-8 text-white/85">
+          Una vitrina profesional basada en el catalogo EXEL Chile: lineas claras,
+          funciones de uso, activos destacados y prueba social preparada para comentarios reales.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a class="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#lineas">
+            <span class="grid h-6 w-6 place-items-center rounded-full bg-white/15">-></span>
+            Explorar lineas
+          </a>
+        <a class="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-card border border-exel-warm/70 bg-exel-cream/95 px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#confianza">
+          <span class="grid h-6 w-6 place-items-center rounded-full bg-exel-warm/30">+</span>
+          Ver confianza
+        </a>
+          <a class="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-card border border-white/30 bg-white/10 px-5 font-extrabold text-white backdrop-blur transition hover:-translate-y-1 hover:bg-white/20" href="./tienda.html">
+            <span class="grid h-6 w-6 place-items-center rounded-full bg-white/15">$</span>
+            Ir a tienda
+          </a>
+        </div>
+        <div class="mt-7 flex flex-wrap gap-3">
+          <span class="rounded-full border border-white/25 bg-white/15 px-4 py-3 text-sm font-extrabold backdrop-blur">Dermatologicamente testeado</span>
+          <span class="rounded-full border border-white/25 bg-white/15 px-4 py-3 text-sm font-extrabold backdrop-blur">Activos naturales</span>
+          <span class="rounded-full border border-white/25 bg-white/15 px-4 py-3 text-sm font-extrabold backdrop-blur">Portafolio profesional</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20" id="lineas">
+      <div class="mx-auto w-[min(1180px,calc(100%-32px))]">
+        <div class="mb-9 grid items-end gap-9 lg:grid-cols-[0.9fr_0.55fr]">
+          <div>
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Lineas de producto</p>
+            <h2 class="serif text-5xl font-semibold leading-none md:text-6xl">Una arquitectura de catalogo pensada para decidir rapido.</h2>
+          </div>
+          <p class="text-base leading-8 text-exel-muted">
+            Cada linea comunica una necesidad concreta: limpieza y antioxidantes,
+            cuidado focalizado de pestanas y cejas, e hidratacion intensiva facial y corporal.
+          </p>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-3">
+          <article class="line-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line-target="green line">
+            <img class="h-80 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/ambiente/green-line.webp" alt="Productos Green Line">
+            <div class="p-6">
+              <h3 class="serif mb-3 text-4xl font-semibold">Green Line</h3>
+              <p class="leading-7 text-exel-muted">Linea vegana con activos de la Pampa y la Patagonia para limpieza, luminosidad, antioxidantes y reparacion.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Vegana</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Rostro</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Antioxidante</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="line-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line-target="promoter">
+            <img class="h-80 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/promoter/liposomas-spray.webp" alt="Linea Promoter">
+            <div class="p-6">
+              <h3 class="serif mb-3 text-4xl font-semibold">Promoter</h3>
+              <p class="leading-7 text-exel-muted">Cuidado focalizado para pestanas, cejas y contorno de ojos con higiene suave y liposomas en spray.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Cejas</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Pestanas</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Contorno</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="line-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line-target="hydra 10">
+            <img class="h-80 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/hydra-10/hydra-10-corporal.webp" alt="Linea Hydra 10">
+            <div class="p-6">
+              <h3 class="serif mb-3 text-4xl font-semibold">Hydra 10</h3>
+              <p class="leading-7 text-exel-muted">Hidratacion dermoprotectora para piel seca o exigente, con opciones facial y corporal.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Hidratacion</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Facial</span>
+                <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Corporal</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-exel-sand py-20" id="uso">
+      <div class="mx-auto w-[min(1180px,calc(100%-32px))]">
+        <div class="mb-9 grid items-end gap-9 lg:grid-cols-[0.9fr_0.55fr]">
+          <div>
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Funciones de uso</p>
+            <h2 class="serif text-5xl font-semibold leading-none md:text-6xl">La confianza sube cuando la rutina se entiende sin preguntar.</h2>
+          </div>
+          <p class="text-base leading-8 text-exel-muted">
+            El sitio debe mostrar no solo el producto, sino como se integra en una rutina profesional o domiciliaria.
+          </p>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article class="usage-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+            <strong class="mb-5 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-exel-graphite to-exel-ink text-white">1</strong>
+            <h3 class="serif mb-2 text-3xl font-semibold">Limpiar</h3>
+            <p class="leading-7 text-exel-muted">Gel de limpieza y espuma micelar para retirar impurezas sin romper la sensacion de confort.</p>
+          </article>
+          <article class="usage-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+            <strong class="mb-5 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-exel-graphite to-exel-ink text-white">2</strong>
+            <h3 class="serif mb-2 text-3xl font-semibold">Preparar</h3>
+            <p class="leading-7 text-exel-muted">Esencia de kombucha para aportar tonicidad, luminosidad y una primera capa antioxidante.</p>
+          </article>
+          <article class="usage-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+            <strong class="mb-5 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-exel-graphite to-exel-ink text-white">3</strong>
+            <h3 class="serif mb-2 text-3xl font-semibold">Tratar</h3>
+            <p class="leading-7 text-exel-muted">Serums hidratantes, iluminadores o regenerativos segun necesidad de la piel.</p>
+          </article>
+          <article class="usage-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+            <strong class="mb-5 grid h-9 w-9 place-items-center rounded-full bg-gradient-to-br from-exel-graphite to-exel-ink text-white">4</strong>
+            <h3 class="serif mb-2 text-3xl font-semibold">Sellar</h3>
+            <p class="leading-7 text-exel-muted">Bakuchiol o Hydra 10 para nutricion, reparacion y proteccion dermocosmetica.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20" id="catalogo">
+      <div class="mx-auto w-[min(1180px,calc(100%-32px))]">
+        <div class="mb-9 grid items-end gap-9 lg:grid-cols-[0.9fr_0.55fr]">
+          <div>
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Catalogo guiado</p>
+            <h2 class="serif text-5xl font-semibold leading-none md:text-6xl">Productos agrupados por linea, activo y funcion.</h2>
+          </div>
+          <p class="text-base leading-8 text-exel-muted">
+            Los filtros muestran la familia completa sin perder contexto. Las fichas quedan listas para precio, stock y compra por WhatsApp.
+          </p>
+        </div>
+
+        <div class="mb-6 flex flex-wrap gap-3" aria-label="Filtros de catalogo">
+          <button class="filter-button active rounded-card border border-exel-line bg-gradient-to-br from-exel-graphite to-exel-ink px-4 py-3 font-extrabold text-white transition hover:-translate-y-0.5" type="button" data-filter="todos">Todos</button>
+          <button class="filter-button rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" type="button" data-filter="green line">Green Line</button>
+          <button class="filter-button rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" type="button" data-filter="promoter">Promoter</button>
+          <button class="filter-button rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" type="button" data-filter="hydra 10">Hydra 10</button>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article class="product-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line="green line">
+            <img class="h-72 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/green-line/gel-limpieza.webp" alt="Gel de Limpieza">
+            <div class="p-6">
+              <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Limpieza</span>
+              <h3 class="serif mt-4 text-3xl font-semibold">Gel de Limpieza</h3>
+              <p class="mt-3 leading-7 text-exel-muted">Elimina impurezas sin alterar el pH cutaneo. Ideal para iniciar la rutina Green Line.</p>
+              <div class="mt-4 flex justify-between border-t border-exel-line pt-4 text-sm font-extrabold text-exel-graphite"><span>100 ml</span><a href="#confianza">Ver respaldo</a></div>
+            </div>
+          </article>
+
+          <article class="product-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line="green line">
+            <img class="h-72 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/green-line/esencia-kombucha.webp" alt="Esencia de Te de Kombucha">
+            <div class="p-6">
+              <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Preparacion</span>
+              <h3 class="serif mt-4 text-3xl font-semibold">Esencia de Te de Kombucha</h3>
+              <p class="mt-3 leading-7 text-exel-muted">Locion facial revitalizante y antioxidante con probioticos y extractos vegetales.</p>
+              <div class="mt-4 flex justify-between border-t border-exel-line pt-4 text-sm font-extrabold text-exel-graphite"><span>120 ml</span><a href="#uso">Modo de uso</a></div>
+            </div>
+          </article>
+
+          <article class="product-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line="promoter">
+            <img class="h-72 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/promoter/liposomas-spray.webp" alt="Promoter Liposomas en Spray">
+            <div class="p-6">
+              <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Pestanas</span>
+              <h3 class="serif mt-4 text-3xl font-semibold">Promoter Spray</h3>
+              <p class="mt-3 leading-7 text-exel-muted">Estimula el crecimiento natural de pestanas y cejas con vitaminas y liposomas.</p>
+              <div class="mt-4 flex justify-between border-t border-exel-line pt-4 text-sm font-extrabold text-exel-graphite"><span>15 ml</span><a href="#confianza">Respaldo</a></div>
+            </div>
+          </article>
+
+          <article class="product-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift" data-line="hydra 10">
+            <img class="h-72 w-full object-cover transition duration-700 group-hover:scale-105" src="./assets/catalogo-web/productos/hydra-10/hydra-10-facial.webp" alt="Hydra 10 Facial">
+            <div class="p-6">
+              <span class="rounded-full bg-exel-warm/30 px-3 py-2 text-xs font-extrabold text-exel-graphite">Facial</span>
+              <h3 class="serif mt-4 text-3xl font-semibold">Hydra 10 Facial</h3>
+              <p class="mt-3 leading-7 text-exel-muted">Crema ultra humectante con tecnologia de nano encapsulamiento aplicada.</p>
+              <div class="mt-4 flex justify-between border-t border-exel-line pt-4 text-sm font-extrabold text-exel-graphite"><span>50 ml</span><a href="#uso">Rutina</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-exel-sand py-20" id="confianza">
+      <div class="mx-auto w-[min(1180px,calc(100%-32px))]">
+        <div class="mb-9 grid items-end gap-9 lg:grid-cols-[0.9fr_0.55fr]">
+          <div>
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Confianza y prueba social</p>
+            <h2 class="serif text-5xl font-semibold leading-none md:text-6xl">Resenas reales, sellos visibles y trazabilidad de fuente.</h2>
+          </div>
+          <p class="text-base leading-8 text-exel-muted">
+            La seccion esta lista para comentarios webscrapeados desde una fuente autorizada. Mientras no exista URL definida, se muestran estados de integracion y criterios de validacion.
+          </p>
+        </div>
+
+        <div class="grid gap-5 lg:grid-cols-[0.8fr_0.55fr]">
+          <div class="grid gap-4" id="reviews">
+            <article class="proof-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+              <blockquote class="serif mb-4 text-3xl leading-tight">Comentarios listos para importar desde Google, Instagram, marketplace o tienda propia.</blockquote>
+              <footer class="flex justify-between gap-4 text-sm font-extrabold text-exel-muted"><span>Estado</span><span>Pendiente de fuente</span></footer>
+            </article>
+            <article class="proof-card rounded-card border border-exel-line bg-white/85 p-6 shadow-soft">
+              <blockquote class="serif mb-4 text-3xl leading-tight">Cada comentario debe conservar texto, autor publico, fecha, origen y enlace de respaldo.</blockquote>
+              <footer class="flex justify-between gap-4 text-sm font-extrabold text-exel-muted"><span>Criterio</span><span>Trazabilidad</span></footer>
+            </article>
+          </div>
+
+          <aside class="source-panel rounded-card bg-gradient-to-b from-exel-graphite to-exel-ink p-6 text-white shadow-soft">
+            <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Pipeline de comentarios</p>
+            <h3 class="serif mb-3 text-4xl font-semibold">Scraping preparado</h3>
+            <p class="leading-7 text-white/75">
+              Base tecnica lista para poblar esta zona con comentarios reales cuando tengamos una URL o archivo fuente.
+            </p>
+            <ul class="my-5 grid gap-3">
+              <li class="flex justify-between rounded-card border border-white/15 bg-white/10 p-3 font-extrabold">Google Business <span class="text-white/65">por definir</span></li>
+              <li class="flex justify-between rounded-card border border-white/15 bg-white/10 p-3 font-extrabold">Instagram <span class="text-white/65">por definir</span></li>
+              <li class="flex justify-between rounded-card border border-white/15 bg-white/10 p-3 font-extrabold">Marketplace <span class="text-white/65">por definir</span></li>
+            </ul>
+            <a class="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-card border border-exel-warm/70 bg-exel-cream/95 px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" href="#catalogo">
+              <span class="grid h-6 w-6 place-items-center rounded-full bg-exel-warm/30">+</span>
+              Volver al catalogo
+            </a>
+          </aside>
+        </div>
+
+        <div class="mt-7 grid gap-3 md:grid-cols-3 lg:grid-cols-6">
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/dermatologically-tested.webp" alt="Dermatologically tested"></figure>
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/vegan.webp" alt="Vegan"></figure>
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/not-tested-on-animals.webp" alt="No tested on animals"></figure>
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/paraben-free.webp" alt="Paraben free"></figure>
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/tacc-free.webp" alt="TACC free"></figure>
+          <figure class="grid min-h-28 place-items-center rounded-card border border-exel-line bg-white"><img class="h-16 w-16 object-contain" src="./assets/catalogo-web/iconos/mineral-oil-free.webp" alt="Mineral oil free"></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[linear-gradient(90deg,rgba(47,43,40,0.9),rgba(92,82,74,0.58)),url('./assets/catalogo-web/ambiente/sobre-nosotros.webp')] bg-cover bg-center py-20 text-white">
+      <div class="mx-auto grid w-[min(1180px,calc(100%-32px))] items-center gap-7 lg:grid-cols-[0.9fr_auto]">
+        <div>
+          <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Proxima capa</p>
+          <h2 class="serif mb-3 text-5xl font-semibold leading-none md:text-6xl">De catalogo a venta consultiva.</h2>
+          <p class="max-w-2xl leading-8 text-white/75">
+            El siguiente paso es conectar ficha completa, stock, WhatsApp y comentarios reales para que cada producto tenga respaldo antes de pedir una cotizacion.
+          </p>
+        </div>
+        <a class="inline-flex min-h-[50px] items-center justify-center gap-3 rounded-card border border-exel-warm/70 bg-exel-cream/95 px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" href="#catalogo">
+          <span class="grid h-6 w-6 place-items-center rounded-full bg-exel-warm/30">-></span>
+          Revisar productos
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-button");
+    const productCards = document.querySelectorAll(".product-card");
+
+    function setFilter(filter) {
+      filterButtons.forEach((button) => {
+        const active = button.dataset.filter === filter;
+        button.classList.toggle("active", active);
+        button.classList.toggle("bg-white", !active);
+        button.classList.toggle("text-exel-muted", !active);
+        button.classList.toggle("text-white", active);
+        button.classList.toggle("bg-gradient-to-br", active);
+        button.classList.toggle("from-exel-graphite", active);
+        button.classList.toggle("to-exel-ink", active);
+      });
+
+      productCards.forEach((card) => {
+        card.hidden = !(filter === "todos" || card.dataset.line === filter);
+      });
+
+      if (window.gsap) {
+        gsap.fromTo(
+          ".product-card:not([hidden])",
+          { opacity: 0, y: 24, scale: 0.98 },
+          { opacity: 1, y: 0, scale: 1, duration: 0.55, stagger: 0.06, ease: "power3.out" }
+        );
+      }
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => setFilter(button.dataset.filter));
+    });
+
+    document.querySelectorAll("[data-line-target]").forEach((card) => {
+      card.addEventListener("click", () => {
+        setFilter(card.dataset.lineTarget);
+        document.querySelector("#catalogo").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.from("header", { opacity: 0, y: -22, duration: 0.85, ease: "power3.out" });
+      gsap.from(".hero-bg p, .hero-bg h1, .hero-bg .button, .hero-bg span", {
+        opacity: 0,
+        y: 36,
+        duration: 0.9,
+        stagger: 0.07,
+        ease: "power3.out"
+      });
+
+      gsap.utils.toArray(".line-card, .usage-card, .product-card, .proof-card, .source-panel, figure").forEach((element) => {
+        gsap.from(element, {
+          scrollTrigger: { trigger: element, start: "top 86%" },
+          opacity: 0,
+          y: 34,
+          scale: 0.985,
+          duration: 0.75,
+          ease: "power3.out"
+        });
+      });
+    }
+  </script>
+</body>
+</html>

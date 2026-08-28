@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Panel admin</title>
+  <meta name="description" content="Panel administrativo EXEL Chile para revisar solicitudes, preparar paquetes y administrar stock de productos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            exel: {
+              ink: "#2f2b28",
+              muted: "#706861",
+              paper: "#fbf7f1",
+              cream: "#fffdf9",
+              sand: "#f3ece2",
+              warm: "#d8c8b4",
+              graphite: "#5c524a",
+              copper: "#b8895d",
+              line: "rgba(71, 55, 42, 0.13)"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
+            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
+          },
+          borderRadius: {
+            card: "8px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", serif;
+    }
+  </style>
+</head>
+<body class="text-exel-ink antialiased">
+  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <a class="flex items-center gap-4" href="./preview.html">
+        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Panel admin</span>
+      </a>
+      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
+        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
+        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-exel-ink" href="./login.html">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto w-[min(1240px,calc(100%-32px))] py-10">
+    <section class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
+      <div>
+        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Administracion</p>
+        <h1 class="serif max-w-4xl text-6xl font-bold leading-none md:text-7xl">Stock, productos y paquetes por preparar.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-exel-muted">Revisa solicitudes guardadas, direccion de despacho y productos necesarios para armar cada paquete.</p>
+      </div>
+      <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+        <p id="adminStatus" class="text-sm font-bold text-exel-muted">Verificando acceso...</p>
+        <button id="loginAdmin" class="mt-3 hidden min-h-[44px] rounded-card bg-exel-ink px-5 font-extrabold text-white" type="button">Entrar con Google</button>
+        <button id="refreshAdmin" class="mt-3 hidden min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-5 font-extrabold text-exel-ink" type="button">Actualizar datos</button>
+      </div>
+    </section>
+
+    <section id="adminContent" class="mt-10 hidden grid gap-6 xl:grid-cols-[1fr_460px]">
+      <div class="grid gap-6">
+        <section id="metricGrid" class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"></section>
+
+        <section class="rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Paquetes</p>
+              <h2 class="serif mt-2 text-4xl font-semibold">Compras por preparar</h2>
+            </div>
+            <select id="quoteFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
+              <option value="todos">Todos los estados</option>
+              <option value="draft">Pendientes</option>
+              <option value="preparing">En preparacion</option>
+              <option value="ready">Listos</option>
+              <option value="delivered">Entregados</option>
+            </select>
+          </div>
+          <div id="quoteList" class="mt-5 grid gap-4"></div>
+        </section>
+
+        <section class="rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
+          <div class="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Inventario</p>
+              <h2 class="serif mt-2 text-4xl font-semibold">Stock de productos</h2>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-3">
+              <input id="productSearch" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Buscar producto">
+              <select id="lineFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
+                <option value="todos">Todas las lineas</option>
+              </select>
+              <select id="stockFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
+                <option value="todos">Todo stock</option>
+                <option value="active">Activos</option>
+                <option value="featured">Destacados</option>
+                <option value="low">Stock bajo</option>
+                <option value="out">Sin stock</option>
+              </select>
+            </div>
+          </div>
+          <div id="productList" class="mt-5 grid gap-3"></div>
+        </section>
+      </div>
+
+      <aside class="h-max rounded-card border border-exel-line bg-white/90 p-5 shadow-lift xl:sticky xl:top-24">
+        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Producto</p>
+        <h2 class="serif mt-2 text-4xl font-semibold">Agregar o editar</h2>
+        <form id="productForm" class="mt-5 grid gap-3">
+          <div class="rounded-card bg-exel-sand p-4">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Identidad comercial</p>
+            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Define como aparece el producto en tienda, busqueda y ficha.</p>
+          </div>
+          <input name="id" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="ID producto, ej: serum-nuevo" required>
+          <input name="name" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Nombre" required>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input name="sku" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="SKU interno">
+            <input name="sortOrder" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Orden" type="number">
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input name="line" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Linea" required>
+            <input name="category" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Categoria">
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input name="label" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Etiqueta">
+            <input name="concern" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Funcion, ej: hidratacion">
+          </div>
+          <input name="size" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Formato / tamano">
+
+          <div class="rounded-card bg-exel-sand p-4">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Precio e inventario</p>
+            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Controla disponibilidad, precio lista y alertas de reposicion.</p>
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input name="price" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Precio" type="number" min="0" required>
+            <input name="compareAtPrice" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Precio antes" type="number" min="0">
+          </div>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <input name="cost" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Costo interno" type="number" min="0">
+            <input name="stock" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Stock" type="number" min="0">
+          </div>
+          <input name="lowStockThreshold" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Alerta stock bajo, ej: 3" type="number" min="0">
+          <div class="grid gap-2 rounded-card border border-exel-line bg-exel-cream p-4 text-sm font-extrabold text-exel-muted">
+            <label class="flex items-center gap-3"><input name="active" type="checkbox" class="h-4 w-4 accent-[#2f2b28]" checked> Producto activo en tienda</label>
+            <label class="flex items-center gap-3"><input name="featured" type="checkbox" class="h-4 w-4 accent-[#2f2b28]"> Producto destacado</label>
+          </div>
+
+          <div class="rounded-card bg-exel-sand p-4">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Contenido y filtros</p>
+            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Personaliza textos, busqueda, tipo de piel y rutina sugerida.</p>
+          </div>
+          <input name="image" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Ruta imagen .webp">
+          <textarea name="description" class="min-h-24 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Descripcion"></textarea>
+          <textarea name="use" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Modo de uso"></textarea>
+          <input name="ingredients" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Activos separados por coma">
+          <input name="benefits" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Beneficios separados por coma">
+          <input name="tags" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Tags separados por coma">
+          <input name="skinTypes" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Tipos de piel separados por coma">
+          <input name="routines" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Rutinas separadas por coma">
+          <textarea name="adminNotes" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Notas internas"></textarea>
+
+          <div class="rounded-card bg-exel-sand p-4">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">SEO</p>
+            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Textos para compartir y posicionar mejor el producto.</p>
+          </div>
+          <input name="seoTitle" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Titulo SEO">
+          <textarea name="seoDescription" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Descripcion SEO"></textarea>
+          <button class="min-h-[50px] rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft" type="submit">Guardar producto</button>
+          <button id="resetProductForm" class="min-h-[46px] rounded-card border border-exel-line bg-white px-5 font-extrabold text-exel-ink" type="button">Limpiar formulario</button>
+          <p id="productFormMessage" class="min-h-5 text-xs font-bold text-exel-muted"></p>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <script src="./data/site-config.js"></script>
+  <script type="module">
+    import {
+      isAdminUser,
+      listProducts,
+      listQuotes,
+      loginWithGoogle,
+      onUserChange,
+      updateProductStock,
+      updateQuoteStatus,
+      upsertProduct
+    } from "./data/firebase-client.js";
+
+    const formatter = window.EXEL_SITE.currencyFormatter;
+    const adminStatus = document.querySelector("#adminStatus");
+    const loginAdmin = document.querySelector("#loginAdmin");
+    const refreshAdmin = document.querySelector("#refreshAdmin");
+    const adminContent = document.querySelector("#adminContent");
+    const metricGrid = document.querySelector("#metricGrid");
+    const productList = document.querySelector("#productList");
+    const quoteList = document.querySelector("#quoteList");
+    const productSearch = document.querySelector("#productSearch");
+    const lineFilter = document.querySelector("#lineFilter");
+    const stockFilter = document.querySelector("#stockFilter");
+    const quoteFilter = document.querySelector("#quoteFilter");
+    const productForm = document.querySelector("#productForm");
+    const resetProductForm = document.querySelector("#resetProductForm");
+    const productFormMessage = document.querySelector("#productFormMessage");
+
+    let products = [];
+    let quotes = [];
+
+    function dateFromFirestore(value) {
+      if (!value) return "Sin fecha";
+      if (typeof value.toDate === "function") return value.toDate().toLocaleString("es-CL");
+      if (value.seconds) return new Date(value.seconds * 1000).toLocaleString("es-CL");
+      return "Sin fecha";
+    }
+
+    function stockState(product) {
+      const stock = Number(product.stock || 0);
+      const lowStockThreshold = Number(product.lowStockThreshold ?? 3);
+      if (stock <= 0) return { label: "Sin stock", tone: "bg-red-50 text-red-700 border-red-100" };
+      if (stock <= lowStockThreshold) return { label: "Stock bajo", tone: "bg-amber-50 text-amber-700 border-amber-100" };
+      return { label: "Disponible", tone: "bg-emerald-50 text-emerald-700 border-emerald-100" };
+    }
+
+    function quoteStatusLabel(status = "draft") {
+      const labels = {
+        draft: "Pendiente",
+        preparing: "En preparacion",
+        ready: "Listo",
+        delivered: "Entregado"
+      };
+      return labels[status] || status;
+    }
+
+    function renderMetrics() {
+      const pendingQuotes = quotes.filter((quote) => (quote.status || "draft") === "draft").length;
+      const preparingQuotes = quotes.filter((quote) => quote.status === "preparing").length;
+      const lowStock = products.filter((product) => {
+        const stock = Number(product.stock || 0);
+        const threshold = Number(product.lowStockThreshold ?? 3);
+        return stock <= threshold;
+      }).length;
+      const pendingTotal = quotes
+        .filter((quote) => ["draft", "preparing"].includes(quote.status || "draft"))
+        .reduce((sum, quote) => sum + Number(quote.totals?.total || 0), 0);
+
+      metricGrid.innerHTML = [
+        ["Solicitudes pendientes", pendingQuotes, "Pedidos aun sin preparar"],
+        ["En preparacion", preparingQuotes, "Paquetes en proceso"],
+        ["Stock bajo", lowStock, "Productos por revisar"],
+        ["Venta pendiente", formatter.format(pendingTotal), "Total estimado abierto"]
+      ].map(([label, value, detail]) => `
+        <article class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">${label}</p>
+          <strong class="mt-2 block text-3xl">${value}</strong>
+          <span class="mt-1 block text-xs font-bold text-exel-muted">${detail}</span>
+        </article>
+      `).join("");
+    }
+
+    function renderLineFilter() {
+      const current = lineFilter.value || "todos";
+      const lines = [...new Set(products.map((product) => product.line).filter(Boolean))].sort();
+      lineFilter.innerHTML = '<option value="todos">Todas las lineas</option>' + lines
+        .map((line) => `<option value="${line}">${line}</option>`)
+        .join("");
+      lineFilter.value = lines.includes(current) ? current : "todos";
+    }
+
+    function renderProducts() {
+      const query = window.EXEL_SITE.normalizeText(productSearch.value);
+      const filtered = products.filter((product) => {
+        const stock = Number(product.stock || 0);
+        const threshold = Number(product.lowStockThreshold ?? 3);
+        const matchesQuery = window.EXEL_SITE.normalizeText(`${product.name} ${product.line} ${product.label} ${product.sku || ""}`).includes(query);
+        const matchesLine = lineFilter.value === "todos" || product.line === lineFilter.value;
+        const matchesStock = stockFilter.value === "todos"
+          || (stockFilter.value === "active" && product.active !== false)
+          || (stockFilter.value === "featured" && product.featured)
+          || (stockFilter.value === "low" && stock > 0 && stock <= threshold)
+          || (stockFilter.value === "out" && stock <= 0);
+        return matchesQuery && matchesLine && matchesStock;
+      });
+      productList.innerHTML = filtered.length ? filtered.map((product) => `
+        <article class="grid gap-3 rounded-card border border-exel-line bg-exel-cream p-4 md:grid-cols-[72px_1fr_auto] md:items-center">
+          <img class="h-20 w-20 rounded-card object-cover" src="${product.image || "./assets/catalogo-web/branding/logo-exel.webp"}" alt="${product.name}">
+          <div>
+            <div class="flex flex-wrap gap-2">
+              <span class="rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-exel-copper">${product.line || "Sin linea"}</span>
+              <span class="rounded-full border px-3 py-1 text-[11px] font-extrabold ${stockState(product).tone}">${stockState(product).label}</span>
+              ${product.featured ? '<span class="rounded-full bg-exel-ink px-3 py-1 text-[11px] font-extrabold text-white">Destacado</span>' : ""}
+              ${product.active === false ? '<span class="rounded-full bg-stone-200 px-3 py-1 text-[11px] font-extrabold text-exel-muted">Oculto</span>' : ""}
+            </div>
+            <h3 class="serif text-3xl font-semibold leading-none">${product.name}</h3>
+            <p class="mt-2 text-sm font-bold text-exel-muted">${product.sku ? `${product.sku} · ` : ""}${product.label || ""} · ${product.size || ""} · ${formatter.format(product.price || 0)}</p>
+            <p class="mt-1 text-xs font-bold text-exel-muted">${(product.tags || []).slice(0, 4).join(" · ")}</p>
+          </div>
+          <div class="grid gap-2">
+            <label class="text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Stock</label>
+            <input class="stock-input min-h-[42px] w-28 rounded-card border border-exel-line bg-white px-3 font-extrabold outline-none" data-id="${product.id}" type="number" min="0" value="${Number(product.stock || 0)}">
+            <button class="edit-product rounded-card border border-exel-line bg-white px-3 py-2 text-xs font-extrabold text-exel-ink" data-id="${product.id}" type="button">Editar</button>
+          </div>
+        </article>
+      `).join("") : '<p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">No hay productos para mostrar.</p>';
+
+      productList.querySelectorAll(".stock-input").forEach((input) => {
+        input.addEventListener("change", async () => {
+          await updateProductStock(input.dataset.id, input.value);
+          adminStatus.textContent = `Stock actualizado para ${input.dataset.id}.`;
+          await loadData();
+        });
+      });
+
+      productList.querySelectorAll(".edit-product").forEach((button) => {
+        button.addEventListener("click", () => {
+          const product = products.find((item) => item.id === button.dataset.id);
+          if (!product) return;
+          Object.entries(product).forEach(([key, value]) => {
+            const field = productForm.elements[key];
+            if (!field) return;
+            if (field.type === "checkbox") {
+              field.checked = Boolean(value);
+            } else {
+              field.value = Array.isArray(value) ? value.join(", ") : value ?? "";
+            }
+          });
+          if (product.active == null) productForm.elements.active.checked = true;
+          productFormMessage.textContent = "Producto cargado para editar.";
+        });
+      });
+    }
+
+    function renderQuotes() {
+      const status = quoteFilter.value;
+      const filtered = quotes.filter((quote) => status === "todos" || (quote.status || "draft") === status);
+      quoteList.innerHTML = filtered.length ? filtered.map((quote) => {
+        const items = quote.cart || [];
+        const shipping = quote.shipping || {};
+        const customer = quote.customer || {};
+        return `
+          <article class="rounded-card border border-exel-line bg-exel-cream p-4 shadow-soft">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Solicitud ${quote.id}</p>
+                <h3 class="serif mt-1 text-3xl font-semibold leading-none">${customer.name || quote.customerEmail || "Cliente sin nombre"}</h3>
+                <p class="mt-2 text-sm font-bold text-exel-muted">${dateFromFirestore(quote.createdAt)} · ${customer.phone || "Sin telefono"}</p>
+                <span class="mt-3 inline-flex rounded-full bg-white px-3 py-2 text-xs font-extrabold text-exel-copper">${quoteStatusLabel(quote.status || "draft")}</span>
+              </div>
+              <select class="quote-status min-h-[42px] rounded-card border border-exel-line bg-white px-3 font-bold text-exel-muted" data-id="${quote.id}">
+                ${["draft", "preparing", "ready", "delivered"].map((value) => `<option value="${value}" ${value === (quote.status || "draft") ? "selected" : ""}>${value}</option>`).join("")}
+              </select>
+            </div>
+            <div class="mt-4 grid gap-3 md:grid-cols-2">
+              <div class="rounded-card bg-white p-4">
+                <strong class="block text-sm">Paquete a armar</strong>
+                <ul class="mt-2 grid gap-2 text-sm font-bold text-exel-muted">
+                  ${items.map((item) => `<li class="flex items-start gap-2"><span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded border border-exel-line bg-exel-cream text-[10px]">□</span><span>${item.quantity}x ${item.name} (${item.size || ""})</span></li>`).join("") || "<li>Sin productos</li>"}
+                </ul>
+              </div>
+              <div class="rounded-card bg-white p-4">
+                <strong class="block text-sm">Direccion de envio</strong>
+                <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">${shipping.label || quote.delivery || "Sin despacho"}</p>
+                <p class="text-sm font-bold leading-6 text-exel-muted">${shipping.address || "Sin direccion registrada"}</p>
+                <p class="text-sm font-bold leading-6 text-exel-muted">${shipping.city || ""}</p>
+                <p class="mt-2 text-xs font-bold leading-5 text-exel-muted">${shipping.notes || ""}</p>
+              </div>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-card bg-white p-4">
+              <span class="text-sm font-extrabold text-exel-muted">Total</span>
+              <strong class="text-2xl">${formatter.format(quote.totals?.total || 0)}</strong>
+              <button class="copy-package rounded-card border border-exel-line bg-exel-cream px-3 py-2 text-xs font-extrabold text-exel-ink" data-id="${quote.id}" type="button">Copiar paquete</button>
+            </div>
+          </article>
+        `;
+      }).join("") : '<p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">No hay solicitudes en este estado.</p>';
+
+      quoteList.querySelectorAll(".quote-status").forEach((select) => {
+        select.addEventListener("change", async () => {
+          await updateQuoteStatus(select.dataset.id, select.value);
+          adminStatus.textContent = `Solicitud ${select.dataset.id} actualizada.`;
+          await loadData();
+        });
+      });
+
+      quoteList.querySelectorAll(".copy-package").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const quote = quotes.find((item) => item.id === button.dataset.id);
+          if (!quote) return;
+          const items = (quote.cart || []).map((item) => `${item.quantity}x ${item.name} (${item.size || ""})`).join("\n");
+          const shipping = quote.shipping || {};
+          const customer = quote.customer || {};
+          const text = `Paquete ${quote.id}\nCliente: ${customer.name || quote.customerEmail || "Sin nombre"}\nTelefono: ${customer.phone || "Sin telefono"}\nDireccion: ${shipping.address || "Sin direccion"} ${shipping.city || ""}\n\nProductos:\n${items}`;
+          await navigator.clipboard.writeText(text);
+          adminStatus.textContent = `Paquete ${quote.id} copiado.`;
+        });
+      });
+    }
+
+    async function loadData() {
+      try {
+        adminStatus.textContent = "Cargando datos...";
+        products = await listProducts();
+        quotes = await listQuotes();
+        renderMetrics();
+        renderLineFilter();
+        renderProducts();
+        renderQuotes();
+        adminStatus.textContent = `${products.length} productos · ${quotes.length} solicitudes.`;
+      } catch (error) {
+        adminStatus.textContent = `No se pudieron cargar datos: ${error.message}`;
+      }
+    }
+
+    loginAdmin.addEventListener("click", async () => {
+      try {
+        adminStatus.textContent = "Abriendo login de Google...";
+        await loginWithGoogle();
+      } catch (error) {
+        adminStatus.textContent = `No se pudo iniciar sesion: ${error.message}`;
+      }
+    });
+    refreshAdmin.addEventListener("click", loadData);
+    productSearch.addEventListener("input", renderProducts);
+    lineFilter.addEventListener("change", renderProducts);
+    stockFilter.addEventListener("change", renderProducts);
+    quoteFilter.addEventListener("change", renderQuotes);
+    resetProductForm.addEventListener("click", () => {
+      productForm.reset();
+      productForm.elements.active.checked = true;
+      productFormMessage.textContent = "Formulario limpio.";
+    });
+
+    productForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const form = new FormData(productForm);
+      const product = Object.fromEntries(form.entries());
+      product.price = Number(product.price || 0);
+      product.compareAtPrice = Number(product.compareAtPrice || 0);
+      product.cost = Number(product.cost || 0);
+      product.stock = Number(product.stock || 0);
+      product.lowStockThreshold = Number(product.lowStockThreshold || 3);
+      product.sortOrder = Number(product.sortOrder || 0);
+      product.active = productForm.elements.active.checked;
+      product.featured = productForm.elements.featured.checked;
+      product.ingredients = String(product.ingredients || "").split(",").map((item) => item.trim()).filter(Boolean);
+      product.benefits = String(product.benefits || "").split(",").map((item) => item.trim()).filter(Boolean);
+      product.tags = String(product.tags || "").split(",").map((item) => item.trim()).filter(Boolean);
+      product.skinTypes = String(product.skinTypes || "").split(",").map((item) => item.trim()).filter(Boolean);
+      product.routines = String(product.routines || "").split(",").map((item) => item.trim()).filter(Boolean);
+      product.image = product.image || "./assets/catalogo-web/branding/logo-exel.webp";
+      try {
+        await upsertProduct(product);
+        productFormMessage.textContent = "Producto guardado en Firebase.";
+        productForm.reset();
+        await loadData();
+      } catch (error) {
+        productFormMessage.textContent = `No se pudo guardar: ${error.message}`;
+      }
+    });
+
+    onUserChange(async (user, status) => {
+      if (!status?.configured) {
+        adminStatus.textContent = status.message;
+        return;
+      }
+      if (!user) {
+        adminStatus.textContent = "Inicia sesion con Google para administrar.";
+        loginAdmin.classList.remove("hidden");
+        return;
+      }
+      if (!isAdminUser(user)) {
+        adminStatus.textContent = `Sin acceso admin para ${user.email}.`;
+        return;
+      }
+
+      loginAdmin.classList.add("hidden");
+      refreshAdmin.classList.remove("hidden");
+      adminContent.classList.remove("hidden");
+      await loadData();
+    });
+  </script>
+</body>
+</html>

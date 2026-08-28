@@ -1,0 +1,476 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Carrito</title>
+  <meta name="description" content="Revisa tu carrito EXEL Chile, aplica cupones, selecciona despacho y envia la solicitud por WhatsApp.">
+  <meta property="og:title" content="EXEL Chile | Carrito">
+  <meta property="og:description" content="Confirma productos, descuentos y despacho antes de solicitar por WhatsApp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="./assets/catalogo-web/ambiente/hero-productos.webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            exel: {
+              ink: "#2f2b28",
+              muted: "#706861",
+              paper: "#fbf7f1",
+              cream: "#fffdf9",
+              sand: "#f3ece2",
+              warm: "#d8c8b4",
+              graphite: "#5c524a",
+              copper: "#b8895d",
+              line: "rgba(71, 55, 42, 0.13)"
+            }
+          },
+          boxShadow: {
+            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
+            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
+          },
+          borderRadius: {
+            card: "8px"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    body {
+      font-family: "Manrope", sans-serif;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
+        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", serif;
+    }
+  </style>
+</head>
+<body class="text-exel-ink antialiased">
+  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
+      <a class="flex items-center gap-4" href="./preview.html">
+        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+      </a>
+      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
+        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
+        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-exel-ink" href="./login.html?returnTo=./carrito.html">Login</a>
+      </nav>
+      <details class="group relative md:hidden">
+        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
+          Menu
+          <span class="transition group-open:rotate-180">⌄</span>
+        </summary>
+        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
+          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html?returnTo=./carrito.html">Login</a>
+        </nav>
+      </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="mx-auto grid w-[min(1180px,calc(100%-32px))] gap-8 py-10 lg:grid-cols-[1fr_390px] lg:py-16">
+      <div>
+        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Carrito profesional</p>
+        <h1 class="serif max-w-3xl text-6xl font-bold leading-none md:text-7xl">Revisa tu carrito antes de cotizar.</h1>
+        <p class="mt-5 max-w-2xl text-lg leading-8 text-exel-muted">Ajusta cantidades, aplica descuentos y selecciona despacho. Prepararemos tu solicitud para confirmar disponibilidad y entrega por WhatsApp.</p>
+
+        <div id="emptyCart" class="mt-8 hidden rounded-card border border-exel-line bg-white/85 p-8 text-center shadow-soft">
+          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Carrito vacio</p>
+          <h2 class="serif mt-2 text-5xl font-semibold leading-none">Aun no tienes productos.</h2>
+          <a class="mt-6 inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1" href="./tienda.html">
+            Volver a tienda
+          </a>
+        </div>
+
+        <div id="cartList" class="mt-8 grid gap-4"></div>
+
+        <section class="mt-8 rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
+          <div class="flex items-start gap-4">
+            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-card bg-exel-sand text-exel-copper">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M4 7h16M7 7V5h10v2M6 7l1 12h10l1-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <div>
+              <h2 class="serif text-4xl font-semibold leading-none">Beneficios para tu compra</h2>
+              <p class="mt-3 leading-7 text-exel-muted">Usa <strong>EXEL10</strong> para 10% de descuento, <strong>INSUMOS5</strong> para 5% en compras de insumos, o <strong>ENVIOGRATIS</strong> para retirar el costo de despacho.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="mt-4 grid gap-3 sm:grid-cols-3">
+          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+            <strong class="block text-sm">Despacho confirmado</strong>
+            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Validamos cobertura y costo antes de cerrar la compra.</span>
+          </div>
+          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+            <strong class="block text-sm">Asesoria profesional</strong>
+            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Te ayudamos a elegir segun rutina, piel o necesidad.</span>
+          </div>
+          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+            <strong class="block text-sm">Compra asistida</strong>
+            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Respondemos por WhatsApp en horario habil.</span>
+          </div>
+        </section>
+      </div>
+
+      <aside class="h-max rounded-card border border-exel-line bg-white/90 p-5 shadow-lift lg:sticky lg:top-24">
+        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Resumen</p>
+        <h2 class="serif mt-2 text-4xl font-semibold">Total carrito</h2>
+
+        <label class="mt-5 block text-sm font-extrabold text-exel-muted" for="couponInput">Cupon de descuento</label>
+        <div class="mt-2 flex gap-2">
+          <input id="couponInput" class="min-h-[48px] min-w-0 flex-1 rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none transition focus:border-exel-copper" placeholder="EXEL10">
+          <button id="applyCoupon" class="rounded-card bg-exel-ink px-4 font-extrabold text-white transition hover:-translate-y-0.5" type="button">Aplicar</button>
+        </div>
+        <p id="couponMessage" class="mt-2 min-h-5 text-xs font-bold text-exel-muted"></p>
+
+        <label class="mt-5 block text-sm font-extrabold text-exel-muted" for="deliverySelect">Despacho</label>
+        <select id="deliverySelect" class="mt-2 min-h-[48px] w-full rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none transition focus:border-exel-copper">
+          <option value="pickup">Retiro en tienda - $0</option>
+          <option value="santiago">Despacho Santiago - $3.990</option>
+          <option value="regiones">Despacho regiones - $6.990</option>
+        </select>
+
+        <div class="mt-5 grid gap-3 rounded-card border border-exel-line bg-exel-cream p-4">
+          <p class="text-sm font-extrabold text-exel-muted">Datos para preparar despacho</p>
+          <input id="customerName" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Nombre cliente">
+          <input id="customerPhone" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Telefono contacto">
+          <input id="shippingAddress" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Direccion de envio">
+          <input id="shippingCity" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Comuna / ciudad">
+          <textarea id="shippingNotes" class="min-h-20 rounded-card border border-exel-line bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Notas para preparar paquete"></textarea>
+        </div>
+
+        <div class="mt-6 grid gap-3 border-t border-exel-line pt-5 text-sm font-extrabold text-exel-muted">
+          <div class="flex justify-between gap-4">
+            <span>Productos</span>
+            <span id="summaryItems">0</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span>Subtotal</span>
+            <span id="summarySubtotal">$0</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span>Descuento</span>
+            <span id="summaryDiscount">$0</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span>Despacho</span>
+            <span id="summaryDelivery">$0</span>
+          </div>
+        </div>
+
+        <div class="mt-5 rounded-card bg-exel-sand p-4">
+          <span class="block text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Total estimado</span>
+          <strong id="summaryTotal" class="mt-1 block text-4xl">$0</strong>
+        </div>
+
+        <div id="checkoutStatus" class="mt-4 grid gap-2 rounded-card border border-exel-line bg-exel-cream p-4 text-xs font-bold text-exel-muted"></div>
+
+        <a id="checkoutWhatsapp" class="mt-5 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#" target="_blank" rel="noreferrer">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 6h2l1.5 9h8.5l2-6H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 20h.01M17 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          Enviar carrito por WhatsApp
+        </a>
+        <button id="saveQuote" class="mt-3 inline-flex min-h-[46px] w-full items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">
+          Guardar cotizacion
+        </button>
+        <p id="saveQuoteMessage" class="mt-2 min-h-5 text-xs font-bold text-exel-muted"></p>
+        <button id="clearCart" class="mt-3 inline-flex min-h-[46px] w-full items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">
+          Vaciar carrito
+        </button>
+        <p class="mt-3 text-xs leading-5 text-exel-muted">Confirmamos disponibilidad, descuentos y costo final de despacho antes de cerrar la compra.</p>
+      </aside>
+    </section>
+  </main>
+
+  <template id="cartItemTemplate">
+    <article class="cart-row rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
+      <div class="grid gap-4 sm:grid-cols-[116px_1fr_auto] sm:items-center">
+        <a class="detail-link overflow-hidden rounded-card bg-exel-sand" href="#">
+          <img class="product-image h-32 w-full object-cover sm:h-28" alt="">
+        </a>
+        <div>
+          <p class="product-line text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper"></p>
+          <a class="detail-link name-link block transition hover:text-exel-copper" href="#">
+            <h3 class="product-name serif mt-1 text-3xl font-semibold leading-none"></h3>
+          </a>
+          <p class="product-meta mt-2 text-sm font-bold text-exel-muted"></p>
+          <p class="product-price mt-2 text-sm font-extrabold text-exel-ink"></p>
+        </div>
+        <div class="flex items-center justify-between gap-3 sm:block">
+          <div class="flex items-center gap-2 rounded-card bg-exel-sand p-1">
+            <button class="decrease grid h-10 w-10 place-items-center rounded-card border border-exel-line bg-white font-extrabold text-exel-muted transition hover:text-exel-ink" type="button" aria-label="Disminuir cantidad">-</button>
+            <span class="quantity grid h-10 min-w-12 place-items-center rounded-card bg-exel-cream px-3 font-extrabold">1</span>
+            <button class="increase grid h-10 w-10 place-items-center rounded-card bg-exel-ink font-extrabold text-white transition hover:-translate-y-0.5" type="button" aria-label="Aumentar cantidad">+</button>
+          </div>
+          <button class="remove mt-0 text-sm font-extrabold text-exel-muted transition hover:text-exel-ink sm:mt-3 sm:w-full" type="button">Eliminar</button>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="./data/site-config.js"></script>
+  <script src="./data/product-data.js"></script>
+  <script>
+    const site = window.EXEL_SITE;
+    const coupons = {
+      EXEL10: { label: "10% de descuento", type: "percent", value: 0.1 },
+      INSUMOS5: { label: "5% en compra de insumos", type: "insumos", value: 0.05 },
+      ENVIOGRATIS: { label: "Despacho gratis", type: "shipping", value: 1 }
+    };
+    const formatter = site.currencyFormatter;
+
+    let products = window.EXEL_PRODUCTS || [];
+    const state = {
+      cart: loadCart(),
+      coupon: "",
+      delivery: "pickup"
+    };
+
+    const cartList = document.querySelector("#cartList");
+    const emptyCart = document.querySelector("#emptyCart");
+    const template = document.querySelector("#cartItemTemplate");
+    const couponInput = document.querySelector("#couponInput");
+    const couponMessage = document.querySelector("#couponMessage");
+    const deliverySelect = document.querySelector("#deliverySelect");
+    const checkoutStatus = document.querySelector("#checkoutStatus");
+    const customerName = document.querySelector("#customerName");
+    const customerPhone = document.querySelector("#customerPhone");
+    const shippingAddress = document.querySelector("#shippingAddress");
+    const shippingCity = document.querySelector("#shippingCity");
+    const shippingNotes = document.querySelector("#shippingNotes");
+
+    function loadCart() {
+      return site.loadCart();
+    }
+
+    function saveCart() {
+      site.saveCart(state.cart);
+    }
+
+    function normalizeCartItem(item) {
+      const product = products.find((entry) => entry.id === item.id || entry.name === item.name);
+      return product ? { ...product, quantity: item.quantity || 1 } : item;
+    }
+
+    function deliveryCost(subtotal) {
+      if (state.delivery === "pickup") return 0;
+      if (state.delivery === "santiago") return subtotal >= 60000 ? 0 : 3990;
+      return 6990;
+    }
+
+    function calculateTotals() {
+      const normalized = state.cart.map(normalizeCartItem);
+      const subtotal = normalized.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const coupon = coupons[state.coupon];
+      let discount = 0;
+      let shipping = deliveryCost(subtotal);
+
+      if (coupon?.type === "percent") discount = Math.round(subtotal * coupon.value);
+      if (coupon?.type === "insumos") {
+        const insumosSubtotal = normalized
+          .filter((item) => item.line === "Insumos")
+          .reduce((sum, item) => sum + item.price * item.quantity, 0);
+        discount = Math.round(insumosSubtotal * coupon.value);
+      }
+      if (coupon?.type === "shipping") shipping = 0;
+
+      return {
+        items: normalized.reduce((sum, item) => sum + item.quantity, 0),
+        subtotal,
+        discount,
+        shipping,
+        total: Math.max(0, subtotal - discount + shipping),
+        normalized
+      };
+    }
+
+    function updateQuantity(name, change) {
+      state.cart = state.cart
+        .map((item) => item.name === name ? { ...item, quantity: Math.max(1, item.quantity + change) } : item)
+        .filter((item) => item.quantity > 0);
+      saveCart();
+      render();
+    }
+
+    function removeItem(name) {
+      state.cart = state.cart.filter((item) => item.name !== name);
+      saveCart();
+      render();
+    }
+
+    function renderCartItems(items) {
+      cartList.innerHTML = "";
+      items.forEach((item) => {
+        const node = template.content.firstElementChild.cloneNode(true);
+        const href = `./detalle-producto.html?id=${encodeURIComponent(item.id || item.name)}`;
+        node.querySelectorAll(".detail-link").forEach((link) => link.href = href);
+        node.querySelector(".product-image").src = item.image;
+        node.querySelector(".product-image").alt = item.name;
+        node.querySelector(".product-line").textContent = item.line;
+        node.querySelector(".product-name").textContent = item.name;
+        node.querySelector(".product-meta").textContent = `${item.label} · ${item.size}`;
+        node.querySelector(".product-price").textContent = `${formatter.format(item.price)} c/u · ${formatter.format(item.price * item.quantity)}`;
+        node.querySelector(".quantity").textContent = item.quantity;
+        node.querySelector(".decrease").addEventListener("click", () => updateQuantity(item.name, -1));
+        node.querySelector(".increase").addEventListener("click", () => updateQuantity(item.name, 1));
+        node.querySelector(".remove").addEventListener("click", () => removeItem(item.name));
+        cartList.appendChild(node);
+      });
+    }
+
+    function renderSummary(totals) {
+      document.querySelector("#summaryItems").textContent = `${totals.items} unidad(es)`;
+      document.querySelector("#summarySubtotal").textContent = formatter.format(totals.subtotal);
+      document.querySelector("#summaryDiscount").textContent = `-${formatter.format(totals.discount)}`;
+      document.querySelector("#summaryDelivery").textContent = formatter.format(totals.shipping);
+      document.querySelector("#summaryTotal").textContent = formatter.format(totals.total);
+
+      const deliveryLabel = deliverySelect.options[deliverySelect.selectedIndex].textContent;
+      const couponText = state.coupon ? `Cupon aplicado: ${state.coupon}` : "Sin cupon";
+      const hasShippingAddress = state.delivery === "pickup" || shippingAddress.value.trim();
+      checkoutStatus.innerHTML = `
+        <div class="flex items-center justify-between gap-3">
+          <span>Estado</span>
+          <strong class="${totals.items ? "text-exel-ink" : "text-exel-muted"}">${totals.items ? "Listo para solicitar" : "Carrito vacio"}</strong>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span>Cupon</span>
+          <strong class="${state.coupon ? "text-exel-copper" : "text-exel-muted"}">${state.coupon || "No aplicado"}</strong>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span>Despacho</span>
+          <strong class="text-exel-ink">${deliveryLabel}</strong>
+        </div>
+        <div class="flex items-center justify-between gap-3">
+          <span>Direccion</span>
+          <strong class="${hasShippingAddress ? "text-exel-ink" : "text-exel-copper"}">${hasShippingAddress ? "Registrada" : "Pendiente"}</strong>
+        </div>
+      `;
+      const lines = totals.normalized.map((item) => `- ${item.quantity}x ${item.name} (${item.size})`).join("\n");
+      const addressText = state.delivery === "pickup"
+        ? "Retiro en tienda"
+        : `${shippingAddress.value.trim() || "Direccion pendiente"}, ${shippingCity.value.trim() || "comuna pendiente"}`;
+      const message = totals.items
+        ? `Hola, quiero solicitar este carrito EXEL:\n${lines}\n${couponText}\nDespacho: ${deliveryLabel}\nDireccion: ${addressText}\nTotal estimado: ${formatter.format(totals.total)}`
+        : "Hola, quiero solicitar productos EXEL.";
+      document.querySelector("#checkoutWhatsapp").href = site.buildWhatsAppUrl(message);
+      window.EXEL_CART_STATE = {
+        cart: totals.normalized,
+        totals,
+        delivery: state.delivery,
+        coupon: state.coupon,
+        customer: {
+          name: customerName.value.trim(),
+          phone: customerPhone.value.trim()
+        },
+        shipping: {
+          method: state.delivery,
+          label: deliveryLabel,
+          address: shippingAddress.value.trim(),
+          city: shippingCity.value.trim(),
+          notes: shippingNotes.value.trim()
+        }
+      };
+    }
+
+    function render() {
+      const totals = calculateTotals();
+      const hasItems = totals.items > 0;
+      emptyCart.classList.toggle("hidden", hasItems);
+      cartList.classList.toggle("hidden", !hasItems);
+      renderCartItems(totals.normalized);
+      renderSummary(totals);
+    }
+
+    document.querySelector("#applyCoupon").addEventListener("click", () => {
+      const code = couponInput.value.trim().toUpperCase();
+      if (!code) {
+        state.coupon = "";
+        couponMessage.textContent = "Sin cupon aplicado.";
+      } else if (coupons[code]) {
+        state.coupon = code;
+        couponMessage.textContent = `${code}: ${coupons[code].label} aplicado.`;
+      } else {
+        state.coupon = "";
+        couponMessage.textContent = "Cupon no valido.";
+      }
+      render();
+    });
+
+    deliverySelect.addEventListener("change", (event) => {
+      state.delivery = event.target.value;
+      render();
+    });
+
+    [customerName, customerPhone, shippingAddress, shippingCity, shippingNotes].forEach((field) => {
+      field.addEventListener("input", render);
+    });
+
+    document.querySelector("#clearCart").addEventListener("click", () => {
+      state.cart = [];
+      saveCart();
+      render();
+    });
+
+    state.cart = state.cart.map(normalizeCartItem);
+    saveCart();
+    render();
+
+    site.loadProductsFromFirestore(products).then((loadedProducts) => {
+      products = loadedProducts;
+      state.cart = state.cart.map(normalizeCartItem);
+      saveCart();
+      render();
+    });
+  </script>
+  <script type="module">
+    import { getFirebaseStatus, saveQuote } from "./data/firebase-client.js";
+
+    const message = document.querySelector("#saveQuoteMessage");
+    const button = document.querySelector("#saveQuote");
+    const status = getFirebaseStatus();
+
+    if (!status.configured) {
+      message.textContent = "Firestore queda listo al completar data/firebase-config.js.";
+    }
+
+    button.addEventListener("click", async () => {
+      try {
+        if (!window.EXEL_CART_STATE?.cart?.length) {
+          message.textContent = "Agrega productos antes de guardar la cotizacion.";
+          return;
+        }
+        if (window.EXEL_CART_STATE.delivery !== "pickup" && !window.EXEL_CART_STATE.shipping?.address) {
+          message.textContent = "Agrega la direccion de envio antes de guardar.";
+          return;
+        }
+
+        message.textContent = "Guardando cotizacion...";
+        const docRef = await saveQuote(window.EXEL_CART_STATE);
+        message.textContent = `Cotizacion guardada: ${docRef.id}`;
+      } catch (error) {
+        message.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>
