@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EXEL Chile | Mi Perfil & Gabinete Personal</title>
+  <meta name="description" content="Gestiona tus compras, seguimiento de despachos, datos personales, biotipo cosmético y direcciones en EXEL Chile.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
+    }
+
+    .serif, h1, h2, h3, .font-serif {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .profile-tab.active {
+      background-color: #111827;
+      color: #ffffff;
+      border-color: #111827;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-brand-black antialiased bg-white flex flex-col justify-between">
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html" aria-label="Ir al inicio">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Dermocosmética Profesional</span>
+        </div>
+      </a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition hover:text-brand-black no-underline" href="./tienda.html">Tienda</a>
+        <a class="transition text-brand-black font-bold no-underline border-b-2 border-brand-black pb-0.5" href="./perfil.html">Mi Perfil</a>
+        <a class="transition hover:text-brand-black no-underline" href="./index.html#diagnostico">Test Dérmico</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Cart Badge Button (Bolsa) -->
+        <a href="./carrito.html" class="inline-flex min-h-[40px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider no-underline">
+          <span>🛍️ Bolsa</span>
+        </a>
+
+        <a href="./tienda.html" class="hidden sm:inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] bg-brand-black text-white px-4 text-xs font-semibold shadow-card transition hover:bg-brand-dark uppercase tracking-wider no-underline">
+          <span>Ir a la Tienda &rarr;</span>
+        </a>
+
+        <details class="group relative md:hidden">
+          <summary class="flex min-h-[38px] cursor-pointer list-none items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+            Menú
+            <span class="transition group-open:rotate-180 text-[10px]">⌄</span>
+          </summary>
+          <nav class="absolute right-0 top-11 z-50 grid min-w-48 gap-1.5 rounded-[0.5rem] border border-brand-border bg-white p-3 text-xs font-semibold text-brand-muted shadow-lift uppercase tracking-wider" aria-label="Navegación móvil">
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html">Presentación</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./tienda.html">Tienda</a>
+            <a class="rounded-[0.25rem] px-3 py-2 bg-brand-light text-brand-black font-bold" href="./perfil.html">Mi Perfil</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html#diagnostico">🔬 Test Dérmico</a>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Profile Dashboard -->
+  <main class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 py-8 sm:py-12 flex-1">
+    
+    <!-- Top Client Summary Banner -->
+    <section class="rounded-[0.5rem] border border-brand-border bg-brand-light p-6 sm:p-8 shadow-card mb-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+        
+        <!-- User Avatar & Identity -->
+        <div class="flex items-center gap-4 sm:gap-5">
+          <div class="relative">
+            <img id="profileUserPhoto" class="hidden h-16 w-16 sm:h-20 sm:w-20 rounded-full object-cover shadow-card border-2 border-white" alt="Avatar">
+            <div id="profileFallbackAvatar" class="h-16 w-16 sm:h-20 sm:w-20 rounded-full bg-brand-black text-white font-bold grid place-items-center text-2xl shadow-card">
+              U
+            </div>
+            <span class="absolute bottom-0 right-0 h-4 w-4 rounded-full bg-emerald-500 border-2 border-white" title="Cuenta Activa"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="profileBadge" class="rounded-[0.25rem] bg-brand-copper text-white px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider">Cliente Profesional</span>
+              <span class="text-[11px] text-emerald-700 font-bold bg-emerald-50 border border-emerald-200 rounded-[0.25rem] px-2 py-0.5">✓ Verificado</span>
+            </div>
+            <h1 id="profileUserName" class="serif text-2xl sm:text-3xl font-bold text-brand-black mt-1">Mi Perfil EXEL</h1>
+            <p id="profileUserEmail" class="text-xs sm:text-sm text-brand-muted font-normal mt-0.5">Inicia sesión para sincronizar tu historial y datos cosméticos</p>
+          </div>
+        </div>
+
+        <!-- Quick Metrics Cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="rounded-[0.25rem] border border-brand-border bg-white p-3 sm:p-4 text-center shadow-card">
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Mis Pedidos</span>
+            <strong id="metricOrdersCount" class="serif text-xl sm:text-2xl font-bold text-brand-black mt-0.5 block">0</strong>
+          </div>
+          <div class="rounded-[0.25rem] border border-brand-border bg-white p-3 sm:p-4 text-center shadow-card">
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Biotipo</span>
+            <strong id="metricSkinType" class="text-xs font-bold text-brand-copper mt-1.5 block truncate max-w-[110px]">Por definir</strong>
+          </div>
+          <div class="col-span-2 sm:col-span-1 rounded-[0.25rem] border border-brand-border bg-white p-3 sm:p-4 text-center shadow-card">
+            <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Despacho</span>
+            <strong class="text-xs font-bold text-emerald-700 mt-1.5 block">Preferente</strong>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Navigation Tabs & Content Layout -->
+    <div class="grid gap-8 lg:grid-cols-[280px_1fr] items-start">
+      
+      <!-- Left Sidebar Navigation Tabs -->
+      <aside class="rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-card space-y-1.5 lg:sticky lg:top-24">
+        <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper px-3 py-2">Menú de Cuenta</p>
+        
+        <button class="profile-tab active w-full flex items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border px-3.5 py-3 text-xs font-semibold text-brand-dark transition text-left" data-tab="compras">
+          <span class="flex items-center gap-2.5">
+            <span>📦</span> Mis Compras
+          </span>
+          <span id="badgeOrders" class="text-[10px] px-1.5 py-0.5 rounded bg-brand-light text-brand-black font-bold">0</span>
+        </button>
+
+        <button class="profile-tab w-full flex items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border px-3.5 py-3 text-xs font-semibold text-brand-dark transition text-left" data-tab="seguimiento">
+          <span class="flex items-center gap-2.5">
+            <span>🚚</span> Seguimiento
+          </span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">En ruta</span>
+        </button>
+
+        <button class="profile-tab w-full flex items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border px-3.5 py-3 text-xs font-semibold text-brand-dark transition text-left" data-tab="datos">
+          <span class="flex items-center gap-2.5">
+            <span>👤</span> Datos Personales
+          </span>
+        </button>
+
+        <button class="profile-tab w-full flex items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border px-3.5 py-3 text-xs font-semibold text-brand-dark transition text-left" data-tab="cosmeticos">
+          <span class="flex items-center gap-2.5">
+            <span>🧴</span> Datos Cosméticos
+          </span>
+          <span class="text-[10px] px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">Diagnóstico</span>
+        </button>
+
+        <button class="profile-tab w-full flex items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border px-3.5 py-3 text-xs font-semibold text-brand-dark transition text-left" data-tab="direccion">
+          <span class="flex items-center gap-2.5">
+            <span>📍</span> Direcciones
+          </span>
+        </button>
+
+        <div class="pt-4 border-t border-brand-border space-y-2">
+          <button id="sidebarLogout" class="w-full flex items-center gap-2.5 rounded-[0.25rem] border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs font-bold text-red-700 transition hover:bg-red-100 text-left">
+            <span>🚪</span> Cerrar Sesión
+          </button>
+          <a href="https://wa.me/56981681536?text=Hola%20EXEL%20Chile,%20necesito%20soporte%20con%20mi%20perfil" target="_blank" rel="noreferrer" class="w-full flex items-center gap-2 rounded-[0.25rem] bg-brand-light p-3 text-[11px] font-semibold text-brand-muted hover:text-brand-black no-underline">
+            <span>💬</span> Asistencia WhatsApp
+          </a>
+        </div>
+      </aside>
+
+      <!-- Right Tab Panels Container -->
+      <section class="space-y-6">
+        <div id="profileAlert" class="hidden rounded-[0.25rem] bg-emerald-50 border border-emerald-200 p-4 text-xs font-bold text-emerald-800"></div>
+
+        <!-- TAB 1: MIS COMPRAS & COTIZACIONES -->
+        <div id="panel-compras" class="profile-panel rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-brand-border pb-4">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Historial de Pedidos</p>
+              <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Mis Compras & Cotizaciones</h2>
+            </div>
+            <a href="./tienda.html" class="rounded-[0.25rem] bg-brand-black px-4 py-2 text-xs font-bold uppercase tracking-wider text-white hover:bg-brand-dark no-underline">
+              + Nueva Orden
+            </a>
+          </div>
+
+          <div id="ordersContainer" class="space-y-4">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <!-- TAB 2: SEGUIMIENTO DE DESPACHOS -->
+        <div id="panel-seguimiento" class="profile-panel hidden rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card space-y-6">
+          <div class="border-b border-brand-border pb-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Logística & Envíos</p>
+            <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Seguimiento de Despacho en Vivo</h2>
+            <p class="text-xs text-brand-muted mt-1">Monitorea el estado y la ruta de entrega de tus fórmulas botánicas.</p>
+          </div>
+
+          <div id="trackingContainer" class="space-y-6">
+            <!-- Live Step Tracker Card -->
+            <div class="rounded-[0.5rem] border border-brand-border bg-brand-light p-6 space-y-5">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Orden en Curso</span>
+                  <h3 class="serif text-xl font-bold text-brand-black">Envío #EXEL-CL-9482</h3>
+                </div>
+                <div class="text-right">
+                  <span class="rounded-[0.25rem] bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 border border-emerald-200">En Ruta a Destino</span>
+                  <p class="text-[11px] text-brand-muted mt-1">Courier: <strong>Starken / Chilexpress</strong></p>
+                </div>
+              </div>
+
+              <!-- Stepper Progress Bar -->
+              <div class="grid grid-cols-4 gap-2 pt-2 text-center text-xs">
+                <div class="p-3 rounded-[0.25rem] bg-white border border-brand-border font-bold text-brand-black">
+                  <span class="text-emerald-600 block text-base mb-0.5">✓</span>
+                  01. Recibido
+                </div>
+                <div class="p-3 rounded-[0.25rem] bg-white border border-brand-border font-bold text-brand-black">
+                  <span class="text-emerald-600 block text-base mb-0.5">✓</span>
+                  02. Preparación
+                </div>
+                <div class="p-3 rounded-[0.25rem] bg-brand-black border border-brand-black font-bold text-white shadow-sm">
+                  <span class="block text-base mb-0.5">🚚</span>
+                  03. En Ruta
+                </div>
+                <div class="p-3 rounded-[0.25rem] bg-brand-light border border-brand-border font-medium text-brand-subtle">
+                  <span class="block text-base mb-0.5">📍</span>
+                  04. Entregado
+                </div>
+              </div>
+
+              <div class="rounded-[0.25rem] bg-white p-4 border border-brand-border text-xs space-y-1.5">
+                <p><strong>Destino:</strong> <span id="trackingAddress">Providencia, Región Metropolitana</span></p>
+                <p><strong>Fecha estimada de entrega:</strong> 24 a 48 horas hábiles</p>
+                <p class="text-brand-muted">Tu asesor te notificará el número de remito oficial directamente por WhatsApp.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: DATOS PERSONALES & FACTURACIÓN -->
+        <div id="panel-datos" class="profile-panel hidden rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card space-y-6">
+          <div class="border-b border-brand-border pb-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Información de Contacto</p>
+            <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Datos Personales & Facturación</h2>
+            <p class="text-xs text-brand-muted mt-1">Estos datos se utilizarán para emitir tus comprobantes tributarios y coordinar el despacho.</p>
+          </div>
+
+          <form id="personalDataForm" class="grid gap-4 sm:grid-cols-2">
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">Nombre Completo *</label>
+              <input name="fullName" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="Ej: Dra. Marcela González" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">RUT o DNI *</label>
+              <input name="rut" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="12.345.678-9">
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">Teléfono WhatsApp *</label>
+              <input name="phone" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="+56 9 1234 5678" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">Correo Electrónico *</label>
+              <input name="email" type="email" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="contacto@ejemplo.cl" required>
+            </div>
+
+            <div class="sm:col-span-2 space-y-2 pt-2">
+              <label class="block text-xs font-bold text-brand-dark">Preferencia de Documento Tributario</label>
+              <div class="grid sm:grid-cols-2 gap-3">
+                <label class="flex items-center gap-3 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="taxDocType" value="boleta" class="accent-[#111827]" checked>
+                  <div>
+                    <strong class="block text-xs font-bold text-brand-black">Boleta Electrónica</strong>
+                    <span class="text-[11px] text-brand-muted">Para compras personales</span>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="taxDocType" value="factura" class="accent-[#111827]">
+                  <div>
+                    <strong class="block text-xs font-bold text-brand-black">Factura de Empresa / Gabinete</strong>
+                    <span class="text-[11px] text-brand-muted">Para centros de estética con giro</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div class="sm:col-span-2 pt-3">
+              <button type="submit" class="min-h-[44px] rounded-[0.25rem] bg-brand-black px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark transition">
+                Guardar Datos Personales
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 4: DATOS COSMÉTICOS & DIAGNÓSTICO -->
+        <div id="panel-cosmeticos" class="profile-panel hidden rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card space-y-6">
+          
+          <!-- Quiz / Diagnostic Interactive Card -->
+          <div class="rounded-[0.5rem] bg-brand-black text-white p-6 sm:p-7 space-y-4 shadow-card">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Test Dermocosmético Inteligente</span>
+                <h3 class="serif text-xl sm:text-2xl font-bold text-white mt-0.5">Diagnóstico Cutáneo & Colorimetría</h3>
+                <p class="text-xs text-white/80 max-w-lg mt-1 font-light">Identifica tu subtono (frío/cálido), biotipo y preferencias veganas en un test guiado de 5 pasos.</p>
+              </div>
+              <a href="./index.html#diagnostico" class="inline-flex items-center justify-center min-h-[42px] rounded-[0.25rem] bg-white text-brand-black px-5 text-xs font-bold uppercase tracking-wider shadow-card hover:bg-brand-light transition no-underline shrink-0">
+                <span>🔬 Realizar Test Dérmico &rarr;</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="border-b border-brand-border pb-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Dermatología Personalizada</p>
+            <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Perfil & Diagnóstico Manual</h2>
+            <p class="text-xs text-brand-muted mt-1">Ajusta tu biotipo cutáneo para que nuestro equipo formule y recomiende las líneas óptimas para tu piel.</p>
+          </div>
+
+          <form id="cosmeticDataForm" class="space-y-5">
+            <!-- Biotipo -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-brand-dark">1. Biotipo Cutáneo Principal *</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="skinType" value="Seca" class="accent-[#111827]" checked>
+                  <span class="text-xs font-bold text-brand-black">Seca</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="skinType" value="Mixta" class="accent-[#111827]">
+                  <span class="text-xs font-bold text-brand-black">Mixta</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="skinType" value="Grasa" class="accent-[#111827]">
+                  <span class="text-xs font-bold text-brand-black">Grasa / Oleosa</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="radio" name="skinType" value="Sensible" class="accent-[#111827]">
+                  <span class="text-xs font-bold text-brand-black">Sensible / Reactiva</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Preocupaciones Principales -->
+            <div class="space-y-2 pt-2">
+              <label class="block text-xs font-bold text-brand-dark">2. Objetivos & Necesidades Prioritarias</label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Luminosidad / Glow" class="accent-[#111827]">
+                  <span class="text-xs font-medium text-brand-dark">Luminosidad & Glow</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Hidratación Profunda" class="accent-[#111827]" checked>
+                  <span class="text-xs font-medium text-brand-dark">Hidratación Profunda</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Líneas y Firmeza" class="accent-[#111827]">
+                  <span class="text-xs font-medium text-brand-dark">Líneas y Firmeza</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Rojeces / Rosácea" class="accent-[#111827]">
+                  <span class="text-xs font-medium text-brand-dark">Calmar Rojeces</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Pestañas y Cejas" class="accent-[#111827]">
+                  <span class="text-xs font-medium text-brand-dark">Pestañas & Cejas</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 cursor-pointer">
+                  <input type="checkbox" name="concern" value="Manchas / Tono" class="accent-[#111827]">
+                  <span class="text-xs font-medium text-brand-dark">Unificar Tono</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Alergias / Requerimientos -->
+            <div class="space-y-2 pt-2">
+              <label class="block text-xs font-bold text-brand-dark">3. Preferencias de Formulación</label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white p-3 cursor-pointer">
+                  <input type="checkbox" name="preferences" value="100% Vegano" class="accent-[#111827]" checked>
+                  <span class="text-xs font-medium text-brand-dark">🌿 100% Vegano</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white p-3 cursor-pointer">
+                  <input type="checkbox" name="preferences" value="Sin TACC" class="accent-[#111827]" checked>
+                  <span class="text-xs font-medium text-brand-dark">🌾 Sin TACC (Gluten)</span>
+                </label>
+                <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white p-3 cursor-pointer">
+                  <input type="checkbox" name="preferences" value="Sin Aceites Minerales" class="accent-[#111827]" checked>
+                  <span class="text-xs font-medium text-brand-dark">💧 No Comedogénico</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="pt-3">
+              <button type="submit" class="min-h-[44px] rounded-[0.25rem] bg-brand-black px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark transition">
+                Guardar Diagnóstico Cosmético
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- TAB 5: DIRECCIONES DE DESPACHO -->
+        <div id="panel-direccion" class="profile-panel hidden rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card space-y-6">
+          <div class="border-b border-brand-border pb-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Dirección de Entrega</p>
+            <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Direcciones de Despacho</h2>
+            <p class="text-xs text-brand-muted mt-1">Guarda tu domicilio habitual para autocompletar tus futuras compras.</p>
+          </div>
+
+          <form id="addressForm" class="grid gap-4 sm:grid-cols-2">
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-brand-dark mb-1">Calle, Número y Depto/Oficina *</label>
+              <input name="street" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="Av. Providencia 1234, Depto 402" required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">Comuna *</label>
+              <input name="comuna" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black" placeholder="Ej: Providencia, Las Condes, Viña del Mar..." required>
+            </div>
+
+            <div>
+              <label class="block text-xs font-bold text-brand-dark mb-1">Región *</label>
+              <select name="region" class="w-full h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-black outline-none focus:border-brand-black">
+                <option value="Región Metropolitana">Región Metropolitana de Santiago</option>
+                <option value="Valparaíso">Región de Valparaíso</option>
+                <option value="Biobío">Región del Biobío</option>
+                <option value="Coquimbo">Región de Coquimbo</option>
+                <option value="La Araucanía">Región de La Araucanía</option>
+                <option value="Los Lagos">Región de Los Lagos</option>
+                <option value="Antofagasta">Región de Antofagasta</option>
+                <option value="O'Higgins">Región de O'Higgins</option>
+                <option value="Maule">Región del Maule</option>
+                <option value="Otra Región">Otra Región de Chile</option>
+              </select>
+            </div>
+
+            <div class="sm:col-span-2">
+              <label class="block text-xs font-bold text-brand-dark mb-1">Instrucciones para el Repartidor (Opcional)</label>
+              <textarea name="deliveryNotes" class="w-full h-20 rounded-[0.25rem] border border-brand-border bg-brand-light p-3 text-xs font-semibold text-brand-black outline-none resize-none focus:border-brand-black" placeholder="Ej: Dejar en conserjería, llamar antes de llegar al timbre..."></textarea>
+            </div>
+
+            <div class="sm:col-span-2 pt-3">
+              <button type="submit" class="min-h-[44px] rounded-[0.25rem] bg-brand-black px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark transition">
+                Guardar Dirección de Despacho
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-brand-border bg-white py-8 text-xs text-brand-muted font-normal mt-16">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img class="h-6 w-auto opacity-80" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Chile">
+        <span>&copy; 2026 EXEL Chile. Dermocosmética Profesional.</span>
+      </div>
+      <div class="flex gap-6 uppercase font-semibold text-[11px] tracking-wider">
+        <a href="./tienda.html" class="hover:text-brand-black">Tienda</a>
+        <a href="./carrito.html" class="hover:text-brand-black">Carrito</a>
+        <a href="https://wa.me/56981681536" target="_blank" rel="noreferrer" class="hover:text-brand-black">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    import {
+      onUserChange,
+      logout,
+      listQuotes,
+      updateUserProfileData
+    } from "./data/firebase-client.js";
+
+    const formatter = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+
+    // Local profile storage fallback
+    const LOCAL_PROFILE_KEY = "exel_user_profile_v1";
+    function getStoredProfile() {
+      try {
+        return JSON.parse(localStorage.getItem(LOCAL_PROFILE_KEY) || "{}");
+      } catch {
+        return {};
+      }
+    }
+
+    function saveStoredProfile(data) {
+      const current = getStoredProfile();
+      const updated = { ...current, ...data };
+      localStorage.setItem(LOCAL_PROFILE_KEY, JSON.stringify(updated));
+      return updated;
+    }
+
+    let currentUser = null;
+
+    function showAlert(msg) {
+      const el = document.querySelector("#profileAlert");
+      if (!el) return;
+      el.textContent = msg;
+      el.classList.remove("hidden");
+      setTimeout(() => el.classList.add("hidden"), 4000);
+    }
+
+    // Tabs switching
+    const tabs = document.querySelectorAll(".profile-tab");
+    const panels = document.querySelectorAll(".profile-panel");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabs.forEach((t) => t.classList.remove("active"));
+        panels.forEach((p) => p.classList.add("hidden"));
+
+        tab.classList.add("active");
+        const target = tab.dataset.tab;
+        const targetPanel = document.querySelector(`#panel-${target}`);
+        if (targetPanel) targetPanel.classList.remove("hidden");
+      });
+    });
+
+    // Populate data from profile
+    function syncFormInputs() {
+      const profile = getStoredProfile();
+
+      // Personal data
+      const pForm = document.querySelector("#personalDataForm");
+      if (pForm) {
+        pForm.elements.fullName.value = profile.fullName || (currentUser?.displayName || "");
+        pForm.elements.rut.value = profile.rut || "";
+        pForm.elements.phone.value = profile.phone || "";
+        pForm.elements.email.value = profile.email || (currentUser?.email || "");
+        if (profile.taxDocType) {
+          pForm.elements.taxDocType.value = profile.taxDocType;
+        }
+      }
+
+      // Cosmetic data
+      const cForm = document.querySelector("#cosmeticDataForm");
+      if (cForm) {
+        if (profile.skinType) cForm.elements.skinType.value = profile.skinType;
+        document.querySelector("#metricSkinType").textContent = profile.skinType || "Por definir";
+      }
+
+      // Address data
+      const aForm = document.querySelector("#addressForm");
+      if (aForm) {
+        aForm.elements.street.value = profile.street || "";
+        aForm.elements.comuna.value = profile.comuna || "";
+        if (profile.region) aForm.elements.region.value = profile.region;
+        aForm.elements.deliveryNotes.value = profile.deliveryNotes || "";
+
+        const trackingAddr = document.querySelector("#trackingAddress");
+        if (trackingAddr && profile.comuna) {
+          trackingAddr.textContent = `${profile.street ? profile.street + ", " : ""}${profile.comuna}, ${profile.region || "Chile"}`;
+        }
+      }
+    }
+
+    // Render Order History
+    async function loadOrders() {
+      const container = document.querySelector("#ordersContainer");
+      if (!container) return;
+
+      let orders = [];
+      try {
+        const firebaseQuotes = await listQuotes();
+        if (currentUser) {
+          orders = firebaseQuotes.filter((q) => q.userId === currentUser.uid || q.customerEmail === currentUser.email);
+        }
+      } catch (e) {
+        // Local quote history fallback
+        try {
+          orders = JSON.parse(localStorage.getItem("exel_quote_history_v1") || "[]");
+        } catch {}
+      }
+
+      document.querySelector("#metricOrdersCount").textContent = orders.length;
+      document.querySelector("#badgeOrders").textContent = orders.length;
+
+      if (!orders.length) {
+        container.innerHTML = `
+          <div class="rounded-[0.25rem] bg-brand-light p-8 text-center border border-brand-border space-y-3">
+            <span class="text-3xl">🛍️</span>
+            <h3 class="serif text-xl font-bold text-brand-black">No tienes compras registradas aún</h3>
+            <p class="text-xs text-brand-muted max-w-md mx-auto">Explora nuestro catálogo de dermocosmética y guarda tus cotizaciones con 1 clic.</p>
+            <a href="./tienda.html" class="inline-flex min-h-[40px] items-center justify-center rounded-[0.25rem] bg-brand-black px-5 text-xs font-bold uppercase tracking-wider text-white no-underline mt-2">
+              Explorar Tienda &rarr;
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = orders.map((order, idx) => `
+        <article class="rounded-[0.5rem] border border-brand-border bg-brand-light p-5 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-brand-border pb-3">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Pedido #${order.id || `EXEL-00${idx + 1}`}</span>
+              <h4 class="serif text-lg font-bold text-brand-black">Cotización de Fórmulas</h4>
+            </div>
+            <span class="rounded-[0.25rem] bg-white border border-brand-border px-2.5 py-1 text-xs font-bold text-brand-black">
+              ${order.status === "delivered" ? "Entregado" : order.status === "preparing" ? "En preparación" : "Recibido / En curso"}
+            </span>
+          </div>
+
+          <div class="text-xs text-brand-muted space-y-1">
+            <p><strong>Productos:</strong> ${(order.cart || []).map((i) => `${i.quantity}x ${i.name}`).join(", ") || "Fórmulas seleccionadas"}</p>
+            <p><strong>Total:</strong> <strong class="text-brand-black">${formatter.format(order.totals?.total || 0)}</strong></p>
+          </div>
+
+          <div class="pt-2 flex flex-wrap gap-2">
+            <a href="./tienda.html" class="rounded-[0.25rem] bg-white border border-brand-border px-3 py-1.5 text-[11px] font-bold uppercase tracking-wider text-brand-black hover:bg-brand-light no-underline">
+              Volver a pedir
+            </a>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    // Forms submission handlers
+    document.querySelector("#personalDataForm")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      saveStoredProfile(data);
+
+      if (currentUser) {
+        try {
+          await updateUserProfileData(currentUser.uid, { personalData: data });
+        } catch {}
+      }
+
+      showAlert("✓ Datos personales y de facturación guardados correctamente.");
+      syncFormInputs();
+    });
+
+    document.querySelector("#cosmeticDataForm")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = {
+        skinType: formData.get("skinType"),
+        concerns: formData.getAll("concern"),
+        preferences: formData.getAll("preferences")
+      };
+      saveStoredProfile(data);
+
+      if (currentUser) {
+        try {
+          await updateUserProfileData(currentUser.uid, { cosmeticData: data });
+        } catch {}
+      }
+
+      showAlert("✓ Perfil cosmético y biotipo cutáneo actualizados.");
+      syncFormInputs();
+    });
+
+    document.querySelector("#addressForm")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+      saveStoredProfile(data);
+
+      if (currentUser) {
+        try {
+          await updateUserProfileData(currentUser.uid, { address: data });
+        } catch {}
+      }
+
+      showAlert("✓ Dirección de despacho guardada correctamente.");
+      syncFormInputs();
+    });
+
+    // Auth state observer
+    onUserChange((user) => {
+      currentUser = user;
+      const photo = document.querySelector("#profileUserPhoto");
+      const fallback = document.querySelector("#profileFallbackAvatar");
+      const name = document.querySelector("#profileUserName");
+      const email = document.querySelector("#profileUserEmail");
+
+      if (user) {
+        name.textContent = user.displayName || "Cliente Profesional EXEL";
+        email.textContent = user.email;
+        if (user.photoURL) {
+          photo.src = user.photoURL;
+          photo.classList.remove("hidden");
+          fallback.classList.add("hidden");
+        } else {
+          fallback.textContent = (user.displayName || user.email || "U").charAt(0).toUpperCase();
+          fallback.classList.remove("hidden");
+          photo.classList.add("hidden");
+        }
+      } else {
+        name.textContent = "Cliente Invitado";
+        email.textContent = "Inicia sesión con Google para sincronizar tus pedidos";
+      }
+
+      syncFormInputs();
+      loadOrders();
+    });
+
+    // Logout
+    document.querySelector("#sidebarLogout")?.addEventListener("click", async () => {
+      try {
+        await logout();
+        window.location.href = "./login.html";
+      } catch (err) {
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>

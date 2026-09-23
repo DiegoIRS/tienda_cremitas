@@ -1,142 +1,232 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXEL Chile | Acceso clientes</title>
+  <title>EXEL Chile | Portal de Acceso & Perfil Profesional</title>
+  <meta name="description" content="Portal de acceso exclusivo EXEL Chile para profesionales de la estética y clientes. Sincroniza cotizaciones, historial y pedidos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            exel: {
-              ink: "#2f2b28",
-              muted: "#706861",
-              paper: "#fbf7f1",
-              cream: "#fffdf9",
-              sand: "#f3ece2",
-              warm: "#d8c8b4",
-              graphite: "#5c524a",
-              copper: "#b8895d",
-              line: "rgba(71, 55, 42, 0.13)"
-            }
-          },
-          boxShadow: {
-            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
-            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
-          },
-          borderRadius: {
-            card: "8px"
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
   <style>
     body {
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
-        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
     }
 
-    .serif {
-      font-family: "Cormorant Garamond", serif;
+    .serif, h1, h2, h3, .font-serif {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .login-hero-bg {
+      background:
+        linear-gradient(135deg, rgba(17, 24, 39, 0.88), rgba(17, 24, 39, 0.72) 50%, rgba(140, 74, 36, 0.45)),
+        url("./assets/catalogo-web/ambiente/hero-productos.webp") center / cover no-repeat;
     }
   </style>
 </head>
-<body class="min-h-screen text-exel-ink antialiased">
-  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
-    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
-      <a class="flex items-center gap-4" href="./preview.html">
-        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
-        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+<body class="min-h-screen text-brand-black antialiased bg-white flex flex-col justify-between">
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html" aria-label="Ir al inicio">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Dermocosmética Profesional</span>
+        </div>
       </a>
-      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
-        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
-        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
-        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
-        <a class="transition hover:text-exel-ink" href="./login.html">Login</a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition hover:text-brand-black no-underline" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-brand-black no-underline" href="./carrito.html">Carrito</a>
+        <a class="transition hover:text-brand-black no-underline" href="./perfil.html">Mi Perfil</a>
       </nav>
-      <details class="group relative md:hidden">
-        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
-          Menu
-          <span class="transition group-open:rotate-180">⌄</span>
-        </summary>
-        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html">Login</a>
-        </nav>
-      </details>
+
+      <div class="flex items-center gap-3">
+        <a href="./tienda.html" class="inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider no-underline">
+          <span>Ir a la Tienda &rarr;</span>
+        </a>
+
+        <details class="group relative md:hidden">
+          <summary class="flex min-h-[38px] cursor-pointer list-none items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+            Menú
+            <span class="transition group-open:rotate-180 text-[10px]">⌄</span>
+          </summary>
+          <nav class="absolute right-0 top-11 z-50 grid min-w-48 gap-1.5 rounded-[0.5rem] border border-brand-border bg-white p-3 text-xs font-semibold text-brand-muted shadow-lift uppercase tracking-wider" aria-label="Navegación móvil">
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html">Presentación</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./tienda.html">Tienda</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./carrito.html">Carrito</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./perfil.html">Mi Perfil</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html#diagnostico">🔬 Test Dérmico</a>
+          </nav>
+        </details>
+      </div>
     </div>
   </header>
 
-  <main class="mx-auto grid min-h-[calc(100vh-76px)] w-[min(1120px,calc(100%-32px))] items-center gap-8 py-10 lg:grid-cols-[0.9fr_500px]">
-    <section class="relative overflow-hidden rounded-card border border-exel-line bg-white/70 p-8 shadow-soft">
-      <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-exel-warm/40 blur-3xl"></div>
-      <div class="relative">
-        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Portal privado Vertys</p>
-        <h1 class="serif text-6xl font-bold leading-none md:text-7xl">Acceso exclusivo para cotizaciones profesionales.</h1>
-        <p class="mt-5 max-w-xl text-lg leading-8 text-exel-muted">Usamos Google como llave segura para identificar al cliente, guardar cotizaciones en Firebase y mantener el carrito vinculado a una cuenta real.</p>
-        <div class="mt-8 grid gap-3 sm:grid-cols-3">
-          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
-            <strong class="block text-2xl">1 paso</strong>
-            <span class="text-sm font-bold text-exel-muted">Sin claves nuevas</span>
-          </div>
-          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
-            <strong class="block text-2xl">Seguro</strong>
-            <span class="text-sm font-bold text-exel-muted">Google Auth</span>
-          </div>
-          <div class="rounded-card border border-exel-line bg-white/80 p-4 shadow-soft">
-            <strong class="block text-2xl">Historial</strong>
-            <span class="text-sm font-bold text-exel-muted">Cotizaciones</span>
-          </div>
+  <!-- Main Login Workspace (2-Column Luxury Split) -->
+  <main class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 py-10 sm:py-16 my-auto">
+    <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] xl:grid-cols-[1.25fr_0.75fr] items-stretch">
+      
+      <!-- Left Visual Brand Showcase -->
+      <section class="login-hero-bg relative overflow-hidden rounded-[0.5rem] p-8 sm:p-14 text-white flex flex-col justify-between shadow-card min-h-[480px]">
+        <div class="relative z-10 space-y-4">
+          <span class="rounded-[0.25rem] bg-white px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper inline-block shadow-sm">
+            Portal Profesional & Clientes
+          </span>
+          <h1 class="serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-white leading-tight">
+            Acceso centralizado a tu historial botánico.
+          </h1>
+          <p class="max-w-xl text-sm sm:text-base leading-relaxed text-white/90 font-light">
+            Sincroniza tus bolsas de compras, revisa cotizaciones enviadas para gabinete y accede a atención preferente con cosmetólogas certificadas.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <section class="rounded-card border border-exel-line bg-white/95 p-6 shadow-lift">
-      <div id="statusBanner" class="mb-5 hidden rounded-card bg-exel-sand p-4 text-sm font-bold leading-6 text-exel-muted"></div>
+        <!-- 3 Key Value Props -->
+        <div class="relative z-10 grid gap-4 sm:grid-cols-3 pt-10 border-t border-white/20 mt-8">
+          <div class="rounded-[0.25rem] bg-white/10 p-4 border border-white/20 backdrop-blur-md">
+            <span class="text-lg">⚡</span>
+            <strong class="block text-sm font-bold text-white mt-1">Acceso en 1 Clic</strong>
+            <span class="text-xs text-white/80 font-normal">Identificación instantánea con Google sin recordar contraseñas.</span>
+          </div>
 
-      <div id="userPanel" class="hidden">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Sesion activa</p>
-        <div class="mt-4 flex items-center gap-4 rounded-card bg-exel-sand p-4">
-          <img id="userPhoto" class="hidden h-14 w-14 rounded-full object-cover shadow-soft" alt="">
-          <div>
-            <h2 id="userName" class="serif text-4xl font-semibold leading-none"></h2>
-            <p id="userEmail" class="mt-2 font-bold text-exel-muted"></p>
+          <div class="rounded-[0.25rem] bg-white/10 p-4 border border-white/20 backdrop-blur-md">
+            <span class="text-lg">☁️</span>
+            <strong class="block text-sm font-bold text-white mt-1">Nube Sincronizada</strong>
+            <span class="text-xs text-white/80 font-normal">Tus fórmulas seleccionadas se conservan en todos tus dispositivos.</span>
+          </div>
+
+          <div class="rounded-[0.25rem] bg-white/10 p-4 border border-white/20 backdrop-blur-md">
+            <span class="text-lg">🔒</span>
+            <strong class="block text-sm font-bold text-white mt-1">Privacidad Total</strong>
+            <span class="text-xs text-white/80 font-normal">Protocolo OAuth 2.0 cifrado y protegido de extremo a extremo.</span>
           </div>
         </div>
-        <div class="mt-6 grid gap-3 sm:grid-cols-2">
-          <a class="inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1" href="./carrito.html">Ir al carrito</a>
-          <button id="logoutButton" class="inline-flex min-h-[50px] items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">Cerrar sesion</button>
-        </div>
-      </div>
+      </section>
 
-      <div id="authForm" class="grid gap-4">
-        <div class="rounded-card bg-exel-sand p-5">
-          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Login de la pagina</p>
-          <h2 class="serif mt-2 text-4xl font-semibold leading-none">Ingresa con tu cuenta Google.</h2>
-          <p class="mt-3 leading-7 text-exel-muted">No pedimos contrasenas nuevas. Firebase valida tu identidad y nos permite guardar tus cotizaciones de forma ordenada.</p>
+      <!-- Right Column: Authentication Card & Active Panel -->
+      <section class="rounded-[0.5rem] border border-brand-border bg-white p-7 sm:p-10 shadow-card flex flex-col justify-center">
+        
+        <!-- Status / Feedback Banner -->
+        <div id="statusBanner" class="mb-5 hidden rounded-[0.25rem] bg-brand-light border border-brand-border p-4 text-xs font-semibold leading-relaxed text-brand-dark"></div>
+
+        <!-- ACTIVE USER LOGGED IN STATE -->
+        <div id="userPanel" class="hidden space-y-6">
+          <div class="flex items-center justify-between border-b border-brand-border pb-4">
+            <div>
+              <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Estado de Cuenta</p>
+              <h2 class="serif text-2xl font-bold text-brand-black mt-0.5">Sesión Iniciada</h2>
+            </div>
+            <span class="rounded-[0.25rem] bg-emerald-50 border border-emerald-200 px-3 py-1 text-xs font-bold text-emerald-700 flex items-center gap-1.5">
+              <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span> Activo
+            </span>
+          </div>
+
+          <!-- User Card -->
+          <div class="flex items-center gap-4 rounded-[0.5rem] bg-brand-light p-5 border border-brand-border">
+            <img id="userPhoto" class="hidden h-14 w-14 rounded-full object-cover shadow-card border-2 border-white" alt="">
+            <div id="userFallbackAvatar" class="h-14 w-14 rounded-full bg-brand-black text-white font-bold grid place-items-center text-lg shadow-card">
+              U
+            </div>
+            <div class="min-w-0 flex-1">
+              <span class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Cliente Verificado</span>
+              <h3 id="userName" class="serif text-xl font-bold text-brand-black truncate"></h3>
+              <p id="userEmail" class="text-xs text-brand-muted truncate font-normal mt-0.5"></p>
+            </div>
+          </div>
+
+          <!-- Quick Navigation Actions for Logged In User -->
+          <div class="grid gap-3 pt-2">
+            <a class="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-[0.25rem] bg-brand-black px-5 text-xs font-bold uppercase tracking-wider text-white shadow-card transition hover:bg-brand-dark no-underline" href="./perfil.html">
+              <span>👤 Administrar Mi Perfil & Gabinete &rarr;</span>
+            </a>
+
+            <a id="returnButton" class="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light px-5 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card transition hover:bg-white no-underline" href="./carrito.html">
+              <span>🛍️ Continuar a la Bolsa de Compras</span>
+            </a>
+            
+            <a class="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-5 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card transition hover:bg-brand-light no-underline" href="./tienda.html">
+              <span>🌿 Explorar Catálogo de Productos</span>
+            </a>
+
+            <button id="logoutButton" class="inline-flex min-h-[42px] items-center justify-center gap-2 rounded-[0.25rem] border border-red-200 bg-red-50 px-4 text-xs font-bold uppercase tracking-wider text-red-700 transition hover:bg-red-100" type="button">
+              <span>🚪 Cerrar Sesión Segura</span>
+            </button>
+          </div>
         </div>
-        <button id="googleButton" class="inline-flex min-h-[54px] items-center justify-center gap-3 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" type="button">
-          <span class="grid h-7 w-7 place-items-center rounded-full bg-white text-exel-ink">G</span>
-          <span id="googleButtonText">Continuar con Google</span>
-        </button>
-        <div class="grid gap-3 rounded-card border border-exel-line bg-white p-4 text-sm font-bold text-exel-muted">
-          <span>Tu sesion permite guardar cotizaciones y recuperarlas despues.</span>
-          <span>El carrito local se mantiene aunque navegues por la tienda.</span>
-          <span>El equipo comercial puede usar la cotizacion para confirmar stock.</span>
+
+        <!-- LOGIN / SIGN IN FORM -->
+        <div id="authForm" class="space-y-6">
+          <div class="space-y-2">
+            <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Acceso Seguro</p>
+            <h2 class="serif text-3xl sm:text-4xl font-medium text-brand-black">Bienvenido al Portal EXEL</h2>
+            <p class="text-xs sm:text-sm leading-relaxed text-brand-muted font-normal pt-1">
+              Inicia sesión con tu cuenta Google para acceder a tus cotizaciones guardadas, sincronizar tu carrito y recibir atención prioritaria.
+            </p>
+          </div>
+
+          <!-- Google OAuth Official CTA Button -->
+          <div class="pt-2">
+            <button id="googleButton" class="w-full inline-flex min-h-[54px] items-center justify-center gap-3 rounded-[0.25rem] bg-white border-2 border-brand-border px-6 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card transition duration-300 hover:border-brand-black hover:shadow-lift group" type="button">
+              <!-- Official Google Logo SVG -->
+              <svg class="h-5 w-5 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+              </svg>
+              <span id="googleButtonText">Continuar con Cuenta Google</span>
+            </button>
+          </div>
+
+          <!-- Reassurance Checklist -->
+          <div class="rounded-[0.25rem] border border-brand-border bg-brand-light p-4 space-y-2 text-xs text-brand-dark font-medium">
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Vinculación directa con tu asesoría por WhatsApp.</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Tus productos en la bolsa se conservan mientras navegas.</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-emerald-600 font-bold">✓</span>
+              <span>Sin contraseñas extras ni procesos engorrosos.</span>
+            </div>
+          </div>
+
+          <!-- Help / Direct Assistance Link -->
+          <div class="text-center pt-2 text-xs text-brand-muted font-normal">
+            ¿Necesitas ayuda con tu pedido o registro?
+            <a href="https://wa.me/56981681536?text=Hola%20EXEL%20Chile,%20necesito%20asistencia%20con%20mi%20cuenta" target="_blank" rel="noreferrer" class="text-brand-copper font-bold hover:underline block sm:inline sm:ml-1">
+              Contáctanos por WhatsApp &rarr;
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+
+      </section>
+
+    </div>
   </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-brand-border bg-white py-8 text-xs text-brand-muted font-normal">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img class="h-6 w-auto opacity-80" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Chile">
+        <span>&copy; 2026 EXEL Chile. Dermocosmética Profesional.</span>
+      </div>
+      <div class="flex gap-6 uppercase font-semibold text-[11px] tracking-wider">
+        <a href="./tienda.html" class="hover:text-brand-black">Tienda</a>
+        <a href="./carrito.html" class="hover:text-brand-black">Carrito</a>
+        <a href="https://wa.me/56981681536" target="_blank" rel="noreferrer" class="hover:text-brand-black">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
 
   <script type="module">
     import {
@@ -153,20 +243,36 @@
     const userName = document.querySelector("#userName");
     const userEmail = document.querySelector("#userEmail");
     const userPhoto = document.querySelector("#userPhoto");
+    const userFallbackAvatar = document.querySelector("#userFallbackAvatar");
     const googleButton = document.querySelector("#googleButton");
     const googleButtonText = document.querySelector("#googleButtonText");
-    const returnTo = new URLSearchParams(window.location.search).get("returnTo") || "./carrito.html";
+    const returnButton = document.querySelector("#returnButton");
 
-    function setMessage(message) {
+    const returnTo = new URLSearchParams(window.location.search).get("returnTo") || "./carrito.html";
+    if (returnButton) {
+      returnButton.href = returnTo;
+      if (returnTo.includes("index.html")) {
+        returnButton.innerHTML = "<span>🏠 Continuar a la Página Principal</span>";
+      } else if (returnTo.includes("tienda.html")) {
+        returnButton.innerHTML = "<span>🌿 Continuar a la Tienda</span>";
+      }
+    }
+
+    function setMessage(message, isError = false) {
       statusBanner.textContent = message;
       statusBanner.classList.toggle("hidden", !message);
+      if (isError) {
+        statusBanner.className = "mb-5 rounded-[0.25rem] bg-red-50 border border-red-200 p-4 text-xs font-semibold leading-relaxed text-red-700";
+      } else {
+        statusBanner.className = "mb-5 rounded-[0.25rem] bg-brand-light border border-brand-border p-4 text-xs font-semibold leading-relaxed text-brand-dark";
+      }
     }
 
     function setLoading(isLoading) {
       googleButton.disabled = isLoading;
       googleButton.classList.toggle("opacity-70", isLoading);
       googleButton.classList.toggle("cursor-wait", isLoading);
-      googleButtonText.textContent = isLoading ? "Conectando con Google..." : "Continuar con Google";
+      googleButtonText.textContent = isLoading ? "Conectando con Google..." : "Continuar con Cuenta Google";
     }
 
     async function handleAuth(action) {
@@ -175,25 +281,27 @@
         setLoading(true);
         const { user } = await action();
         await upsertUserProfile(user);
-        setMessage("Sesion iniciada correctamente. Redirigiendo...");
-        window.location.href = returnTo;
+        setMessage("Sesión iniciada correctamente. Redirigiendo...", false);
+        setTimeout(() => {
+          window.location.href = returnTo;
+        }, 600);
       } catch (error) {
-        if (error.code === "auth/configuration-not-found" || error.message.includes("configuration-not-found")) {
-          setMessage("El acceso Google aun no esta activo en Firebase Authentication. Habilita Google en Authentication > Sign-in method.");
+        if (error.code === "auth/configuration-not-found" || (error.message && error.message.includes("configuration-not-found"))) {
+          setMessage("El acceso Google aún no está activo en Firebase Authentication. Habilita Google en Authentication > Sign-in method.", true);
           return;
         }
 
         if (error.code === "auth/unauthorized-domain") {
-          setMessage("Este dominio local no esta autorizado en Firebase Authentication. Agrega 127.0.0.1 y localhost en Authorized domains.");
+          setMessage("Este dominio local no está autorizado en Firebase Authentication. Agrega 127.0.0.1 y localhost en Authorized domains.", true);
           return;
         }
 
         if (error.code === "auth/popup-closed-by-user") {
-          setMessage("Cerraste la ventana de Google antes de terminar el acceso.");
+          setMessage("Cerraste la ventana de Google antes de terminar el acceso.", true);
           return;
         }
 
-        setMessage("No pudimos iniciar sesion con Google. Intenta nuevamente.");
+        setMessage("No pudimos iniciar sesión con Google. Intenta nuevamente.", true);
       } finally {
         setLoading(false);
       }
@@ -201,19 +309,24 @@
 
     const status = getFirebaseStatus();
     if (!status.configured) {
-      setMessage("Falta completar apiKey, messagingSenderId y appId en data/firebase-config.js.");
+      setMessage("Falta completar apiKey, messagingSenderId y appId en data/firebase-config.js para autenticación en vivo con Firebase.", true);
     }
 
     onUserChange((user) => {
       authForm.classList.toggle("hidden", !!user);
       userPanel.classList.toggle("hidden", !user);
       if (user) {
-        userName.textContent = user.displayName || "Cliente EXEL";
+        userName.textContent = user.displayName || "Cliente Profesional EXEL";
         userEmail.textContent = user.email || "Cuenta sin email visible";
         if (user.photoURL) {
           userPhoto.src = user.photoURL;
           userPhoto.alt = user.displayName || "Foto de perfil";
           userPhoto.classList.remove("hidden");
+          userFallbackAvatar.classList.add("hidden");
+        } else {
+          userFallbackAvatar.textContent = (user.displayName || user.email || "U").charAt(0).toUpperCase();
+          userFallbackAvatar.classList.remove("hidden");
+          userPhoto.classList.add("hidden");
         }
       }
     });
@@ -225,9 +338,9 @@
     document.querySelector("#logoutButton").addEventListener("click", async () => {
       try {
         await logout();
-        setMessage("Sesion cerrada.");
+        setMessage("Has cerrado tu sesión de forma segura.");
       } catch (error) {
-        setMessage(error.message);
+        setMessage(error.message, true);
       }
     });
   </script>

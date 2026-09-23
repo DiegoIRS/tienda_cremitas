@@ -1,0 +1,21 @@
+export const CATALOG = new Map([
+  ["gel-limpieza", { title: "Gel de Limpieza", unitPrice: 18990, picture: "/assets/catalogo-web/productos/green-line/gel-limpieza.webp" }],
+  ["esencia-kombucha", { title: "Esencia de Te de Kombucha", unitPrice: 24990, picture: "/assets/catalogo-web/productos/green-line/esencia-kombucha.webp" }],
+  ["serum-super-hidratante", { title: "Serum Super Hidratante", unitPrice: 29990, picture: "/assets/catalogo-web/productos/green-line/serum-super-hidratante.webp" }],
+  ["serum-iluminador", { title: "Serum Iluminador", unitPrice: 28990, picture: "/assets/catalogo-web/productos/green-line/serum-iluminador.webp" }],
+  ["serum-regenerativo", { title: "Serum Regenerativo", unitPrice: 31990, picture: "/assets/catalogo-web/productos/green-line/serum-retinol-vegano.webp" }],
+  ["bakuchiol-crema", { title: "Bakuchiol Crema Multireparadora", unitPrice: 34990, picture: "/assets/catalogo-web/productos/green-line/bakuchiol-crema.webp" }],
+  ["lip-balm", { title: "Lip Balm Reparador", unitPrice: 12990, picture: "/assets/catalogo-web/productos/green-line/lip-balm.webp" }],
+  ["promoter-spray", { title: "Promoter Liposomas en Spray", unitPrice: 26990, picture: "/assets/catalogo-web/productos/promoter/liposomas-spray.webp" }],
+  ["promoter-espuma", { title: "Promoter Espuma Micelar", unitPrice: 21990, picture: "/assets/catalogo-web/productos/promoter/espuma-micelar.webp" }],
+  ["hydra-10-facial", { title: "Hydra 10 Facial", unitPrice: 27990, picture: "/assets/catalogo-web/productos/hydra-10/hydra-10-facial.webp" }],
+  ["hydra-10-corporal", { title: "Hydra 10 Corporal", unitPrice: 24990, picture: "/assets/catalogo-web/productos/hydra-10/hydra-10-corporal.webp" }],
+  ["papel-higienico-jumbo", { title: "Papel Higienico Jumbo", unitPrice: 18990, picture: "/assets/catalogo-web/productos/insumos/papel-higienico-jumbo.webp" }],
+  ["gel-conductor", { title: "Gel Conductor", unitPrice: 15990, picture: "/assets/catalogo-web/productos/insumos/gel-conductor-5-litros.webp" }],
+  ["guantes-nitrilo", { title: "Guantes de Nitrilo Extra Resistentes", unitPrice: 12990, picture: "/assets/catalogo-web/productos/insumos/guantes-nitrilo-extra-resistente.webp" }],
+  ["toallas-interfoliadas", { title: "Toallas Interfoliadas Doble Hoja", unitPrice: 6990, picture: "/assets/catalogo-web/productos/insumos/toallas-interfoliadas-doble-hoja.webp" }],
+  ["jabon-liquido", { title: "Jabon Liquido Vital Clean Premium", unitPrice: 11990, picture: "/assets/catalogo-web/productos/insumos/jabon-liquido-premium.webp" }],
+  ["baja-lenguas", { title: "Baja Lenguas", unitPrice: 3990, picture: "/assets/catalogo-web/productos/insumos/baja-lenguas.webp" }],
+  ["cloro-liquido", { title: "Cloro Liquido", unitPrice: 5990, picture: "/assets/catalogo-web/productos/insumos/cloro-liquido-5-litros.webp" }],
+  ["detergente-enzimatico", { title: "Detergente Enzimatico", unitPrice: 17990, picture: "/assets/catalogo-web/productos/insumos/detergente-enzimatico.webp" }]
+]);

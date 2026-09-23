@@ -5,4 +5,8 @@ node_modules/
 .codex-pnpm.cjs
 pnpm.exe
 dist/
+functions/node_modules/
+functions/.env*
 *.log
+
+.firebase/

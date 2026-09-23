@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>window.location.replace("./index.html#diagnostico");</script>
+  <title>EXEL Chile | Diagnóstico Cutáneo & Colorimetría Personalizada</title>
+  <meta name="description" content="Test dermocosmético guiado para identificar tu biotipo cutáneo, subtono de piel, colorimetría y preferencias botánicas veganas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
+  <style>
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
+    }
+
+    .serif, h1, h2, h3, .font-serif {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .quiz-option.selected {
+      border-color: #111827;
+      background-color: #f9fafb;
+      box-shadow: 0 0 0 2px #111827;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-brand-black antialiased bg-white flex flex-col justify-between">
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html" aria-label="Ir al inicio">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Dermocosmética Profesional</span>
+        </div>
+      </a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition hover:text-brand-black no-underline" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-brand-black no-underline" href="./perfil.html">Mi Perfil</a>
+        <a class="transition text-brand-black font-bold no-underline border-b-2 border-brand-black pb-0.5" href="./diagnostico.html">Test Dérmico</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <!-- Cart Badge Button (Bolsa) -->
+        <a href="./carrito.html" class="inline-flex min-h-[40px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider no-underline">
+          <span>🛍️ Bolsa</span>
+        </a>
+
+        <a href="./tienda.html" class="hidden sm:inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] bg-brand-black text-white px-4 text-xs font-semibold shadow-card transition hover:bg-brand-dark uppercase tracking-wider no-underline">
+          <span>Ir a la Tienda &rarr;</span>
+        </a>
+
+        <details class="group relative md:hidden">
+          <summary class="flex min-h-[38px] cursor-pointer list-none items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+            Menú
+            <span class="transition group-open:rotate-180 text-[10px]">⌄</span>
+          </summary>
+          <nav class="absolute right-0 top-11 z-50 grid min-w-48 gap-1.5 rounded-[0.5rem] border border-brand-border bg-white p-3 text-xs font-semibold text-brand-muted shadow-lift uppercase tracking-wider" aria-label="Navegación móvil">
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html">Presentación</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./tienda.html">Tienda</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./perfil.html">Mi Perfil</a>
+            <a class="rounded-[0.25rem] px-3 py-2 bg-brand-light text-brand-black font-bold" href="./diagnostico.html">🔬 Test Dérmico</a>
+          </nav>
+        </details>
+      </div>
+    </div>
+  </header>
+
+  <!-- Diagnostic Container -->
+  <main class="mx-auto w-[min(960px,calc(100%-32px))] px-2 sm:px-4 py-10 sm:py-16 my-auto flex-1">
+    
+    <!-- Progress Indicator Bar -->
+    <div id="progressSection" class="mb-8 space-y-2">
+      <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-brand-subtle">
+        <span id="stepCounter">Paso 1 de 5</span>
+        <span id="stepName" class="text-brand-copper">Biotipo Cutáneo</span>
+      </div>
+      <div class="w-full bg-brand-border h-2 rounded-full overflow-hidden">
+        <div id="progressBar" class="bg-brand-black h-full transition-all duration-500 w-[20%]"></div>
+      </div>
+    </div>
+
+    <!-- Wizard Steps Form -->
+    <div class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-10 shadow-card">
+      
+      <!-- ================= STEP 1: BIOTIPO CUTÁNEO ================= -->
+      <section id="step1" class="quiz-step space-y-6">
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Paso 1 &middot; Diagnóstico de Base</p>
+          <h1 class="serif text-3xl sm:text-4xl font-medium text-brand-black">¿Cómo se siente tu piel 2 horas después de lavarte el rostro?</h1>
+          <p class="text-xs sm:text-sm text-brand-muted">
+            Evalúa la respuesta natural de tus glándulas sebáceas sin haber aplicado cremas ni maquillaje.
+          </p>
+        </div>
+
+        <div class="grid gap-3.5 sm:grid-cols-2">
+          <label class="quiz-option cursor-pointer rounded-[0.5rem] border border-brand-border p-5 flex items-start gap-4 transition hover:border-brand-black shadow-sm">
+            <input type="radio" name="skinFeeling" value="Seca" class="hidden" checked>
+            <span class="text-2xl">🌵</span>
+            <div>
+              <strong class="block text-sm font-bold text-brand-black">Tirante, áspera o con falta de luz</strong>
+              <span class="text-xs text-brand-muted mt-0.5 block">Siente necesidad inmediata de crema; tendencia a descamación o líneas finas.</span>
+            </div>
+          </label>
+
+          <label class="quiz-option cursor-pointer rounded-[0.5rem] border border-brand-border p-5 flex items-start gap-4 transition hover:border-brand-black shadow-sm">
+            <input type="radio" name="skinFeeling" value="Mixta" class="hidden">
+            <span class="text-2xl">✨</span>
+            <div>
+              <strong class="block text-sm font-bold text-brand-black">Brillo en zona T (Frente/Nariz)</strong>
+              <span class="text-xs text-brand-muted mt-0.5 block">Mejillas normales o secas, pero oleosidad perceptible en frente, nariz y mentón.</span>
+            </div>
+          </label>
+
+          <label class="quiz-option cursor-pointer rounded-[0.5rem] border border-brand-border p-5 flex items-start gap-4 transition hover:border-brand-black shadow-sm">
+            <input type="radio" name="skinFeeling" value="Grasa" class="hidden">
+            <span class="text-2xl">💧</span>
+            <div>
+              <strong class="block text-sm font-bold text-brand-black">Oleosa o brillante en todo el rostro</strong>
+              <span class="text-xs text-brand-muted mt-0.5 block">Poros dilatados perceptibles, textura gruesa y tendencia a impurezas.</span>
+            </div>
+          </label>
+
+          <label class="quiz-option cursor-pointer rounded-[0.5rem] border border-brand-border p-5 flex items-start gap-4 transition hover:border-brand-black shadow-sm">
+            <input type="radio" name="skinFeeling" value="Sensible" class="hidden">
+            <span class="text-2xl">🌸</span>
+            <div>
+              <strong class="block text-sm font-bold text-brand-black">Reactiva, con ardor o rojeces</strong>
+              <span class="text-xs text-brand-muted mt-0.5 block">Se enrojece ante cambios térmicos, viento o cosméticos convencionales.</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ================= STEP 2: COLORIMETRÍA & SUBTONO ================= -->
+      <section id="step2" class="quiz-step hidden space-y-6">
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Paso 2 &middot; Colorimetría & Fototipo</p>
+          <h2 class="serif text-3xl sm:text-4xl font-medium text-brand-black">Reacción al sol y subtono de tu piel</h2>
+          <p class="text-xs sm:text-sm text-brand-muted">
+            Permite definir el nivel de protección dérmica y los antioxidantes más afines a tu tono.
+          </p>
+        </div>
+
+        <!-- Pregunta 2A: Fototipo / Sol -->
+        <div class="space-y-3">
+          <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">A. ¿Cómo reacciona tu piel ante la exposición solar sin filtro?</label>
+          <div class="grid gap-2.5 sm:grid-cols-2">
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-center gap-3 shadow-sm">
+              <input type="radio" name="sunReaction" value="Fototipo I-II" class="accent-[#111827]" checked>
+              <div class="text-xs">
+                <strong class="block text-brand-black">Se quema siempre, casi nunca broncea</strong>
+                <span class="text-brand-muted">Fototipo I - II (Piel muy clara o nórdica)</span>
+              </div>
+            </label>
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-center gap-3 shadow-sm">
+              <input type="radio" name="sunReaction" value="Fototipo III" class="accent-[#111827]">
+              <div class="text-xs">
+                <strong class="block text-brand-black">Se quema primero, luego broncea suave</strong>
+                <span class="text-brand-muted">Fototipo III (Piel clara a media)</span>
+              </div>
+            </label>
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-center gap-3 shadow-sm">
+              <input type="radio" name="sunReaction" value="Fototipo IV" class="accent-[#111827]">
+              <div class="text-xs">
+                <strong class="block text-brand-black">Broncea con facilidad, rara vez se quema</strong>
+                <span class="text-brand-muted">Fototipo IV (Piel trigueña / mediterránea)</span>
+              </div>
+            </label>
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-center gap-3 shadow-sm">
+              <input type="radio" name="sunReaction" value="Fototipo V-VI" class="accent-[#111827]">
+              <div class="text-xs">
+                <strong class="block text-brand-black">Broncea intensamente sin quemarse</strong>
+                <span class="text-brand-muted">Fototipo V - VI (Piel morena u oscura)</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Pregunta 2B: Subtono de Venas -->
+        <div class="space-y-3 pt-2">
+          <label class="block text-xs font-bold uppercase tracking-wider text-brand-dark">B. Observa el color de las venas en el interior de tu muñeca:</label>
+          <div class="grid gap-2.5 sm:grid-cols-3">
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm">
+              <input type="radio" name="undertone" value="Frío" class="accent-[#111827]" checked>
+              <div class="text-xs">
+                <span class="text-blue-600 font-bold block mb-0.5">🔵 Azules / Violetas</span>
+                <strong class="text-brand-black">Subtono Frío</strong>
+                <span class="text-brand-muted block text-[11px]">Le favorecen metales plateados y fitoactivos calmantes.</span>
+              </div>
+            </label>
+
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm">
+              <input type="radio" name="undertone" value="Cálido" class="accent-[#111827]">
+              <div class="text-xs">
+                <span class="text-emerald-600 font-bold block mb-0.5">🟢 Verdosas / Oliva</span>
+                <strong class="text-brand-black">Subtono Cálido</strong>
+                <span class="text-brand-muted block text-[11px]">Le favorecen metales dorados y bio-activos iluminadores.</span>
+              </div>
+            </label>
+
+            <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm">
+              <input type="radio" name="undertone" value="Neutro" class="accent-[#111827]">
+              <div class="text-xs">
+                <span class="text-purple-600 font-bold block mb-0.5">🟣 Mezcla azul y verde</span>
+                <strong class="text-brand-black">Subtono Neutro</strong>
+                <span class="text-brand-muted block text-[11px]">Equilibrio universal entre bio-pigmentos.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STEP 3: PREOCUPACIONES PRIORITARIAS ================= -->
+      <section id="step3" class="quiz-step hidden space-y-6">
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Paso 3 &middot; Prioridades & Objetivos</p>
+          <h2 class="serif text-3xl sm:text-4xl font-medium text-brand-black">¿Qué objetivo te gustaría priorizar en tu rutina?</h2>
+          <p class="text-xs sm:text-sm text-brand-muted">Selecciona hasta 3 prioridades principales:</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Luminosidad / Glow" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">✨ Aporte de Glow & Luminosidad</strong>
+              <span class="text-brand-muted">Revitalizar piel opaca con Té de Kombucha fermentado.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Hidratación Profunda" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">💧 Humectación Multicapa</strong>
+              <span class="text-brand-muted">Restaurar manto lipídico con Ácido Hialurónico y Nano-Urea.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Líneas & Firmeza" class="accent-[#111827] mt-1">
+            <div class="text-xs">
+              <strong class="block text-brand-black">⏳ Firmeza & Líneas Finas</strong>
+              <span class="text-brand-muted">Bio-regeneración celular con Bakuchiol (retinol vegetal).</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Calmar Rojeces" class="accent-[#111827] mt-1">
+            <div class="text-xs">
+              <strong class="block text-brand-black">🌸 Calmar Rojeces & Sensibilidad</strong>
+              <span class="text-brand-muted">Aliviar reactividad con fitoextractos patagónicos.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Pestañas & Cejas" class="accent-[#111827] mt-1">
+            <div class="text-xs">
+              <strong class="block text-brand-black">👁️ Pestañas & Cejas Fuertes</strong>
+              <span class="text-brand-muted">Densificación liposomal con Promoter Spray.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 transition hover:border-brand-black shadow-sm">
+            <input type="checkbox" name="skinGoals" value="Control de Poros" class="accent-[#111827] mt-1">
+            <div class="text-xs">
+              <strong class="block text-brand-black">🪞 Minimizar Poros & Brillo</strong>
+              <span class="text-brand-muted">Purificación dérmica y equilibrio sebáceo.</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ================= STEP 4: ESTILO DE VIDA & CLIMA ================= -->
+      <section id="step4" class="quiz-step hidden space-y-6">
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Paso 4 &middot; Entorno & Estilo de Vida</p>
+          <h2 class="serif text-3xl sm:text-4xl font-medium text-brand-black">¿Cuál es tu entorno habitual en Chile?</h2>
+          <p class="text-xs sm:text-sm text-brand-muted">El clima y la exposición ambiental determinan la oclusividad necesaria de tus selladores.</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3">
+          <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex flex-col justify-between shadow-sm">
+            <input type="radio" name="climateZone" value="Seco / Santiago / Centro" class="accent-[#111827]" checked>
+            <div class="text-xs space-y-1 mt-2">
+              <span class="text-xl">☀️</span>
+              <strong class="block text-brand-black">Zona Central / Norte (Seco)</strong>
+              <span class="text-brand-muted block">Alta radiación y smog urbano; requiere antioxidantes y sellado hídrico.</span>
+            </div>
+          </label>
+
+          <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex flex-col justify-between shadow-sm">
+            <input type="radio" name="climateZone" value="Sur / Frío / Ventoso" class="accent-[#111827]">
+            <div class="text-xs space-y-1 mt-2">
+              <span class="text-xl">🌧️</span>
+              <strong class="block text-brand-black">Sur / Patagonia (Frío / Viento)</strong>
+              <span class="text-brand-muted block">Viento y frío que debilitan la barrera dérmica; requiere lípidos protectores.</span>
+            </div>
+          </label>
+
+          <label class="quiz-option cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex flex-col justify-between shadow-sm">
+            <input type="radio" name="climateZone" value="Costero / Húmedo" class="accent-[#111827]">
+            <div class="text-xs space-y-1 mt-2">
+              <span class="text-xl">🌊</span>
+              <strong class="block text-brand-black">Zona Costera (Húmedo / Salino)</strong>
+              <span class="text-brand-muted block">Humedad marina moderada; requiere texturas ligeras y no comedogénicas.</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ================= STEP 5: FILOSOFÍA BOTÁNICA & ÉTICA ================= -->
+      <section id="step5" class="quiz-step hidden space-y-6">
+        <div class="space-y-2">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Paso 5 &middot; Filosofía & Preferencias</p>
+          <h2 class="serif text-3xl sm:text-4xl font-medium text-brand-black">Tus estándares éticos y de formulación</h2>
+          <p class="text-xs sm:text-sm text-brand-muted">Selecciona las garantías indispensables para tus tratamientos:</p>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-2">
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm bg-brand-light">
+            <input type="checkbox" name="ethicalPrefs" value="100% Vegano" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">🌱 100% Vegano (Sin derivados animales)</strong>
+              <span class="text-brand-muted">Solo botánica pura, fitoextractos y biotecnología vegetal.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm bg-brand-light">
+            <input type="checkbox" name="ethicalPrefs" value="Sin TACC" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">🌾 Sin TACC (Libre de Gluten)</strong>
+              <span class="text-brand-muted">Inocuidad absoluta para personas celíacas o con sensibilidad al gluten.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm bg-brand-light">
+            <input type="checkbox" name="ethicalPrefs" value="Cruelty Free" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">🐇 Libre de Crueldad Animal</strong>
+              <span class="text-brand-muted">Ningún testeo en animales en ninguna fase de manufactura.</span>
+            </div>
+          </label>
+
+          <label class="quiz-checkbox cursor-pointer rounded-[0.25rem] border border-brand-border p-4 flex items-start gap-3 shadow-sm bg-brand-light">
+            <input type="checkbox" name="ethicalPrefs" value="Sin Aceites Minerales" class="accent-[#111827] mt-1" checked>
+            <div class="text-xs">
+              <strong class="block text-brand-black">💧 Sin Aceites Minerales (No Comedogénico)</strong>
+              <span class="text-brand-muted">Permite la oxigenación celular sin taponar los poros.</span>
+            </div>
+          </label>
+        </div>
+      </section>
+
+      <!-- ================= STEP 6: PASAPORTE DÉRMICO & RESULTADO ================= -->
+      <section id="step6" class="quiz-step hidden space-y-8">
+        
+        <!-- Header Pasaporte -->
+        <div class="rounded-[0.5rem] bg-brand-black text-white p-6 sm:p-8 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-white/20 pb-4">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Certificado Personalizado</span>
+              <h2 class="serif text-2xl sm:text-3xl font-medium text-white">Pasaporte Dérmico EXEL</h2>
+            </div>
+            <span class="rounded-[0.25rem] bg-white text-brand-black px-3 py-1 text-xs font-bold uppercase tracking-wider">
+              Diagnóstico Oficial
+            </span>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="rounded-[0.25rem] bg-white/10 p-3 border border-white/15">
+              <span class="text-white/70 block text-[10px] uppercase tracking-wider font-bold">Biotipo</span>
+              <strong id="resultSkinType" class="text-sm font-bold text-white block mt-0.5">Mixta</strong>
+            </div>
+            <div class="rounded-[0.25rem] bg-white/10 p-3 border border-white/15">
+              <span class="text-white/70 block text-[10px] uppercase tracking-wider font-bold">Subtono</span>
+              <strong id="resultUndertone" class="text-sm font-bold text-white block mt-0.5">Frío</strong>
+            </div>
+            <div class="rounded-[0.25rem] bg-white/10 p-3 border border-white/15">
+              <span class="text-white/70 block text-[10px] uppercase tracking-wider font-bold">Fototipo</span>
+              <strong id="resultPhototype" class="text-sm font-bold text-white block mt-0.5">Fototipo II</strong>
+            </div>
+            <div class="rounded-[0.25rem] bg-white/10 p-3 border border-white/15">
+              <span class="text-white/70 block text-[10px] uppercase tracking-wider font-bold">Garantía</span>
+              <strong class="text-sm font-bold text-emerald-400 block mt-0.5">100% Vegano / Sin TACC</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rutina Recomendada de 4 Pasos -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-copper">Prescripción Botánica</p>
+              <h3 class="serif text-2xl font-bold text-brand-black">Tu Rutina Personalizada de 4 Pasos</h3>
+            </div>
+            <span class="text-xs font-bold text-brand-muted">Sinergia molecular</span>
+          </div>
+
+          <div id="routineCardsContainer" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <!-- Populated dynamically based on answers -->
+          </div>
+        </div>
+
+        <!-- Direct Actions -->
+        <div class="rounded-[0.5rem] border border-brand-border bg-brand-light p-6 space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Valor Total Rutina Completa</span>
+              <strong id="routineTotalPrice" class="serif text-3xl font-bold text-brand-black block">$0 CLP</strong>
+            </div>
+            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-[0.25rem] px-3 py-1.5">
+              🚚 Despacho Cortesía Incluido
+            </span>
+          </div>
+
+          <div class="grid gap-3 sm:grid-cols-2 pt-2">
+            <button id="addRoutineToCartBtn" class="min-h-[50px] inline-flex items-center justify-center gap-2 rounded-[0.25rem] bg-brand-black px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark transition">
+              <span>🛍️ Añadir Rutina a la Bolsa</span>
+            </button>
+            
+            <a id="shareRoutineWhatsApp" href="#" target="_blank" rel="noreferrer" class="min-h-[50px] inline-flex items-center justify-center gap-2 rounded-[0.25rem] bg-emerald-600 px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-emerald-700 transition no-underline">
+              <span>💬 Enviar Diagnóstico a Cosmetóloga</span>
+            </a>
+          </div>
+
+          <div class="text-center pt-2">
+            <a href="./perfil.html" class="text-xs font-bold text-brand-copper hover:underline">
+              &rarr; Ver mi diagnóstico guardado en Mi Perfil
+            </a>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Wizard Navigation Buttons -->
+      <div id="wizardControls" class="mt-8 flex items-center justify-between border-t border-brand-border pt-6">
+        <button id="prevStepBtn" class="hidden min-h-[42px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-5 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card hover:bg-brand-light transition" type="button">
+          &larr; Anterior
+        </button>
+        <div class="flex-1"></div>
+        <button id="nextStepBtn" class="min-h-[46px] items-center gap-2 rounded-[0.25rem] bg-brand-black px-7 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark transition" type="button">
+          Siguiente Paso &rarr;
+        </button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-brand-border bg-white py-8 text-xs text-brand-muted font-normal mt-16">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img class="h-6 w-auto opacity-80" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Chile">
+        <span>&copy; 2026 EXEL Chile. Dermocosmética Profesional.</span>
+      </div>
+      <div class="flex gap-6 uppercase font-semibold text-[11px] tracking-wider">
+        <a href="./tienda.html" class="hover:text-brand-black">Tienda</a>
+        <a href="./perfil.html" class="hover:text-brand-black">Mi Perfil</a>
+        <a href="./carrito.html" class="hover:text-brand-black">Carrito</a>
+        <a href="https://wa.me/56981681536" target="_blank" rel="noreferrer" class="hover:text-brand-black">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./data/site-config.js"></script>
+  <script src="./data/product-data.js?v=20260831-variants"></script>
+  <script type="module">
+    import { updateUserProfileData, onUserChange } from "./data/firebase-client.js";
+
+    const formatter = new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+    const products = window.EXEL_PRODUCTS || [];
+    let currentUser = null;
+
+    let currentStep = 1;
+    const totalSteps = 5;
+
+    const stepTitles = [
+      "Biotipo Cutáneo",
+      "Colorimetría & Subtono",
+      "Objetivos Dérmicos",
+      "Entorno & Clima",
+      "Filosofía Botánica"
+    ];
+
+    const prevBtn = document.querySelector("#prevStepBtn");
+    const nextBtn = document.querySelector("#nextStepBtn");
+    const progressBar = document.querySelector("#progressBar");
+    const stepCounter = document.querySelector("#stepCounter");
+    const stepName = document.querySelector("#stepName");
+    const wizardControls = document.querySelector("#wizardControls");
+    const progressSection = document.querySelector("#progressSection");
+
+    let recommendedRoutine = [];
+
+    function updateStepUI() {
+      document.querySelectorAll(".quiz-step").forEach((step, idx) => {
+        step.classList.toggle("hidden", idx + 1 !== currentStep);
+      });
+
+      if (currentStep <= totalSteps) {
+        stepCounter.textContent = `Paso ${currentStep} de ${totalSteps}`;
+        stepName.textContent = stepTitles[currentStep - 1];
+        progressBar.style.width = `${(currentStep / totalSteps) * 100}%`;
+        prevBtn.classList.toggle("hidden", currentStep === 1);
+        nextBtn.textContent = currentStep === totalSteps ? "Calcular Mi Diagnóstico &rarr;" : "Siguiente Paso &rarr;";
+        wizardControls.classList.remove("hidden");
+        progressSection.classList.remove("hidden");
+      } else {
+        // Step 6 (Result)
+        progressSection.classList.add("hidden");
+        wizardControls.classList.add("hidden");
+      }
+
+      window.scrollTo({ top: 100, behavior: "smooth" });
+    }
+
+    function calculateDiagnosis() {
+      const skinFeeling = document.querySelector("input[name='skinFeeling']:checked")?.value || "Mixta";
+      const sunReaction = document.querySelector("input[name='sunReaction']:checked")?.value || "Fototipo III";
+      const undertone = document.querySelector("input[name='undertone']:checked")?.value || "Neutro";
+      const climateZone = document.querySelector("input[name='climateZone']:checked")?.value || "Seco";
+      
+      const goals = Array.from(document.querySelectorAll("input[name='skinGoals']:checked")).map(el => el.value);
+      const ethicalPrefs = Array.from(document.querySelectorAll("input[name='ethicalPrefs']:checked")).map(el => el.value);
+
+      // Map products based on diagnosis:
+      // Step 1: Higienizar
+      const step1Prod = products.find(p => p.id === "gel-limpieza") || products[0];
+
+      // Step 2: Preparar (Esencia Kombucha)
+      const step2Prod = products.find(p => p.id === "esencia-kombucha") || products[1];
+
+      // Step 3: Tratar (Serum segun biotipo/objetivo)
+      let step3Prod;
+      if (goals.includes("Pestañas & Cejas")) {
+        step3Prod = products.find(p => p.id === "promoter-spray") || products[2];
+      } else if (skinFeeling === "Seca" || goals.includes("Hidratación Profunda")) {
+        step3Prod = products.find(p => p.name.toLowerCase().includes("hialuronico")) || products[2];
+      } else {
+        step3Prod = products.find(p => p.name.toLowerCase().includes("vitamina") || p.id === "esencia-kombucha") || products[2];
+      }
+
+      // Step 4: Sellar (Crema Hydra 10 o Bakuchiol)
+      let step4Prod;
+      if (skinFeeling === "Seca" || climateZone.includes("Sur")) {
+        step4Prod = products.find(p => p.id === "hydra-10-facial") || products[3];
+      } else {
+        step4Prod = products.find(p => p.name.toLowerCase().includes("bakuchiol") || p.id === "hydra-10-facial") || products[3];
+      }
+
+      recommendedRoutine = [step1Prod, step2Prod, step3Prod, step4Prod].filter(Boolean);
+
+      // Render Results
+      document.querySelector("#resultSkinType").textContent = `Piel ${skinFeeling}`;
+      document.querySelector("#resultUndertone").textContent = `Subtono ${undertone}`;
+      document.querySelector("#resultPhototype").textContent = sunReaction;
+
+      const routineContainer = document.querySelector("#routineCardsContainer");
+      const stepsLabels = ["01. Higienizar", "02. Preparar", "03. Tratar", "04. Sellar"];
+
+      let total = 0;
+      routineContainer.innerHTML = recommendedRoutine.map((p, idx) => {
+        total += Number(p.price || 0);
+        return `
+          <article class="rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-card flex flex-col justify-between space-y-3">
+            <div class="h-36 bg-[#fafafa] p-3 flex items-center justify-center rounded-[0.25rem] border border-brand-border">
+              <img class="max-h-full w-auto object-contain" src="${p.image}" alt="${p.name}">
+            </div>
+            <div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-copper">
+                ${stepsLabels[idx]}
+              </span>
+              <h4 class="font-sans text-sm font-bold text-brand-black mt-1 line-clamp-1">${p.name}</h4>
+              <p class="text-[11px] text-brand-muted line-clamp-2 mt-0.5">${p.label || p.description}</p>
+            </div>
+            <div class="pt-2 border-t border-brand-border flex items-center justify-between">
+              <strong class="serif text-sm font-bold text-brand-black">${formatter.format(p.price)}</strong>
+              <a href="./detalle-producto.html?id=${encodeURIComponent(p.id)}" class="text-[11px] font-bold text-brand-copper hover:underline">Ficha &rarr;</a>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.querySelector("#routineTotalPrice").textContent = formatter.format(total);
+
+      // Store in Local Profile
+      const diagnosticData = {
+        skinType: skinFeeling,
+        undertone,
+        phototype: sunReaction,
+        climateZone,
+        concerns: goals,
+        preferences: ethicalPrefs,
+        recommendedRoutineIds: recommendedRoutine.map(p => p.id),
+        date: new Date().toISOString()
+      };
+
+      try {
+        const profile = JSON.parse(localStorage.getItem("exel_user_profile_v1") || "{}");
+        profile.skinType = skinFeeling;
+        profile.undertone = undertone;
+        profile.phototype = sunReaction;
+        profile.diagnostic = diagnosticData;
+        localStorage.setItem("exel_user_profile_v1", JSON.stringify(profile));
+      } catch (err) {}
+
+      // Sync to Firebase if user is logged in
+      if (currentUser) {
+        try {
+          updateUserProfileData(currentUser.uid, {
+            cosmeticData: diagnosticData
+          });
+        } catch {}
+      }
+
+      // WhatsApp Share URL
+      const waMessage = `Hola EXEL Chile, acabo de completar mi Diagnóstico Dérmico:\n- Biotipo: Piel ${skinFeeling}\n- Subtono: ${undertone}\n- Fototipo: ${sunReaction}\n- Objetivos: ${goals.join(", ")}\n- Preferencias: ${ethicalPrefs.join(", ")}\n\nMi rutina sugerida de 4 pasos es: ${recommendedRoutine.map(p => p.name).join(" + ")} (Total: ${formatter.format(total)}). Quisiera coordinar mi pedido y asesoría.`;
+      document.querySelector("#shareRoutineWhatsApp").href = `https://wa.me/56981681536?text=${encodeURIComponent(waMessage)}`;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStep < totalSteps) {
+        currentStep++;
+        updateStepUI();
+      } else if (currentStep === totalSteps) {
+        currentStep = 6;
+        calculateDiagnosis();
+        updateStepUI();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentStep > 1) {
+        currentStep--;
+        updateStepUI();
+      }
+    });
+
+    // Add Whole Routine To Cart
+    document.querySelector("#addRoutineToCartBtn")?.addEventListener("click", () => {
+      try {
+        const cart = JSON.parse(localStorage.getItem("exel_chile_cart_v1") || "[]");
+        recommendedRoutine.forEach(p => {
+          const existing = cart.find(i => i.name === p.name);
+          if (existing) {
+            existing.quantity += 1;
+          } else {
+            cart.push({ ...p, quantity: 1 });
+          }
+        });
+        localStorage.setItem("exel_chile_cart_v1", JSON.stringify(cart));
+        window.location.href = "./carrito.html";
+      } catch (e) {}
+    });
+
+    onUserChange(u => {
+      currentUser = u;
+    });
+
+    updateStepUI();
+  </script>
+</body>
+</html>

@@ -3,116 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXEL Chile | Panel admin</title>
+  <title>EXEL Chile | Consola de Administración</title>
   <meta name="description" content="Panel administrativo EXEL Chile para revisar solicitudes, preparar paquetes y administrar stock de productos.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            exel: {
-              ink: "#2f2b28",
-              muted: "#706861",
-              paper: "#fbf7f1",
-              cream: "#fffdf9",
-              sand: "#f3ece2",
-              warm: "#d8c8b4",
-              graphite: "#5c524a",
-              copper: "#b8895d",
-              line: "rgba(71, 55, 42, 0.13)"
-            }
-          },
-          boxShadow: {
-            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
-            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
-          },
-          borderRadius: {
-            card: "8px"
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
+  <script type="module" src="/src/icons.js"></script>
   <style>
     body {
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
-        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
     }
 
-    .serif {
-      font-family: "Cormorant Garamond", serif;
+    .serif, h1, h2, h3, .font-serif {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    /* Lectura cómoda también para la operación diaria del panel. */
+    #adminScreenDescription,
+    #adminStatus,
+    #adminContent .text-brand-muted {
+      font-size: clamp(0.9375rem, 0.9rem + 0.18vw, 1.0625rem);
+      line-height: 1.65;
+    }
+
+    #adminContent input,
+    #adminContent select,
+    #adminContent textarea {
+      font-size: 0.9375rem;
+      line-height: 1.45;
+    }
+
+    #adminContent button,
+    #adminContent .admin-screen-link {
+      font-size: 0.875rem;
+    }
+
+    #adminContent .admin-screen-link {
+      line-height: 1.35;
+    }
+
+    #adminContent .product-name {
+      font-size: 1.0625rem;
+      line-height: 1.35;
+    }
+
+    /* El acceso siempre debe prevalecer sobre la grilla de escritorio. */
+    #adminContent.hidden {
+      display: none !important;
+    }
+
+    #adminContent details > summary {
+      cursor: pointer;
+      list-style: none;
+    }
+
+    #adminContent details > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    @media (max-width: 640px) {
+      #adminContent .text-brand-muted,
+      #adminScreenDescription,
+      #adminStatus {
+        font-size: 0.9375rem;
+      }
     }
   </style>
 </head>
-<body class="text-exel-ink antialiased">
-  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
-    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
-      <a class="flex items-center gap-4" href="./preview.html">
-        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
-        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Panel admin</span>
+<body class="text-brand-black antialiased bg-white min-h-screen">
+  <!-- Top Announcement Bar -->
+  <div class="bg-brand-black text-white text-[12px] font-medium py-2 px-6 text-center border-b border-white/10 tracking-wider">
+    <span>CONSOLA OPERATIVA &middot; GESTIÓN DE INVENTARIO EXEL CHILE</span>
+  </div>
+
+  <!-- Header Navigation (Expanded Width) -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Consola de Administración</span>
+        </div>
       </a>
-      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
-        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
-        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
-        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
-        <a class="transition hover:text-exel-ink" href="./login.html">Login</a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition hover:text-brand-black no-underline" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-brand-black no-underline" href="./carrito.html">Carrito</a>
+        <a class="transition text-brand-black font-bold no-underline border-b-2 border-brand-black pb-0.5" href="./admin.html">Admin</a>
       </nav>
+      <a class="hidden sm:inline-flex min-h-[40px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider no-underline" href="./index.html#perfil">
+        <i data-lucide="user-round"></i><span id="adminUserName">Mi cuenta</span>
+      </a>
     </div>
   </header>
 
-  <main class="mx-auto w-[min(1240px,calc(100%-32px))] py-10">
+  <main class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 py-8 sm:py-12">
     <section class="grid gap-6 lg:grid-cols-[1fr_auto] lg:items-end">
       <div>
-        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Administracion</p>
-        <h1 class="serif max-w-4xl text-6xl font-bold leading-none md:text-7xl">Stock, productos y paquetes por preparar.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-exel-muted">Revisa solicitudes guardadas, direccion de despacho y productos necesarios para armar cada paquete.</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Gestión Operativa</p>
+        <h1 id="adminScreenTitle" class="serif text-4xl sm:text-5xl font-medium tracking-tight text-brand-black mt-1">Resumen operativo</h1>
+        <p id="adminScreenDescription" class="mt-2.5 max-w-3xl text-sm leading-relaxed text-brand-muted font-normal">Una vista clara de pedidos, inventario y resultados para organizar la operación del día.</p>
       </div>
-      <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-        <p id="adminStatus" class="text-sm font-bold text-exel-muted">Verificando acceso...</p>
-        <button id="loginAdmin" class="mt-3 hidden min-h-[44px] rounded-card bg-exel-ink px-5 font-extrabold text-white" type="button">Entrar con Google</button>
-        <button id="refreshAdmin" class="mt-3 hidden min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-5 font-extrabold text-exel-ink" type="button">Actualizar datos</button>
+      <div class="rounded-[0.5rem] border border-brand-border bg-white p-4 sm:p-5 shadow-card">
+        <p id="adminStatus" class="text-xs font-bold text-brand-muted">Verificando acceso...</p>
+        <button id="loginAdmin" class="mt-2.5 hidden min-h-[38px] rounded-[0.25rem] bg-brand-black px-4 text-xs font-bold uppercase tracking-wider text-white shadow-card hover:bg-brand-dark" type="button">Entrar con Google</button>
+        <button id="refreshAdmin" class="mt-2.5 hidden min-h-[38px] rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card hover:bg-brand-light" type="button">Actualizar datos</button>
       </div>
     </section>
 
-    <section id="adminContent" class="mt-10 hidden grid gap-6 xl:grid-cols-[1fr_460px]">
-      <div class="grid gap-6">
-        <section id="metricGrid" class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4"></section>
+    <section id="adminContent" class="mt-8 hidden gap-8 lg:grid lg:grid-cols-[220px_minmax(0,1fr)]">
+      <aside class="h-max rounded-[0.5rem] border border-brand-border bg-white p-3 shadow-card lg:sticky lg:top-24">
+        <p class="px-3 pb-2 pt-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Navegación</p>
+        <nav id="adminScreenNav" class="grid gap-1" aria-label="Secciones de administración">
+          <a href="#resumen" data-admin-target="resumen" class="admin-screen-link flex items-center gap-2 rounded-[0.25rem] px-3 py-2.5 text-xs font-bold text-brand-black no-underline transition hover:bg-brand-light"><i data-lucide="layout-dashboard"></i>Resumen</a>
+          <a href="#pedidos" data-admin-target="pedidos" class="admin-screen-link flex items-center gap-2 rounded-[0.25rem] px-3 py-2.5 text-xs font-bold text-brand-black no-underline transition hover:bg-brand-light"><i data-lucide="package-check"></i>Pedidos y despacho</a>
+          <a href="#inventario" data-admin-target="inventario" class="admin-screen-link flex items-center gap-2 rounded-[0.25rem] px-3 py-2.5 text-xs font-bold text-brand-black no-underline transition hover:bg-brand-light"><i data-lucide="boxes"></i>Inventario</a>
+          <a href="#catalogo" data-admin-target="catalogo" class="admin-screen-link flex items-center gap-2 rounded-[0.25rem] px-3 py-2.5 text-xs font-bold text-brand-black no-underline transition hover:bg-brand-light"><i data-lucide="notebook-pen"></i>Catálogo</a>
+          <a id="teamNavLink" href="#equipo" data-admin-target="equipo" class="admin-screen-link hidden items-center gap-2 rounded-[0.25rem] px-3 py-2.5 text-xs font-bold text-brand-black no-underline transition hover:bg-brand-light"><i data-lucide="shield-check"></i>Equipo y permisos</a>
+        </nav>
+      </aside>
 
-        <section class="rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
-          <div class="flex flex-wrap items-end justify-between gap-4">
+      <div class="min-w-0">
+      <div class="grid gap-6">
+        <section data-admin-screen="resumen" aria-labelledby="metricsTitle">
+          <div class="mb-4 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Paquetes</p>
-              <h2 class="serif mt-2 text-4xl font-semibold">Compras por preparar</h2>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Pulso del negocio</p>
+              <h2 id="metricsTitle" class="serif text-2xl sm:text-3xl font-medium text-brand-black">Lo que requiere tu atención</h2>
             </div>
-            <select id="quoteFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
+            <p class="text-xs text-brand-muted">Actualizado con los pagos, despachos e inventario registrados.</p>
+          </div>
+          <div id="metricGrid" class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
+        </section>
+
+        <section data-admin-screen="resumen" class="rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
+          <div class="border-b border-brand-border pb-4">
+            <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Trazabilidad de inventario</p>
+            <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black">Historial de Movimientos</h2>
+            <p class="mt-1 text-xs text-brand-muted">Cada ajuste deja registro de responsable, diferencia y saldo resultante.</p>
+          </div>
+          <div id="inventoryHistory" class="mt-5 grid gap-2.5"></div>
+        </section>
+
+        <section data-admin-screen="pedidos" class="rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
+          <div class="flex flex-wrap items-end justify-between gap-4 border-b border-brand-border pb-4">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Mercado Pago & Despacho</p>
+              <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black">Pedidos Pagados</h2>
+              <p class="mt-1 text-xs text-brand-muted">Confirma el pago, prepara el paquete y registra el seguimiento.</p>
+            </div>
+            <div class="grid gap-2 sm:grid-cols-3">
+              <input id="orderSearch" class="h-9 min-w-48 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none" placeholder="Buscar pedido, cliente o comuna">
+              <input id="orderDateFrom" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none" type="date" aria-label="Pedidos desde">
+              <select id="orderFilter" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-bold text-brand-black outline-none">
+              <option value="todos">Todos los pedidos</option>
+              <option value="new">Nuevos por preparar</option>
+              <option value="preparing">En preparación</option>
+              <option value="ready">Listos para despacho</option>
+              <option value="dispatched">Despachados</option>
+              <option value="delivered">Entregados</option>
+              </select>
+            </div>
+          </div>
+          <div id="orderList" class="mt-5 grid gap-3.5"></div>
+        </section>
+
+        <!-- Orders to Prepare -->
+        <section data-admin-screen="pedidos" class="rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
+          <div class="flex flex-wrap items-end justify-between gap-4 border-b border-brand-border pb-4">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Despacho & Rutas</p>
+              <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black">Órdenes por Preparar</h2>
+            </div>
+            <select id="quoteFilter" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-bold text-brand-black outline-none">
               <option value="todos">Todos los estados</option>
               <option value="draft">Pendientes</option>
-              <option value="preparing">En preparacion</option>
+              <option value="preparing">En preparación</option>
               <option value="ready">Listos</option>
               <option value="delivered">Entregados</option>
             </select>
           </div>
-          <div id="quoteList" class="mt-5 grid gap-4"></div>
+          <div id="quoteList" class="mt-5 grid gap-3.5"></div>
         </section>
 
-        <section class="rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
-          <div class="flex flex-wrap items-end justify-between gap-4">
+        <!-- Inventory Management -->
+        <section data-admin-screen="inventario" class="rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
+          <div class="flex flex-wrap items-end justify-between gap-4 border-b border-brand-border pb-4">
             <div>
-              <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Inventario</p>
-              <h2 class="serif mt-2 text-4xl font-semibold">Stock de productos</h2>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Control de Stock</p>
+              <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black">Inventario de Fórmulas</h2>
             </div>
             <div class="grid gap-2 sm:grid-cols-3">
-              <input id="productSearch" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Buscar producto">
-              <select id="lineFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
-                <option value="todos">Todas las lineas</option>
+              <input id="productSearch" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none" placeholder="Buscar fórmula...">
+              <select id="lineFilter" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none">
+                <option value="todos">Todas las líneas</option>
               </select>
-              <select id="stockFilter" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold text-exel-muted outline-none">
+              <select id="stockFilter" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none">
                 <option value="todos">Todo stock</option>
                 <option value="active">Activos</option>
                 <option value="featured">Destacados</option>
@@ -122,90 +213,161 @@
             </div>
           </div>
           <div id="productList" class="mt-5 grid gap-3"></div>
+          <nav id="adminProductPagination" class="mt-6 hidden items-center justify-center gap-1.5" aria-label="Paginación de inventario"></nav>
         </section>
       </div>
 
-      <aside class="h-max rounded-card border border-exel-line bg-white/90 p-5 shadow-lift xl:sticky xl:top-24">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Producto</p>
-        <h2 class="serif mt-2 text-4xl font-semibold">Agregar o editar</h2>
-        <form id="productForm" class="mt-5 grid gap-3">
-          <div class="rounded-card bg-exel-sand p-4">
-            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Identidad comercial</p>
-            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Define como aparece el producto en tienda, busqueda y ficha.</p>
+      <!-- Add/Edit Product Sidebar Form -->
+      <aside data-admin-screen="catalogo" class="mt-6 h-max rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card">
+        <div class="flex flex-wrap items-start justify-between gap-3">
+          <div>
+            <p id="productFormMode" class="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-copper">Nuevo producto</p>
+            <h2 id="productFormTitle" class="serif text-2xl font-medium text-brand-black mt-0.5">Crea una ficha lista para vender</h2>
           </div>
-          <input name="id" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="ID producto, ej: serum-nuevo" required>
-          <input name="name" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Nombre" required>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input name="sku" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="SKU interno">
-            <input name="sortOrder" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Orden" type="number">
+          <div class="flex flex-wrap items-center justify-end gap-2"><span id="productReadiness" class="inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 text-[10px] font-bold uppercase tracking-wider text-amber-800"><i data-lucide="circle-alert" class="h-3.5 w-3.5"></i>Faltan datos</span><button id="newProductButton" class="inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-[11px] font-bold uppercase tracking-wider text-brand-black hover:bg-brand-light" type="button"><i data-lucide="plus"></i>Nuevo</button></div>
+        </div>
+        <div class="mt-4 rounded-[0.25rem] border border-brand-gold/50 bg-brand-light px-3.5 py-3 text-xs leading-relaxed text-brand-dark"><strong>Ruta rápida:</strong> 1. Nombre, línea y categoría · 2. Presentaciones con precio y stock · 3. Imagen y detalle. El ID y SKU se generan automáticamente.</div>
+        <div id="productProgress" class="mt-3 grid gap-2 sm:grid-cols-3" aria-label="Estado de la ficha de producto">
+          <div data-progress-step="basic" class="rounded-[0.25rem] border border-brand-border bg-white px-3 py-2 text-[10px] font-bold text-brand-muted">1 · Información básica</div>
+          <div data-progress-step="variants" class="rounded-[0.25rem] border border-brand-border bg-white px-3 py-2 text-[10px] font-bold text-brand-muted">2 · Presentación y stock</div>
+          <div data-progress-step="detail" class="rounded-[0.25rem] border border-brand-border bg-white px-3 py-2 text-[10px] font-bold text-brand-muted">3 · Ficha de cliente</div>
+        </div>
+        <div class="mt-5 grid items-start gap-5 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.82fr)]">
+        <section class="rounded-[0.5rem] border border-brand-border bg-brand-light p-4 xl:order-2 xl:sticky xl:top-5" aria-labelledby="productPreviewHeading">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Vista de cliente</p>
+              <h3 id="productPreviewHeading" class="serif mt-0.5 text-lg font-medium text-brand-black">Así se verá en la tienda</h3>
+            </div>
+            <i data-lucide="eye" class="text-brand-copper"></i>
           </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input name="line" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Linea" required>
-            <input name="category" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Categoria">
+          <div id="productPreview" class="mt-3"></div>
+        </section>
+        <form id="productForm" class="grid gap-3 xl:order-1">
+          <div>
+            <label class="mb-1 block text-[10px] font-bold uppercase tracking-wider text-brand-subtle">ID de catálogo</label>
+            <input name="id" readonly aria-readonly="true" class="h-9 w-full rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-muted outline-none" placeholder="Se genera automáticamente desde el nombre" required>
+            <p class="mt-1 text-[10px] text-brand-muted">Se crea al escribir el nombre y no cambia al editar una fórmula existente.</p>
           </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input name="label" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Etiqueta">
-            <input name="concern" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Funcion, ej: hidratacion">
+          <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Nombre comercial <b class="text-red-700">*</b></span><input name="name" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Nombre comercial" required></label>
+          <details open class="group rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-sm">
+            <summary class="flex min-h-7 items-center justify-between gap-3 text-xs font-bold uppercase tracking-wider text-brand-black"><span><b class="mr-2 inline-grid h-5 w-5 place-items-center rounded-full bg-brand-black text-[10px] text-white">1</b>Información comercial</span><i data-lucide="chevron-down" class="transition group-open:rotate-180"></i></summary>
+            <div class="mt-3 grid gap-3">
+          <div class="grid gap-2.5 sm:grid-cols-2">
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>SKU interno <em class="not-italic text-brand-copper">automático</em></span><input name="sku" readonly aria-readonly="true" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-muted outline-none" placeholder="Se genera desde la línea"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Orden en tienda <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input name="sortOrder" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Se asigna después de los existentes" type="number"></label>
           </div>
-          <input name="size" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Formato / tamano">
+          <section class="rounded-[0.25rem] border border-brand-border bg-white p-3" aria-label="Organización del catálogo">
+            <div class="mb-3 flex items-start justify-between gap-3">
+              <div><p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Organización del catálogo</p><p class="mt-0.5 text-[11px] leading-relaxed text-brand-muted">Define dónde se agrupa esta fórmula para navegar y filtrar mejor la tienda.</p></div>
+              <i data-lucide="folder-tree" class="h-4 w-4 shrink-0 text-brand-copper"></i>
+            </div>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <label class="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Línea <b class="text-red-700">*</b></span><select id="lineSelect" name="line" class="h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-black outline-none focus:border-brand-black" required><option value="">Selecciona una línea</option></select></label>
+              <label class="grid gap-1.5 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Categoría <em class="normal-case tracking-normal font-normal">(opcional)</em></span><select id="categorySelect" name="category" class="h-10 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-black outline-none focus:border-brand-black"><option value="">Selecciona una categoría</option></select></label>
+            </div>
+            <details class="group mt-3 rounded-[0.25rem] border border-brand-border bg-brand-light px-3">
+              <summary class="flex min-h-10 cursor-pointer items-center justify-between gap-3 text-[11px] font-bold text-brand-black"><span class="inline-flex items-center gap-2"><i data-lucide="plus-circle" class="h-3.5 w-3.5 text-brand-copper"></i>¿No encuentras una línea o categoría?</span><i data-lucide="chevron-down" class="h-4 w-4 transition group-open:rotate-180"></i></summary>
+              <div class="grid gap-3 border-t border-brand-border py-3 sm:grid-cols-2">
+                <div class="rounded-[0.2rem] border border-brand-border bg-white p-2.5"><p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Nueva línea</p><div class="flex gap-2"><input id="quickLineName" class="h-8 min-w-0 flex-1 rounded-[0.2rem] border border-brand-border bg-brand-light px-2.5 text-xs outline-none focus:border-brand-black" placeholder="Ej: Green Line"><button id="quickLineSave" type="button" class="h-8 shrink-0 rounded-[0.2rem] bg-brand-black px-3 text-[10px] font-bold uppercase tracking-wider text-white">Crear</button></div></div>
+                <div class="rounded-[0.2rem] border border-brand-border bg-white p-2.5"><p class="mb-2 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Nueva categoría</p><div class="flex gap-2"><input id="quickCategoryName" class="h-8 min-w-0 flex-1 rounded-[0.2rem] border border-brand-border bg-brand-light px-2.5 text-xs outline-none focus:border-brand-black" placeholder="Ej: Hidratación"><button id="quickCategorySave" type="button" class="h-8 shrink-0 rounded-[0.2rem] bg-brand-black px-3 text-[10px] font-bold uppercase tracking-wider text-white">Crear</button></div></div>
+              </div>
+            </details>
+          </section>
+          <div class="grid gap-2.5 sm:grid-cols-2">
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Etiqueta visible <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input name="label" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: Regenerativo"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Necesidad / función <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input name="concern" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: Hidratación"></label>
+          </div>
+          <label class="flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3 py-2.5 text-xs font-semibold text-brand-dark"><input name="featured" type="checkbox" class="h-3.5 w-3.5 accent-[#111827]"> Destacar esta fórmula en la tienda</label>
+            </div>
+          </details>
+          <input name="active" type="hidden" value="true">
 
-          <div class="rounded-card bg-exel-sand p-4">
-            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Precio e inventario</p>
-            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Controla disponibilidad, precio lista y alertas de reposicion.</p>
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input name="price" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Precio" type="number" min="0" required>
-            <input name="compareAtPrice" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Precio antes" type="number" min="0">
-          </div>
-          <div class="grid gap-3 sm:grid-cols-2">
-            <input name="cost" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Costo interno" type="number" min="0">
-            <input name="stock" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Stock" type="number" min="0">
-          </div>
-          <input name="lowStockThreshold" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Alerta stock bajo, ej: 3" type="number" min="0">
-          <div class="grid gap-2 rounded-card border border-exel-line bg-exel-cream p-4 text-sm font-extrabold text-exel-muted">
-            <label class="flex items-center gap-3"><input name="active" type="checkbox" class="h-4 w-4 accent-[#2f2b28]" checked> Producto activo en tienda</label>
-            <label class="flex items-center gap-3"><input name="featured" type="checkbox" class="h-4 w-4 accent-[#2f2b28]"> Producto destacado</label>
-          </div>
+          <details open class="group rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-sm">
+            <summary class="flex min-h-7 items-center justify-between gap-3 text-xs font-bold uppercase tracking-wider text-brand-black"><span><b class="mr-2 inline-grid h-5 w-5 place-items-center rounded-full bg-brand-black text-[10px] text-white">2</b>Presentaciones, precios y stock</span><i data-lucide="chevron-down" class="transition group-open:rotate-180"></i></summary>
+            <div class="mt-3">
+              <p class="text-xs leading-relaxed text-brand-muted"><b class="text-red-700">*</b> Obligatorio para publicar. Cada fila es una opción de compra con precio y stock propios; tono, acabado y subtono son opcionales.</p>
+              <div class="mt-3 flex flex-wrap items-end gap-2 rounded-[0.25rem] border border-brand-border bg-white p-2.5">
+                <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Tipo<select id="variantOptionType" class="h-8 rounded-[0.2rem] border border-brand-border bg-brand-light px-2 text-xs font-normal normal-case tracking-normal text-brand-black"><option value="finish">Acabado</option><option value="undertone">Subtono</option></select></label>
+                <label class="min-w-48 flex-1 grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Nueva opción<input id="quickVariantOptionName" class="h-8 rounded-[0.2rem] border border-brand-border bg-brand-light px-2.5 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: Semi mate"></label>
+                <button id="quickVariantOptionSave" type="button" class="h-8 rounded-[0.2rem] bg-brand-black px-3 text-[10px] font-bold uppercase tracking-wider text-white">Agregar</button>
+              </div>
+              <div id="variantList" class="mt-3 grid gap-3"></div>
+              <button id="addVariant" class="mt-3 inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-[11px] font-bold uppercase tracking-wider text-brand-black hover:bg-brand-light" type="button"><i data-lucide="plus"></i>Agregar variante</button>
+            </div>
+          </details>
 
-          <div class="rounded-card bg-exel-sand p-4">
-            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Contenido y filtros</p>
-            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Personaliza textos, busqueda, tipo de piel y rutina sugerida.</p>
+          <details class="group rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-sm">
+            <summary class="flex min-h-7 items-center justify-between gap-3 text-xs font-bold uppercase tracking-wider text-brand-black"><span><b class="mr-2 inline-grid h-5 w-5 place-items-center rounded-full bg-brand-black text-[10px] text-white">3</b>Imagen, contenido y respaldo técnico</span><i data-lucide="chevron-down" class="transition group-open:rotate-180"></i></summary>
+            <div class="mt-3 grid gap-3">
+          <div class="rounded-[0.25rem] border border-dashed border-brand-border bg-white p-3">
+            <label class="block text-[10px] font-bold uppercase tracking-wider text-brand-subtle" for="productImageFile">Imagen del producto</label>
+            <input id="productImageFile" name="imageFile" type="file" accept="image/*" class="mt-2 block w-full text-xs text-brand-muted file:mr-3 file:rounded-[0.2rem] file:border-0 file:bg-brand-black file:px-3 file:py-2 file:text-[10px] file:font-bold file:uppercase file:tracking-wider file:text-white hover:file:bg-brand-dark">
+            <p id="productImageStatus" class="mt-2 text-[10px] leading-relaxed text-brand-muted">Acepta imágenes de hasta 12 MB. Antes de guardar se optimiza y convierte automáticamente a WebP.</p>
           </div>
-          <input name="image" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Ruta imagen .webp">
-          <textarea name="description" class="min-h-24 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Descripcion"></textarea>
-          <textarea name="use" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Modo de uso"></textarea>
-          <input name="ingredients" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Activos separados por coma">
-          <input name="benefits" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Beneficios separados por coma">
-          <input name="tags" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Tags separados por coma">
-          <input name="skinTypes" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Tipos de piel separados por coma">
-          <input name="routines" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Rutinas separadas por coma">
-          <textarea name="adminNotes" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Notas internas"></textarea>
+          <input name="image" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none focus:border-brand-black" placeholder="URL de imagen externa (opcional)">
+          <textarea name="description" class="h-20 rounded-[0.25rem] border border-brand-border bg-white p-2.5 text-xs outline-none resize-none focus:border-brand-black" placeholder="Descripción botánica"></textarea>
+          <textarea name="use" class="h-16 rounded-[0.25rem] border border-brand-border bg-white p-2.5 text-xs outline-none resize-none focus:border-brand-black" placeholder="Modo de uso / protocolo"></textarea>
+          <input name="ingredients" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none focus:border-brand-black" placeholder="Activos (separados por coma)">
+          <input name="benefits" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none focus:border-brand-black" placeholder="Beneficios (separados por coma)">
+          <textarea name="inci" class="h-20 rounded-[0.25rem] border border-brand-border bg-white p-2.5 text-xs outline-none resize-none focus:border-brand-black" placeholder="INCI completo (recomendado para el detalle)"></textarea>
+          <input name="inciSource" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none focus:border-brand-black" placeholder="URL de fuente INCI oficial">
+            </div>
+          </details>
 
-          <div class="rounded-card bg-exel-sand p-4">
-            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">SEO</p>
-            <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">Textos para compartir y posicionar mejor el producto.</p>
+          <div class="sticky bottom-3 z-10 rounded-[0.5rem] border border-brand-border bg-white/95 p-3 shadow-lift backdrop-blur">
+            <div class="grid gap-2 sm:grid-cols-[1fr_auto]">
+              <button id="saveProductButton" class="min-h-[46px] rounded-[0.25rem] bg-brand-black px-5 text-xs font-bold uppercase tracking-wider text-white shadow-card transition hover:bg-brand-dark" type="submit">Crear producto</button>
+              <button id="resetProductForm" class="min-h-[46px] rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-bold uppercase tracking-wider text-brand-black hover:bg-brand-light" type="button">Cancelar y limpiar</button>
+            </div>
+            <p class="mt-2 text-[10px] text-brand-muted"><b class="text-red-700">*</b> Obligatorio: nombre, línea, y una presentación con precio y stock.</p>
+            <p id="productFormMessage" class="mt-1 min-h-4 text-[11px] font-bold text-brand-copper" role="status"></p>
           </div>
-          <input name="seoTitle" class="min-h-[44px] rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none" placeholder="Titulo SEO">
-          <textarea name="seoDescription" class="min-h-20 rounded-card border border-exel-line bg-exel-cream px-4 py-3 font-bold outline-none" placeholder="Descripcion SEO"></textarea>
-          <button class="min-h-[50px] rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft" type="submit">Guardar producto</button>
-          <button id="resetProductForm" class="min-h-[46px] rounded-card border border-exel-line bg-white px-5 font-extrabold text-exel-ink" type="button">Limpiar formulario</button>
-          <p id="productFormMessage" class="min-h-5 text-xs font-bold text-exel-muted"></p>
         </form>
+        </div>
+
       </aside>
+      <section id="teamPanel" data-admin-screen="equipo" class="hidden rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-8 shadow-card">
+        <div class="max-w-2xl">
+          <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-copper">Control de acceso</p>
+          <h2 class="serif mt-0.5 text-2xl sm:text-3xl font-medium text-brand-black">Equipo y permisos</h2>
+          <p class="mt-2 text-sm leading-relaxed text-brand-muted">Concede acceso operativo solo a personas que ya hayan iniciado sesión al menos una vez.</p>
+          <form id="adminRoleForm" class="mt-6 grid gap-3 rounded-[0.25rem] border border-brand-border bg-brand-light p-4 sm:grid-cols-[1fr_220px_auto] sm:items-end">
+            <label class="grid gap-1.5 text-xs font-bold text-brand-dark">Correo del equipo<input name="email" type="email" class="h-10 rounded-[0.25rem] border border-brand-border bg-white px-3 text-sm font-medium outline-none focus:border-brand-black" placeholder="correo@equipo.cl" required></label>
+            <label class="grid gap-1.5 text-xs font-bold text-brand-dark">Permiso<select name="role" class="h-10 rounded-[0.25rem] border border-brand-border bg-white px-3 text-sm font-medium outline-none"><option value="admin">Administradora operativa</option><option value="superAdmin">Propietaria</option><option value="remove">Revocar acceso</option></select></label>
+            <button class="min-h-10 rounded-[0.25rem] bg-brand-black px-4 text-[10px] font-bold uppercase tracking-wider text-white" type="submit">Guardar</button>
+          </form>
+          <p id="adminRoleMessage" class="mt-3 min-h-4 text-[11px] font-bold text-brand-copper"></p>
+        </div>
+      </section>
+      </div>
+      </div>
     </section>
   </main>
 
   <script src="./data/site-config.js"></script>
   <script type="module">
     import {
-      isAdminUser,
+      adjustInventory,
+      getUserAccess,
       listProducts,
+      listCategories,
+      listInventoryMovements,
+      listOrders,
+      listProductLines,
       listQuotes,
+      listVariantOptions,
       loginWithGoogle,
+      manageAdminAccess,
       onUserChange,
-      updateProductStock,
+      updateOrderFulfillment,
       updateQuoteStatus,
-      upsertProduct
+      upsertCategory,
+      upsertProductLine,
+      upsertProduct,
+      upsertVariantOption,
+      upsertUserProfile,
+      uploadProductImage
     } from "./data/firebase-client.js";
 
     const formatter = window.EXEL_SITE.currencyFormatter;
@@ -215,17 +377,473 @@
     const adminContent = document.querySelector("#adminContent");
     const metricGrid = document.querySelector("#metricGrid");
     const productList = document.querySelector("#productList");
+    const adminProductPagination = document.querySelector("#adminProductPagination");
     const quoteList = document.querySelector("#quoteList");
+    const orderList = document.querySelector("#orderList");
+    const orderSearch = document.querySelector("#orderSearch");
+    const orderDateFrom = document.querySelector("#orderDateFrom");
     const productSearch = document.querySelector("#productSearch");
     const lineFilter = document.querySelector("#lineFilter");
     const stockFilter = document.querySelector("#stockFilter");
     const quoteFilter = document.querySelector("#quoteFilter");
+    const orderFilter = document.querySelector("#orderFilter");
     const productForm = document.querySelector("#productForm");
+    const productFormMode = document.querySelector("#productFormMode");
+    const productFormTitle = document.querySelector("#productFormTitle");
+    const newProductButton = document.querySelector("#newProductButton");
+    const saveProductButton = document.querySelector("#saveProductButton");
+    const variantList = document.querySelector("#variantList");
+    const addVariant = document.querySelector("#addVariant");
+    const productPreview = document.querySelector("#productPreview");
+    const productImageFile = document.querySelector("#productImageFile");
+    const productImageStatus = document.querySelector("#productImageStatus");
     const resetProductForm = document.querySelector("#resetProductForm");
     const productFormMessage = document.querySelector("#productFormMessage");
+    const productReadiness = document.querySelector("#productReadiness");
+    const productProgress = document.querySelector("#productProgress");
+    const inventoryHistory = document.querySelector("#inventoryHistory");
+    const adminUserName = document.querySelector("#adminUserName");
+    const categorySelect = document.querySelector("#categorySelect");
+    const lineSelect = document.querySelector("#lineSelect");
+    const quickLineName = document.querySelector("#quickLineName");
+    const quickLineSave = document.querySelector("#quickLineSave");
+    const quickCategoryName = document.querySelector("#quickCategoryName");
+    const quickCategorySave = document.querySelector("#quickCategorySave");
+    const variantOptionType = document.querySelector("#variantOptionType");
+    const quickVariantOptionName = document.querySelector("#quickVariantOptionName");
+    const quickVariantOptionSave = document.querySelector("#quickVariantOptionSave");
+    const teamPanel = document.querySelector("#teamPanel");
+    const teamNavLink = document.querySelector("#teamNavLink");
+    const adminRoleForm = document.querySelector("#adminRoleForm");
+    const adminRoleMessage = document.querySelector("#adminRoleMessage");
+    const adminScreenTitle = document.querySelector("#adminScreenTitle");
+    const adminScreenDescription = document.querySelector("#adminScreenDescription");
+    const adminScreenLinks = [...document.querySelectorAll(".admin-screen-link")];
+    const adminScreens = [...document.querySelectorAll("[data-admin-screen]")];
 
     let products = [];
     let quotes = [];
+    let orders = [];
+    let categories = [];
+    let productLines = [];
+    let variantOptions = [];
+    let inventoryMovements = [];
+    let access = { admin: false, superAdmin: false };
+    let inventoryPage = 1;
+    let pendingProductImageBlob = null;
+    let pendingProductImagePreviewUrl = "";
+
+    function setProductFormMode(mode = "new", productName = "") {
+      const editing = mode === "editing";
+      productFormMode.textContent = editing ? "Editando producto" : "Nuevo producto";
+      productFormTitle.textContent = editing ? productName || "Edita la ficha de producto" : "Crea una ficha lista para vender";
+      saveProductButton.textContent = editing ? "Guardar cambios" : "Crear producto";
+      resetProductForm.textContent = editing ? "Cancelar edición" : "Cancelar y limpiar";
+      newProductButton.classList.toggle("hidden", !editing);
+    }
+
+    function updateProductReadiness() {
+      const name = productForm.elements.name.value.trim();
+      const line = productForm.elements.line.value.trim();
+      const variants = getFormVariants(productForm.elements.id.value || "producto");
+      const availableVariants = variants.filter((variant) => variant.active !== false);
+      const basicReady = Boolean(name && line);
+      const variantsReady = availableVariants.length > 0 && availableVariants.every((variant) => variant.price > 0 && variant.sku && variant.stockDefined);
+      const detailReady = Boolean(productForm.elements.description.value.trim() || productForm.elements.image.value.trim() || productForm.elements.inci.value.trim());
+      const missing = [!name && "nombre", !line && "línea", !variantsReady && "precio y stock por presentación"].filter(Boolean);
+      const setStep = (step, ready, optional = false) => {
+        const element = productProgress?.querySelector(`[data-progress-step="${step}"]`);
+        if (!element) return;
+        element.className = `rounded-[0.25rem] border px-3 py-2 text-[10px] font-bold ${ready ? "border-emerald-200 bg-emerald-50 text-emerald-800" : optional ? "border-brand-border bg-brand-light text-brand-muted" : "border-amber-200 bg-amber-50 text-amber-800"}`;
+        const labels = { basic: "1 · Información básica", variants: "2 · Presentación y stock", detail: "3 · Ficha de cliente" };
+        element.textContent = `${ready ? "✓ " : ""}${labels[step]}${optional && !ready ? " (opcional)" : ""}`;
+      };
+      setStep("basic", basicReady);
+      setStep("variants", variantsReady);
+      setStep("detail", detailReady, true);
+      if (!productReadiness) return;
+      if (basicReady && variantsReady) {
+        productReadiness.className = "inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 text-[10px] font-bold uppercase tracking-wider text-emerald-800";
+        productReadiness.innerHTML = '<i data-lucide="circle-check-big" class="h-3.5 w-3.5"></i>Lista para publicar';
+      } else {
+        productReadiness.className = "inline-flex min-h-[32px] items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-3 text-[10px] font-bold uppercase tracking-wider text-amber-800";
+        productReadiness.innerHTML = `<i data-lucide="circle-alert" class="h-3.5 w-3.5"></i>Falta: ${escapeHtml(missing.join(", "))}`;
+      }
+      window.refreshExelIcons?.();
+    }
+
+    function clearPendingProductImage() {
+      pendingProductImageBlob = null;
+      if (pendingProductImagePreviewUrl) URL.revokeObjectURL(pendingProductImagePreviewUrl);
+      pendingProductImagePreviewUrl = "";
+      if (productImageFile) productImageFile.value = "";
+    }
+
+    const DEFAULT_VARIANT_OPTIONS = [
+      ["finish", "Mate"], ["finish", "Semi mate"], ["finish", "Natural"], ["finish", "Satinado"], ["finish", "Luminoso"], ["finish", "Radiante / glow"], ["finish", "Dewy / húmedo"], ["finish", "Terciopelo"], ["finish", "Metalizado"], ["finish", "Shimmer / iridiscente"], ["finish", "Transparente"],
+      ["undertone", "Neutro"], ["undertone", "Cálido / dorado"], ["undertone", "Frío / rosado"], ["undertone", "Oliva"], ["undertone", "Amarillo"], ["undertone", "Melocotón"], ["undertone", "Rojo"], ["undertone", "Dorado neutro"]
+    ];
+
+    function optionsForVariantField(type) {
+      const saved = variantOptions.filter((option) => option.type === type && option.active !== false).map((option) => option.name);
+      const defaults = DEFAULT_VARIANT_OPTIONS.filter(([optionType]) => optionType === type).map(([, name]) => name);
+      return [...new Set([...defaults, ...saved].map((name) => String(name).trim()).filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+    }
+
+    function variantSelectHtml(type, selected, placeholder) {
+      const choices = optionsForVariantField(type);
+      const selectedValue = String(selected || "");
+      const values = selectedValue && !choices.includes(selectedValue) ? [selectedValue, ...choices] : choices;
+      return `<select data-variant-field="${type}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-black outline-none focus:border-brand-black"><option value="">${placeholder}</option>${values.map((value) => `<option value="${escapeHtml(value)}" ${value === selectedValue ? "selected" : ""}>${escapeHtml(value)}</option>`).join("")}</select>`;
+    }
+
+    const NET_CONTENT_UNITS = ["ml", "g", "L", "kg", "unidades", "caja", "kit", "par"];
+
+    function splitNetContent(value) {
+      const source = String(value || "").trim();
+      const match = source.match(/^(\d+(?:[.,]\d+)?)\s*(ml|g|l|kg|unidades?|caja|kit|par)$/i);
+      if (!match) return { amount: "", unit: NET_CONTENT_UNITS.find((unit) => unit.toLowerCase() === source.toLowerCase()) || "" };
+      const unit = NET_CONTENT_UNITS.find((candidate) => candidate.toLowerCase() === match[2].toLowerCase()) || match[2];
+      return { amount: match[1].replace(",", "."), unit };
+    }
+
+    function netContentSelectHtml(unit) {
+      return `<select data-variant-field="sizeUnit" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-2 text-xs font-normal normal-case tracking-normal text-brand-black outline-none focus:border-brand-black"><option value="">Unidad</option>${NET_CONTENT_UNITS.map((option) => `<option value="${option}" ${option === unit ? "selected" : ""}>${option}</option>`).join("")}</select>`;
+    }
+
+    function variantRowHtml(variant = {}) {
+      const colorHex = /^#[0-9a-f]{6}$/i.test(variant.colorHex || "") ? variant.colorHex : "#d4a373";
+      const automaticSku = !variant.sku;
+      const netContent = splitNetContent(variant.size);
+      return `
+        <article class="variant-row rounded-[0.25rem] border border-brand-border bg-white p-3">
+          <div class="mb-2 flex items-center justify-between gap-3">
+            <strong class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Opción de compra</strong>
+            <button type="button" class="remove-variant text-[11px] font-bold text-red-700 hover:underline">Quitar</button>
+          </div>
+          <div class="grid gap-2.5 sm:grid-cols-2">
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Tono o color <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input data-variant-field="tone" value="${escapeHtml(variant.tone || "")}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: Beige claro, Transparente"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Muestra de color <em class="normal-case tracking-normal font-normal">(opcional)</em></span><span class="flex h-9 items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-muted">Se muestra solo si defines un tono <input data-variant-field="colorHex" value="${colorHex}" class="ml-auto h-6 w-8 cursor-pointer border-0 bg-transparent p-0" type="color" aria-label="Color de muestra"></span></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Contenido neto / formato <em class="normal-case tracking-normal font-normal">(opcional)</em></span><span class="grid grid-cols-[1fr_92px] gap-2"><input data-variant-field="sizeAmount" value="${escapeHtml(netContent.amount)}" class="h-9 min-w-0 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: 30" type="number" min="0" step="0.01">${netContentSelectHtml(netContent.unit)}</span></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Acabado <em class="normal-case tracking-normal font-normal">(opcional)</em></span>${variantSelectHtml("finish", variant.finish, "Selecciona un acabado")}</label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Subtono <em class="normal-case tracking-normal font-normal">(opcional)</em></span>${variantSelectHtml("undertone", variant.undertone, "Selecciona un subtono")}</label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>SKU de variante <em class="not-italic text-brand-copper">automático</em></span><input data-variant-field="sku" data-auto-sku="${automaticSku}" value="${escapeHtml(variant.sku || "")}" readonly aria-readonly="true" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal text-brand-muted outline-none" placeholder="Se genera según el formato"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Precio de esta opción <b class="text-red-700">*</b></span><input data-variant-field="price" value="${variant.price === undefined || variant.price === null || variant.price === "" ? "" : Number(variant.price)}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="$ CLP" type="number" min="1"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Costo unitario <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input data-variant-field="cost" data-money-input="true" value="${formatCurrencyInput(variant.cost)}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: 12.500" inputmode="numeric"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Stock de esta opción <b class="text-red-700">*</b></span><input data-variant-field="stock" value="${variant.stock === undefined || variant.stock === null || variant.stock === "" ? "" : Number(variant.stock)}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Unidades disponibles" type="number" min="0"></label>
+            <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle"><span>Alerta de stock bajo <em class="normal-case tracking-normal font-normal">(opcional)</em></span><input data-variant-field="lowStockThreshold" value="${variant.lowStockThreshold === undefined || variant.lowStockThreshold === null || variant.lowStockThreshold === "" ? "3" : Number(variant.lowStockThreshold)}" class="h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-normal normal-case tracking-normal outline-none focus:border-brand-black" placeholder="Ej: 3" type="number" min="0"></label>
+            <label class="mt-5 flex items-center gap-2 rounded-[0.25rem] border border-brand-border bg-brand-light px-3 text-xs font-semibold text-brand-dark"><input data-variant-field="active" type="checkbox" class="h-3.5 w-3.5 accent-[#111827]" ${variant.active !== false ? "checked" : ""}> Disponible para elegir</label>
+          </div>
+        </article>`;
+    }
+
+    function bindVariantRow(row) {
+      row.querySelector(".remove-variant")?.addEventListener("click", () => {
+        row.remove();
+        renderProductPreview();
+      });
+      row.querySelectorAll("input").forEach((input) => input.addEventListener("input", () => {
+        if (input.dataset.moneyInput === "true") input.value = formatCurrencyInput(input.value);
+        syncVariantSkus();
+        renderProductPreview();
+      }));
+      row.querySelectorAll("select").forEach((select) => select.addEventListener("change", () => {
+        syncVariantSkus();
+        renderProductPreview();
+      }));
+    }
+
+    function renderVariantRows(variants = []) {
+      if (!variantList) return;
+      variantList.innerHTML = variants.map(variantRowHtml).join("");
+      variantList.querySelectorAll(".variant-row").forEach(bindVariantRow);
+      syncVariantSkus();
+      window.refreshExelIcons?.();
+    }
+
+    function getFormVariants(productId = "producto") {
+      syncVariantSkus();
+      return [...variantList.querySelectorAll(".variant-row")].map((row, index) => {
+        const read = (field) => row.querySelector(`[data-variant-field="${field}"]`);
+        const tone = read("tone").value.trim();
+        const sizeAmount = read("sizeAmount").value.trim();
+        const sizeUnit = read("sizeUnit").value.trim();
+        const size = [sizeAmount, sizeUnit].filter(Boolean).join(" ");
+        const finish = read("finish").value.trim();
+        const undertone = read("undertone").value.trim();
+        const sku = read("sku").value.trim();
+        const price = Number(read("price").value || 0);
+        const cost = parseCurrencyInput(read("cost").value);
+        const stock = Number(read("stock").value || 0);
+        const stockDefined = read("stock").value !== "";
+        const lowStockThreshold = Number(read("lowStockThreshold").value || 0);
+        return {
+          id: `${productId}-v${index + 1}`,
+          tone,
+          colorHex: read("colorHex").value,
+          size,
+          finish,
+          undertone,
+          sku,
+          price,
+          cost,
+          stock,
+          stockDefined,
+          lowStockThreshold,
+          active: read("active").checked
+        };
+      }).filter((variant) => variant.tone || variant.size || variant.finish || variant.undertone || variant.sku);
+    }
+
+    function formVariantsFromProduct(product) {
+      if (Array.isArray(product.variants) && product.variants.length) {
+        return product.variants.map((variant) => ({
+          ...variant,
+          cost: variant.cost ?? product.cost ?? 0,
+          lowStockThreshold: variant.lowStockThreshold ?? product.lowStockThreshold ?? 3
+        }));
+      }
+      // Convierte una ficha antigua de formato único a la nueva estructura al guardarla.
+      return [{
+        id: `${product.id}-v1`,
+        size: product.size || "Presentación única",
+        sku: product.sku ? `${product.sku}-V01` : "",
+        price: Number(product.price || 0),
+        cost: Number(product.cost || 0),
+        stock: Number(product.stock || 0),
+        lowStockThreshold: Number(product.lowStockThreshold ?? 3),
+        active: true
+      }];
+    }
+
+    function parseCurrencyInput(value) {
+      const digits = String(value ?? "").replace(/[^0-9]/g, "");
+      return digits ? Number(digits) : 0;
+    }
+
+    function formatCurrencyInput(value) {
+      const amount = parseCurrencyInput(value);
+      return amount ? new Intl.NumberFormat("es-CL", { maximumFractionDigits: 0 }).format(amount) : "";
+    }
+
+    async function convertProductImageToWebp(file) {
+      if (!file?.type?.startsWith("image/")) throw new Error("Selecciona una imagen válida.");
+      if (file.size > 12 * 1024 * 1024) throw new Error("La imagen original no puede superar 12 MB.");
+      let bitmap;
+      try {
+        bitmap = await createImageBitmap(file);
+      } catch {
+        throw new Error("No pudimos leer este formato. Usa JPG, PNG, WebP o AVIF.");
+      }
+      const limit = 1800;
+      const scale = Math.min(1, limit / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.max(1, Math.round(bitmap.width * scale));
+      canvas.height = Math.max(1, Math.round(bitmap.height * scale));
+      canvas.getContext("2d").drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close?.();
+      const blob = await new Promise((resolve) => canvas.toBlob(resolve, "image/webp", 0.88));
+      if (!blob) throw new Error("No fue posible convertir la imagen a WebP.");
+      if (blob.size > 5 * 1024 * 1024) throw new Error("La imagen optimizada supera 5 MB. Elige una imagen más liviana.");
+      return blob;
+    }
+
+    function makeUniqueProductId(name) {
+      const base = window.EXEL_SITE.normalizeText(name || "producto")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .slice(0, 72) || "producto";
+      const editingId = productForm.dataset.editingId || "";
+      const usedIds = new Set(products.filter((product) => product.id !== editingId).map((product) => product.id));
+      if (!usedIds.has(base)) return base;
+      let sequence = 2;
+      while (usedIds.has(`${base}-${sequence}`)) sequence += 1;
+      return `${base}-${sequence}`;
+    }
+
+    function syncAutomaticProductId() {
+      if (productForm.dataset.editingId) return;
+      const name = productForm.elements.name.value.trim();
+      productForm.elements.id.value = name ? makeUniqueProductId(name) : "";
+    }
+
+    function syncCommercialSuggestions() {
+      if (productForm.dataset.editingId) return;
+      const line = productForm.elements.line.value.trim();
+      if (!line) return;
+      const sameLine = products.filter((product) => String(product.line || "").toLowerCase() === line.toLowerCase());
+      if (!productForm.elements.sku.value) {
+        const lineCode = window.EXEL_SITE.normalizeText(line).replace(/[^a-z0-9]/g, "").slice(0, 8).toUpperCase() || "EXEL";
+        const sequence = String(sameLine.length + 1).padStart(3, "0");
+        productForm.elements.sku.value = `EXEL-${lineCode}-${sequence}`;
+      }
+      if (!productForm.elements.sortOrder.value) {
+        const nextPosition = Math.max(0, ...products.map((product) => Number(product.sortOrder || 0))) + 1;
+        productForm.elements.sortOrder.value = String(nextPosition);
+      }
+      if (!productForm.elements.category.value && sameLine.length) {
+        const suggestion = sameLine.map((product) => product.category).find(Boolean);
+        if (suggestion) productForm.elements.category.value = suggestion;
+      }
+      syncVariantSkus();
+    }
+
+    function skuSegment(value, fallback) {
+      const normalized = window.EXEL_SITE.normalizeText(String(value || ""))
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "")
+        .toUpperCase();
+      return normalized || fallback;
+    }
+
+    function syncVariantSkus() {
+      if (!variantList || !productForm) return;
+      const productSku = productForm.elements.sku.value.trim();
+      const fallbackBase = productForm.elements.id.value ? `EXEL-${skuSegment(productForm.elements.id.value, "PRODUCTO").slice(0, 16)}` : "";
+      const baseSku = productSku || fallbackBase;
+      if (!baseSku) return;
+      [...variantList.querySelectorAll(".variant-row")].forEach((row, index) => {
+        const skuField = row.querySelector('[data-variant-field="sku"]');
+        if (!skuField || skuField.dataset.autoSku !== "true") return;
+        const sizeAmount = row.querySelector('[data-variant-field="sizeAmount"]')?.value;
+        const sizeUnit = row.querySelector('[data-variant-field="sizeUnit"]')?.value;
+        const size = [sizeAmount, sizeUnit].filter(Boolean).join(" ");
+        const tone = row.querySelector('[data-variant-field="tone"]')?.value;
+        const finish = row.querySelector('[data-variant-field="finish"]')?.value;
+        skuField.value = `${baseSku}-${skuSegment(size || tone || finish, `V${String(index + 1).padStart(2, "0")}`).slice(0, 14)}`;
+      });
+    }
+
+    async function createCategory(name) {
+      const normalizedName = String(name || "").trim();
+      if (!normalizedName) return;
+      const id = window.EXEL_SITE.normalizeText(normalizedName).replace(/\s+/g, "-");
+      await upsertCategory({ id, name: normalizedName });
+      if (!categories.some((category) => category.name?.toLowerCase() === normalizedName.toLowerCase())) {
+        categories.push({ id, name: normalizedName });
+      }
+      renderCategories();
+      categorySelect.value = normalizedName;
+    }
+
+    function lineId(name) {
+      return window.EXEL_SITE.normalizeText(String(name || "")).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    }
+
+    function renderProductLineSelect() {
+      const current = lineSelect.value;
+      const names = [...new Set([...productLines.map((line) => line.name), ...products.map((product) => product.line)].filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b, "es"));
+      lineSelect.innerHTML = '<option value="">Selecciona una línea</option>' + names.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("");
+      if (names.includes(current)) lineSelect.value = current;
+    }
+
+    async function createProductLine(name) {
+      const normalizedName = String(name || "").trim();
+      if (!normalizedName) throw new Error("Escribe el nombre de la línea.");
+      const existing = productLines.find((line) => String(line.name).toLowerCase() === normalizedName.toLowerCase());
+      const line = existing || { id: lineId(normalizedName), name: normalizedName, active: true, sortOrder: productLines.length + 1 };
+      if (!existing) await upsertProductLine(line);
+      if (!existing) productLines.push(line);
+      renderProductLineSelect();
+      lineSelect.value = line.name;
+      syncCommercialSuggestions();
+      renderProductPreview();
+    }
+
+    async function ensureExistingProductLines() {
+      const known = new Set(productLines.map((line) => String(line.name).toLowerCase()));
+      const missingNames = [...new Set(products.map((product) => product.line).filter(Boolean))].filter((name) => !known.has(String(name).toLowerCase()));
+      if (!missingNames.length) return;
+      const created = missingNames.map((name, index) => ({ id: lineId(name), name, active: true, sortOrder: productLines.length + index + 1 }));
+      await Promise.all(created.map((line) => upsertProductLine(line)));
+      productLines.push(...created);
+    }
+
+    async function ensureDefaultVariantOptions() {
+      const existing = new Set(variantOptions.map((option) => `${option.type}:${String(option.name).toLowerCase()}`));
+      const missing = DEFAULT_VARIANT_OPTIONS.filter(([type, name]) => !existing.has(`${type}:${name.toLowerCase()}`));
+      if (!missing.length) return;
+      const created = missing.map(([type, name], index) => ({
+        id: `${type}-${window.EXEL_SITE.normalizeText(name).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`,
+        type,
+        name,
+        active: true,
+        sortOrder: index + 1
+      }));
+      await Promise.all(created.map((option) => upsertVariantOption(option)));
+      variantOptions.push(...created);
+    }
+
+    async function createVariantOption(type, name) {
+      const normalizedName = String(name || "").trim();
+      if (!normalizedName) throw new Error("Escribe el nombre de la opción.");
+      if (variantOptions.some((option) => option.type === type && String(option.name).toLowerCase() === normalizedName.toLowerCase())) {
+        throw new Error("Esa opción ya está disponible.");
+      }
+      const option = {
+        id: `${type}-${window.EXEL_SITE.normalizeText(normalizedName).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`,
+        type,
+        name: normalizedName,
+        active: true,
+        sortOrder: optionsForVariantField(type).length + 1
+      };
+      await upsertVariantOption(option);
+      variantOptions.push(option);
+      const currentVariants = getFormVariants(productForm.elements.id.value || "producto");
+      renderVariantRows(currentVariants.length ? currentVariants : [{}]);
+    }
+
+    const screenDetails = {
+      resumen: {
+        title: "Resumen operativo",
+        description: "Una vista clara de pedidos, inventario y resultados para organizar la operación del día."
+      },
+      pedidos: {
+        title: "Pedidos y despacho",
+        description: "Gestiona pagos aprobados, preparación, destino y seguimiento de cada entrega."
+      },
+      inventario: {
+        title: "Inventario",
+        description: "Consulta disponibilidad, repón existencias y revisa la trazabilidad de cada ajuste."
+      },
+      catalogo: {
+        title: "Catálogo y equipo",
+        description: "Crea fichas de producto y administra la información visible en la tienda."
+      },
+      equipo: {
+        title: "Equipo y permisos",
+        description: "Gestiona los accesos operativos del equipo de EXEL Chile."
+      }
+    };
+
+    function setAdminScreen(screen, { updateHash = false } = {}) {
+      const activeScreen = screenDetails[screen] ? screen : "resumen";
+      const details = screenDetails[activeScreen];
+      adminScreens.forEach((element) => {
+        const isRestrictedTeamPanel = element === teamPanel && !access.superAdmin;
+        element.classList.toggle("hidden", element.dataset.adminScreen !== activeScreen || isRestrictedTeamPanel);
+      });
+      adminScreenLinks.forEach((link) => {
+        const active = link.dataset.adminTarget === activeScreen;
+        link.classList.toggle("bg-brand-black", active);
+        link.classList.toggle("text-white", active);
+        link.classList.toggle("shadow-card", active);
+      });
+      adminScreenTitle.textContent = details.title;
+      adminScreenDescription.textContent = details.description;
+      if (updateHash && window.location.hash !== `#${activeScreen}`) window.history.pushState(null, "", `#${activeScreen}`);
+    }
+
+    function escapeHtml(value) {
+      return String(value ?? "").replace(/[&<>'"]/g, (character) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        "'": "&#39;",
+        "\"": "&quot;"
+      }[character]));
+    }
 
     function dateFromFirestore(value) {
       if (!value) return "Sin fecha";
@@ -237,54 +855,206 @@
     function stockState(product) {
       const stock = Number(product.stock || 0);
       const lowStockThreshold = Number(product.lowStockThreshold ?? 3);
-      if (stock <= 0) return { label: "Sin stock", tone: "bg-red-50 text-red-700 border-red-100" };
-      if (stock <= lowStockThreshold) return { label: "Stock bajo", tone: "bg-amber-50 text-amber-700 border-amber-100" };
-      return { label: "Disponible", tone: "bg-emerald-50 text-emerald-700 border-emerald-100" };
+      if (stock <= 0) return { label: "Sin stock", tone: "bg-red-50 text-red-700 border-red-200" };
+      if (stock <= lowStockThreshold) return { label: "Stock bajo", tone: "bg-amber-50 text-amber-700 border-amber-200" };
+      return { label: "Disponible", tone: "bg-emerald-50 text-emerald-700 border-emerald-200" };
+    }
+
+    function renderProductPreview() {
+      const draft = Object.fromEntries(new FormData(productForm).entries());
+      const name = draft.name?.trim() || "Nombre de tu fórmula";
+      const line = draft.line?.trim() || "Línea dermocosmética";
+      const description = draft.description?.trim() || "Aquí aparecerá una descripción breve y clara para orientar a la clienta.";
+      const image = pendingProductImagePreviewUrl || draft.image?.trim() || "./assets/catalogo-web/branding/logo-exel.webp";
+      const category = draft.category?.trim() || "Categoría por definir";
+      const size = draft.size?.trim() || "Formato por definir";
+      const variants = getFormVariants(draft.id || "producto");
+      const use = draft.use?.trim() || "Agrega el modo de uso para orientar a la clienta.";
+      const ingredients = String(draft.ingredients || "").split(",").map((item) => item.trim()).filter(Boolean);
+      const benefits = String(draft.benefits || "").split(",").map((item) => item.trim()).filter(Boolean);
+      const inci = draft.inci?.trim() || "El listado INCI aparecerá aquí cuando lo completes.";
+      const activeVariants = variants.filter((variant) => variant.active !== false);
+      const variantPrices = activeVariants.map((variant) => Number(variant.price || 0)).filter((value) => value > 0);
+      const price = variantPrices.length ? Math.min(...variantPrices) : Number(draft.price || 0);
+      const highestPrice = variantPrices.length ? Math.max(...variantPrices) : price;
+      const stock = activeVariants.length ? activeVariants.reduce((total, variant) => total + Number(variant.stock || 0), 0) : Number(draft.stock || 0);
+      const threshold = activeVariants.length ? Math.max(...activeVariants.map((variant) => Number(variant.lowStockThreshold ?? 3))) : 3;
+      const stockIsDefined = activeVariants.length > 0 || draft.stock !== "";
+      const stockLabel = !stockIsDefined ? "Stock por definir" : stock <= 0 ? "Sin stock" : stock <= threshold ? `Últimas ${stock} unidades` : `${stock} unidades disponibles`;
+      const stockTone = !stockIsDefined ? "bg-brand-light text-brand-muted border-brand-border" : stock <= 0 ? "bg-red-50 text-red-700 border-red-200" : stock <= threshold ? "bg-amber-50 text-amber-700 border-amber-200" : "bg-emerald-50 text-emerald-700 border-emerald-200";
+      productPreview.innerHTML = `
+        <article class="overflow-hidden rounded-[0.5rem] border border-brand-border bg-white shadow-sm">
+          <div class="grid lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)]">
+            <div class="grid min-h-64 place-items-center bg-[#fafafa] p-6 sm:min-h-80">
+              <img id="productPreviewImage" class="max-h-72 max-w-full object-contain" src="${escapeHtml(image)}" alt="Vista previa de ${escapeHtml(name)}">
+            </div>
+            <div class="p-5 sm:p-6">
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">${escapeHtml(line)}</p>
+              <h4 class="serif mt-1 text-2xl font-medium leading-tight text-brand-black">${escapeHtml(name)}</h4>
+              <div class="mt-3 flex flex-wrap gap-2">
+                <span class="rounded-[0.25rem] border border-brand-border bg-brand-light px-2.5 py-1 text-[10px] font-bold text-brand-dark">${escapeHtml(category)}</span>
+                <span class="rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[10px] font-bold text-brand-muted">${escapeHtml(size)}</span>
+              </div>
+              ${variants.length ? `<p class="mt-2 text-[11px] font-semibold text-brand-copper">${variants.length} variante${variants.length === 1 ? "" : "s"}: ${escapeHtml(variants.map((variant) => [variant.tone, variant.size, variant.finish].filter(Boolean).join(" · ")).join(" / "))}</p>` : ""}
+              <p class="mt-4 text-sm leading-relaxed text-brand-muted">${escapeHtml(description)}</p>
+              <div class="mt-5 flex flex-wrap items-center justify-between gap-3 border-y border-brand-border py-4">
+                <strong class="serif text-2xl font-bold text-brand-black">${price ? (variantPrices.length > 1 ? `Desde ${formatter.format(price)} hasta ${formatter.format(highestPrice)}` : formatter.format(price)) : "Precio por definir"}</strong>
+                <span class="rounded-[0.25rem] border px-2.5 py-1.5 text-[10px] font-bold ${stockTone}">${escapeHtml(stockLabel)}</span>
+              </div>
+              ${activeVariants.length ? `<div class="mt-4"><p class="text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Elige presentación</p><div class="mt-2 flex flex-wrap gap-2">${activeVariants.map((variant) => `<button type="button" disabled class="rounded-[0.25rem] border border-brand-black bg-white px-3 py-2 text-left text-[11px] font-bold text-brand-black">${escapeHtml([variant.tone, variant.size, variant.finish, variant.undertone].filter(Boolean).join(" · ") || variant.sku || "Opción")}</button>`).join("")}</div></div>` : ""}
+              <button type="button" disabled class="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[0.25rem] bg-brand-black px-4 text-xs font-bold uppercase tracking-wider text-white opacity-90">Añadir a la bolsa</button>
+            </div>
+          </div>
+          <div class="grid gap-5 border-t border-brand-border p-5 sm:p-6 md:grid-cols-2">
+            <section>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Modo de uso</p>
+              <p class="mt-2 text-xs leading-relaxed text-brand-dark">${escapeHtml(use)}</p>
+            </section>
+            <section>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Activos principales</p>
+              <div class="mt-2 flex flex-wrap gap-1.5">${ingredients.length ? ingredients.map((item) => `<span class="rounded-[0.25rem] bg-brand-light px-2 py-1 text-[10px] font-semibold text-brand-dark">${escapeHtml(item)}</span>`).join("") : '<span class="text-xs text-brand-muted">Agrega los activos principales.</span>'}</div>
+            </section>
+            <section>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">Beneficios</p>
+              <ul class="mt-2 grid gap-1.5 text-xs leading-relaxed text-brand-dark">${benefits.length ? benefits.map((item) => `<li class="flex gap-2"><span class="text-brand-copper">•</span><span>${escapeHtml(item)}</span></li>`).join("") : '<li class="text-brand-muted">Agrega beneficios claros para la ficha.</li>'}</ul>
+            </section>
+            <section>
+              <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-brand-copper">INCI</p>
+              <p class="mt-2 text-xs leading-relaxed text-brand-dark">${escapeHtml(inci)}</p>
+            </section>
+          </div>
+        </article>`;
+      productPreview.querySelector("#productPreviewImage")?.addEventListener("error", (event) => {
+        event.currentTarget.src = "./assets/catalogo-web/branding/logo-exel.webp";
+      }, { once: true });
+      updateProductReadiness();
     }
 
     function quoteStatusLabel(status = "draft") {
       const labels = {
         draft: "Pendiente",
-        preparing: "En preparacion",
+        preparing: "En preparación",
         ready: "Listo",
         delivered: "Entregado"
       };
       return labels[status] || status;
     }
 
-    function renderMetrics() {
-      const pendingQuotes = quotes.filter((quote) => (quote.status || "draft") === "draft").length;
-      const preparingQuotes = quotes.filter((quote) => quote.status === "preparing").length;
-      const lowStock = products.filter((product) => {
-        const stock = Number(product.stock || 0);
-        const threshold = Number(product.lowStockThreshold ?? 3);
-        return stock <= threshold;
-      }).length;
-      const pendingTotal = quotes
-        .filter((quote) => ["draft", "preparing"].includes(quote.status || "draft"))
-        .reduce((sum, quote) => sum + Number(quote.totals?.total || 0), 0);
+    function fulfillmentStatusLabel(status = "new") {
+      const labels = {
+        new: "Por preparar",
+        preparing: "En preparación",
+        ready: "Listo para despacho",
+        dispatched: "Despachado",
+        delivered: "Entregado"
+      };
+      return labels[status] || status;
+    }
 
-      metricGrid.innerHTML = [
-        ["Solicitudes pendientes", pendingQuotes, "Pedidos aun sin preparar"],
-        ["En preparacion", preparingQuotes, "Paquetes en proceso"],
-        ["Stock bajo", lowStock, "Productos por revisar"],
-        ["Venta pendiente", formatter.format(pendingTotal), "Total estimado abierto"]
-      ].map(([label, value, detail]) => `
-        <article class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">${label}</p>
-          <strong class="mt-2 block text-3xl">${value}</strong>
-          <span class="mt-1 block text-xs font-bold text-exel-muted">${detail}</span>
+    function renderMetrics() {
+      const pendingQuotes = orders.filter((order) => order.paymentStatus === "approved" && (order.fulfillmentStatus || "new") === "new").length;
+      const preparingQuotes = orders.filter((order) => order.paymentStatus === "approved" && order.fulfillmentStatus === "preparing").length;
+      const stockEntries = products.flatMap((product) => Array.isArray(product.variants) && product.variants.length
+        ? product.variants.filter((variant) => variant.active !== false).map((variant) => ({ stock: variant.stock, threshold: variant.lowStockThreshold ?? product.lowStockThreshold }))
+        : [{ stock: product.stock, threshold: product.lowStockThreshold }]);
+      const lowStock = stockEntries.filter((entry) => Number(entry.stock || 0) <= Number(entry.threshold ?? 3)).length;
+      const outOfStock = stockEntries.filter((entry) => Number(entry.stock || 0) <= 0).length;
+      const approvedOrders = orders.filter((order) => order.paymentStatus === "approved");
+      const grossSales = approvedOrders.reduce((sum, order) => sum + Number(order.total || 0), 0);
+      const realizedSales = approvedOrders
+        .filter((order) => ["dispatched", "delivered"].includes(order.fulfillmentStatus || "new"))
+        .reduce((sum, order) => sum + Number(order.total || 0), 0);
+      let productsWithoutCost = 0;
+      const estimatedProductCost = approvedOrders.reduce((orderCost, order) => orderCost + (order.items || []).reduce((itemsCost, item) => {
+        const product = products.find((candidate) => candidate.id === item.productId || candidate.id === item.id || candidate.name === item.title || candidate.name === item.name);
+        const variant = product?.variants?.find((candidate) => candidate.id === item.variantId || candidate.sku === item.variantSku || candidate.sku === item.sku);
+        const unitCost = Number(variant?.cost ?? product?.cost ?? 0);
+        if (!unitCost) productsWithoutCost += 1;
+        return itemsCost + (unitCost * Number(item.quantity || 1));
+      }, 0), 0);
+      const estimatedMargin = grossSales - estimatedProductCost;
+
+      const metrics = [
+        { label: "Pedidos por preparar", value: pendingQuotes, detail: pendingQuotes ? "Pagos aprobados sin iniciar" : "No hay pedidos esperando", icon: "package", target: "pedidos", tone: "amber", state: pendingQuotes ? "Revisar hoy" : "Al día" },
+        { label: "En preparación", value: preparingQuotes, detail: preparingQuotes ? "Paquetes en gabinete" : "Sin paquetes abiertos", icon: "flask-conical", target: "pedidos", tone: "blue", state: preparingQuotes ? "En proceso" : "Sin actividad" },
+        { label: "Stock bajo", value: lowStock, detail: outOfStock ? `${outOfStock} producto${outOfStock === 1 ? "" : "s"} sin stock` : "Alertas de reposición", icon: "boxes", target: "inventario", tone: lowStock ? "red" : "emerald", state: lowStock ? "Reponer" : "Stock saludable" },
+        { label: "Ventas cobradas", value: formatter.format(grossSales), detail: `${approvedOrders.length} pago${approvedOrders.length === 1 ? "" : "s"} aprobado${approvedOrders.length === 1 ? "" : "s"}`, icon: "credit-card", target: "pedidos", tone: "emerald", state: "Cobrado" },
+        { label: "Ventas despachadas", value: formatter.format(realizedSales), detail: "Ingreso ya despachado o entregado", icon: "truck", target: "pedidos", tone: "teal", state: "Despachado" },
+        { label: "Margen estimado", value: formatter.format(estimatedMargin), detail: productsWithoutCost ? `${productsWithoutCost} ítem${productsWithoutCost === 1 ? "" : "s"} sin costo registrado` : "Ventas menos costos registrados", icon: "scale", target: "catalogo", tone: productsWithoutCost ? "amber" : "violet", state: productsWithoutCost ? "Completar costos" : "Calculado" }
+      ];
+      const tones = {
+        amber: { card: "border-amber-200 bg-amber-50/60", icon: "bg-amber-100 text-amber-800", pill: "bg-amber-100 text-amber-800" },
+        blue: { card: "border-sky-200 bg-sky-50/60", icon: "bg-sky-100 text-sky-800", pill: "bg-sky-100 text-sky-800" },
+        red: { card: "border-red-200 bg-red-50/60", icon: "bg-red-100 text-red-800", pill: "bg-red-100 text-red-800" },
+        emerald: { card: "border-emerald-200 bg-emerald-50/60", icon: "bg-emerald-100 text-emerald-800", pill: "bg-emerald-100 text-emerald-800" },
+        teal: { card: "border-teal-200 bg-teal-50/60", icon: "bg-teal-100 text-teal-800", pill: "bg-teal-100 text-teal-800" },
+        violet: { card: "border-violet-200 bg-violet-50/60", icon: "bg-violet-100 text-violet-800", pill: "bg-violet-100 text-violet-800" }
+      };
+
+      metricGrid.innerHTML = metrics.map((metric) => {
+        const tone = tones[metric.tone];
+        return `
+          <button type="button" data-metric-target="${metric.target}" class="group rounded-[0.5rem] border p-4 text-left shadow-card transition hover:-translate-y-0.5 hover:shadow-lift ${tone.card}">
+            <div class="flex items-start justify-between gap-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-[0.25rem] ${tone.icon}"><i data-lucide="${metric.icon}"></i></span>
+              <span class="rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider ${tone.pill}">${metric.state}</span>
+            </div>
+            <p class="mt-4 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-black">${metric.label}</p>
+            <strong class="serif mt-1.5 block text-3xl font-bold text-brand-black">${metric.value}</strong>
+            <span class="mt-1 block text-xs leading-relaxed text-brand-muted">${metric.detail}</span>
+            <span class="mt-3 inline-flex items-center gap-1 text-[11px] font-bold text-brand-black group-hover:text-brand-copper">Ver detalle <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></span>
+          </button>`;
+      }).join("");
+      metricGrid.querySelectorAll("[data-metric-target]").forEach((button) => {
+        button.addEventListener("click", () => setAdminScreen(button.dataset.metricTarget, { updateHash: true }));
+      });
+    }
+
+    function renderInventoryHistory() {
+      inventoryHistory.innerHTML = inventoryMovements.length ? inventoryMovements.slice(0, 12).map((movement) => `
+        <article class="flex flex-wrap items-center justify-between gap-3 rounded-[0.25rem] border border-brand-border bg-brand-light px-4 py-3 text-xs">
+          <div>
+            <strong class="text-brand-black">${escapeHtml(movement.productName || movement.productId)}${movement.variantLabel ? ` · ${escapeHtml(movement.variantLabel)}` : ""}</strong>
+            <p class="mt-0.5 text-[11px] text-brand-muted">${escapeHtml(movement.note || "Ajuste de inventario")} · ${escapeHtml(dateFromFirestore(movement.createdAt))}</p>
+          </div>
+          <div class="text-right">
+            <strong class="${Number(movement.delta) > 0 ? "text-emerald-700" : "text-red-700"}">${Number(movement.delta) > 0 ? "+" : ""}${Number(movement.delta || 0)} unidades</strong>
+            <p class="mt-0.5 text-[11px] text-brand-muted">Saldo: ${Number(movement.nextStock || 0)}</p>
+          </div>
         </article>
-      `).join("");
+      `).join("") : '<p class="rounded-[0.25rem] border border-brand-border bg-brand-light p-4 text-center text-xs text-brand-muted">Aún no hay movimientos de inventario registrados.</p>';
     }
 
     function renderLineFilter() {
       const current = lineFilter.value || "todos";
       const lines = [...new Set(products.map((product) => product.line).filter(Boolean))].sort();
-      lineFilter.innerHTML = '<option value="todos">Todas las lineas</option>' + lines
-        .map((line) => `<option value="${line}">${line}</option>`)
+      lineFilter.innerHTML = '<option value="todos">Todas las líneas</option>' + lines
+        .map((line) => `<option value="${escapeHtml(line)}">${escapeHtml(line)}</option>`)
         .join("");
       lineFilter.value = lines.includes(current) ? current : "todos";
+    }
+
+    const ADMIN_PRODUCTS_PER_PAGE = 24;
+
+    function renderInventoryPagination(totalPages) {
+      if (!adminProductPagination) return;
+      adminProductPagination.classList.toggle("hidden", totalPages <= 1);
+      adminProductPagination.classList.toggle("flex", totalPages > 1);
+      if (totalPages <= 1) {
+        adminProductPagination.innerHTML = "";
+        return;
+      }
+      adminProductPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => `
+        <button type="button" data-inventory-page="${page}" aria-label="Ir a la página ${page}" aria-current="${page === inventoryPage ? "page" : "false"}"
+          class="h-10 min-w-10 rounded-[0.25rem] border px-3 text-xs font-bold transition ${page === inventoryPage ? "border-brand-black bg-brand-black text-white" : "border-brand-border bg-white text-brand-dark hover:border-brand-copper hover:text-brand-copper"}">${page}</button>
+      `).join("");
+      adminProductPagination.querySelectorAll("[data-inventory-page]").forEach((button) => {
+        button.addEventListener("click", () => {
+          inventoryPage = Number(button.dataset.inventoryPage);
+          renderProducts();
+          productList.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
     }
 
     function renderProducts() {
@@ -292,7 +1062,8 @@
       const filtered = products.filter((product) => {
         const stock = Number(product.stock || 0);
         const threshold = Number(product.lowStockThreshold ?? 3);
-        const matchesQuery = window.EXEL_SITE.normalizeText(`${product.name} ${product.line} ${product.label} ${product.sku || ""}`).includes(query);
+        const variantTerms = (product.variants || []).map((variant) => `${variant.sku || ""} ${variant.tone || ""} ${variant.size || ""} ${variant.finish || ""}`).join(" ");
+        const matchesQuery = window.EXEL_SITE.normalizeText(`${product.name} ${product.line} ${product.label} ${product.sku || ""} ${variantTerms}`).includes(query);
         const matchesLine = lineFilter.value === "todos" || product.line === lineFilter.value;
         const matchesStock = stockFilter.value === "todos"
           || (stockFilter.value === "active" && product.active !== false)
@@ -301,33 +1072,85 @@
           || (stockFilter.value === "out" && stock <= 0);
         return matchesQuery && matchesLine && matchesStock;
       });
-      productList.innerHTML = filtered.length ? filtered.map((product) => `
-        <article class="grid gap-3 rounded-card border border-exel-line bg-exel-cream p-4 md:grid-cols-[72px_1fr_auto] md:items-center">
-          <img class="h-20 w-20 rounded-card object-cover" src="${product.image || "./assets/catalogo-web/branding/logo-exel.webp"}" alt="${product.name}">
+      const totalPages = Math.ceil(filtered.length / ADMIN_PRODUCTS_PER_PAGE);
+      if (inventoryPage > totalPages) inventoryPage = 1;
+      const pageStart = (inventoryPage - 1) * ADMIN_PRODUCTS_PER_PAGE;
+      const pageProducts = filtered.slice(pageStart, pageStart + ADMIN_PRODUCTS_PER_PAGE);
+      productList.innerHTML = filtered.length ? pageProducts.map((product) => {
+        const hasVariants = Array.isArray(product.variants) && product.variants.length > 0;
+        return `
+        <article class="grid gap-3 rounded-[0.5rem] border border-brand-border bg-white p-4 md:grid-cols-[64px_1fr_auto] md:items-center shadow-card">
+          <img class="h-16 w-16 rounded-[0.25rem] object-contain bg-[#fafafa] p-1 border border-brand-border" src="${escapeHtml(product.image || "./assets/catalogo-web/branding/logo-exel.webp")}" alt="${escapeHtml(product.name)}">
           <div>
-            <div class="flex flex-wrap gap-2">
-              <span class="rounded-full bg-white px-3 py-1 text-[11px] font-extrabold uppercase tracking-[0.08em] text-exel-copper">${product.line || "Sin linea"}</span>
-              <span class="rounded-full border px-3 py-1 text-[11px] font-extrabold ${stockState(product).tone}">${stockState(product).label}</span>
-              ${product.featured ? '<span class="rounded-full bg-exel-ink px-3 py-1 text-[11px] font-extrabold text-white">Destacado</span>' : ""}
-              ${product.active === false ? '<span class="rounded-full bg-stone-200 px-3 py-1 text-[11px] font-extrabold text-exel-muted">Oculto</span>' : ""}
+            <div class="flex flex-wrap gap-1.5">
+              <span class="rounded-[0.25rem] bg-brand-light px-2 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-copper border border-brand-border">${escapeHtml(product.line || "Sin línea")}</span>
+              <span class="rounded-[0.25rem] border px-2 py-0.5 text-[9px] font-bold ${product.active === false ? "bg-slate-100 text-slate-700 border-slate-200" : stockState(product).tone}">${product.active === false ? "Archivado" : stockState(product).label}</span>
+              ${product.featured ? '<span class="rounded-[0.25rem] bg-brand-black px-2 py-0.5 text-[9px] font-bold text-white">Destacado</span>' : ""}
             </div>
-            <h3 class="serif text-3xl font-semibold leading-none">${product.name}</h3>
-            <p class="mt-2 text-sm font-bold text-exel-muted">${product.sku ? `${product.sku} · ` : ""}${product.label || ""} · ${product.size || ""} · ${formatter.format(product.price || 0)}</p>
-            <p class="mt-1 text-xs font-bold text-exel-muted">${(product.tags || []).slice(0, 4).join(" · ")}</p>
+            <h3 class="product-name font-sans text-base font-bold text-brand-black mt-1">${escapeHtml(product.name)}</h3>
+            <p class="text-xs text-brand-muted font-normal">${product.sku ? `${escapeHtml(product.sku)} · ` : ""}${escapeHtml(product.label)} · ${escapeHtml(product.size)} · ${formatter.format(product.price || 0)}${Array.isArray(product.variants) && product.variants.length ? ` · ${product.variants.filter((variant) => variant.active !== false).length} variante${product.variants.filter((variant) => variant.active !== false).length === 1 ? "" : "s"}` : ""}</p>
           </div>
-          <div class="grid gap-2">
-            <label class="text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Stock</label>
-            <input class="stock-input min-h-[42px] w-28 rounded-card border border-exel-line bg-white px-3 font-extrabold outline-none" data-id="${product.id}" type="number" min="0" value="${Number(product.stock || 0)}">
-            <button class="edit-product rounded-card border border-exel-line bg-white px-3 py-2 text-xs font-extrabold text-exel-ink" data-id="${product.id}" type="button">Editar</button>
+          <div class="grid gap-1.5">
+            <label class="text-[9px] font-bold uppercase tracking-wider text-brand-subtle">Stock</label>
+            ${hasVariants ? `<span class="max-w-28 text-[10px] leading-relaxed text-brand-muted">${product.variants.filter((variant) => variant.active !== false).length} opciones · ${Number(product.stock || 0)} unidades</span>` : `<input class="stock-input h-8 w-24 rounded-[0.25rem] border border-brand-border bg-brand-light px-2.5 text-xs font-bold outline-none" data-id="${escapeHtml(product.id)}" type="number" min="0" value="${Number(product.stock || 0)}">`}
+            <button class="edit-product rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-brand-black hover:bg-brand-light" data-id="${escapeHtml(product.id)}" type="button">Editar</button>
+            <button class="archive-product rounded-[0.25rem] border border-slate-300 bg-slate-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-700 hover:bg-slate-100" data-id="${escapeHtml(product.id)}" type="button">${product.active === false ? "Reactivar" : "Archivar"}</button>
           </div>
-        </article>
-      `).join("") : '<p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">No hay productos para mostrar.</p>';
+          ${hasVariants ? `<details class="md:col-span-3 rounded-[0.25rem] border border-brand-border bg-brand-light p-3"><summary class="cursor-pointer text-xs font-bold text-brand-black">Presentaciones e inventario (${product.variants.length})</summary><div class="mt-3 grid gap-2">${product.variants.map((variant) => { const variantStock = Number(variant.stock || 0); const threshold = Number(variant.lowStockThreshold ?? product.lowStockThreshold ?? 3); const state = variant.active === false ? { label: "Inactiva", tone: "bg-slate-100 text-slate-700 border-slate-200" } : variantStock <= 0 ? { label: "Sin stock", tone: "bg-red-50 text-red-700 border-red-200" } : variantStock <= threshold ? { label: "Stock bajo", tone: "bg-amber-50 text-amber-700 border-amber-200" } : { label: "Disponible", tone: "bg-emerald-50 text-emerald-700 border-emerald-200" }; return `<div class="grid gap-2 rounded-[0.25rem] border border-brand-border bg-white p-2.5 sm:grid-cols-[1fr_auto_auto_auto] sm:items-center"><div><strong class="text-xs text-brand-black">${escapeHtml([variant.tone, variant.size, variant.finish].filter(Boolean).join(" · ") || "Presentación sin nombre")}</strong><p class="mt-0.5 text-[10px] text-brand-muted">SKU: ${escapeHtml(variant.sku || "Sin SKU")} · ${formatter.format(variant.price || 0)}</p></div><span class="rounded-[0.25rem] border px-2 py-1 text-[10px] font-bold ${state.tone}">${state.label}</span><label class="flex items-center gap-1.5 text-[10px] font-bold text-brand-subtle">Stock <input class="variant-stock-input h-8 w-16 rounded-[0.25rem] border border-brand-border bg-brand-light px-2 text-xs text-brand-black" data-id="${escapeHtml(product.id)}" data-variant-id="${escapeHtml(variant.id)}" type="number" min="0" value="${variantStock}"></label><button class="variant-adjust rounded-[0.25rem] bg-brand-black px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white" data-id="${escapeHtml(product.id)}" data-variant-id="${escapeHtml(variant.id)}" type="button">Ajustar</button></div>`; }).join("")}</div></details>` : ""}
+        </article>`;
+      }).join("") : '<p class="rounded-[0.25rem] bg-brand-light p-4 text-xs text-brand-muted text-center border border-brand-border">No hay productos que coincidan con la búsqueda.</p>';
+      renderInventoryPagination(totalPages);
 
       productList.querySelectorAll(".stock-input").forEach((input) => {
         input.addEventListener("change", async () => {
-          await updateProductStock(input.dataset.id, input.value);
-          adminStatus.textContent = `Stock actualizado para ${input.dataset.id}.`;
-          await loadData();
+          const product = products.find((item) => item.id === input.dataset.id);
+          const nextStock = Number(input.value);
+          const delta = nextStock - Number(product?.stock || 0);
+          if (!delta) return;
+          try {
+            await adjustInventory(input.dataset.id, delta, "Ajuste desde consola administrativa");
+            adminStatus.textContent = `Stock actualizado para ${input.dataset.id}.`;
+            await loadData();
+          } catch (error) {
+            adminStatus.textContent = error.message;
+            input.value = Number(product?.stock || 0);
+          }
+        });
+      });
+
+      productList.querySelectorAll(".variant-adjust").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const input = productList.querySelector(`.variant-stock-input[data-id="${button.dataset.id}"][data-variant-id="${button.dataset.variantId}"]`);
+          const product = products.find((item) => item.id === button.dataset.id);
+          const variant = product?.variants?.find((item) => item.id === button.dataset.variantId);
+          const nextStock = Number(input?.value);
+          const delta = nextStock - Number(variant?.stock || 0);
+          if (!delta) return;
+          try {
+            button.disabled = true;
+            await adjustInventory(button.dataset.id, delta, "Ajuste rápido por presentación", button.dataset.variantId);
+            adminStatus.textContent = "Stock de presentación actualizado y registrado.";
+            await loadData();
+          } catch (error) {
+            adminStatus.textContent = error.message;
+            input.value = Number(variant?.stock || 0);
+          } finally { button.disabled = false; }
+        });
+      });
+
+      productList.querySelectorAll(".archive-product").forEach((button) => {
+        button.addEventListener("click", async () => {
+          const product = products.find((item) => item.id === button.dataset.id);
+          if (!product) return;
+          const nextActive = product.active === false;
+          const action = nextActive ? "reactivar" : "archivar";
+          if (!window.confirm(`¿Quieres ${action} “${product.name}”? ${nextActive ? "Volverá a mostrarse en tienda." : "No se eliminará ni perderá su historial."}`)) return;
+          try {
+            button.disabled = true;
+            await upsertProduct({ ...product, active: nextActive, archivedAt: nextActive ? null : new Date().toISOString() });
+            adminStatus.textContent = nextActive ? "Producto reactivado." : "Producto archivado sin borrar su historial.";
+            await loadData();
+          } catch (error) { adminStatus.textContent = error.message; } finally { button.disabled = false; }
         });
       });
 
@@ -335,6 +1158,8 @@
         button.addEventListener("click", () => {
           const product = products.find((item) => item.id === button.dataset.id);
           if (!product) return;
+          clearPendingProductImage();
+          productImageStatus.textContent = "Puedes reemplazar la imagen; se convertirá a WebP al guardar.";
           Object.entries(product).forEach(([key, value]) => {
             const field = productForm.elements[key];
             if (!field) return;
@@ -344,159 +1169,354 @@
               field.value = Array.isArray(value) ? value.join(", ") : value ?? "";
             }
           });
-          if (product.active == null) productForm.elements.active.checked = true;
-          productFormMessage.textContent = "Producto cargado para editar.";
+          renderVariantRows(formVariantsFromProduct(product));
+          productForm.elements.active.value = product.active === false ? "false" : "true";
+          productForm.dataset.editingId = product.id;
+          setProductFormMode("editing", product.name);
+          productFormMessage.textContent = "Estás editando esta ficha. Guarda los cambios cuando termines.";
+          renderProductPreview();
+          productForm.scrollIntoView({ behavior: "smooth", block: "start" });
         });
       });
     }
 
     function renderQuotes() {
-      const status = quoteFilter.value;
-      const filtered = quotes.filter((quote) => status === "todos" || (quote.status || "draft") === status);
-      quoteList.innerHTML = filtered.length ? filtered.map((quote) => {
-        const items = quote.cart || [];
-        const shipping = quote.shipping || {};
-        const customer = quote.customer || {};
-        return `
-          <article class="rounded-card border border-exel-line bg-exel-cream p-4 shadow-soft">
-            <div class="flex flex-wrap items-start justify-between gap-4">
-              <div>
-                <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Solicitud ${quote.id}</p>
-                <h3 class="serif mt-1 text-3xl font-semibold leading-none">${customer.name || quote.customerEmail || "Cliente sin nombre"}</h3>
-                <p class="mt-2 text-sm font-bold text-exel-muted">${dateFromFirestore(quote.createdAt)} · ${customer.phone || "Sin telefono"}</p>
-                <span class="mt-3 inline-flex rounded-full bg-white px-3 py-2 text-xs font-extrabold text-exel-copper">${quoteStatusLabel(quote.status || "draft")}</span>
-              </div>
-              <select class="quote-status min-h-[42px] rounded-card border border-exel-line bg-white px-3 font-bold text-exel-muted" data-id="${quote.id}">
-                ${["draft", "preparing", "ready", "delivered"].map((value) => `<option value="${value}" ${value === (quote.status || "draft") ? "selected" : ""}>${value}</option>`).join("")}
+      const filtered = quotes.filter((quote) => {
+        if (quoteFilter.value === "todos") return true;
+        return (quote.status || "draft") === quoteFilter.value;
+      });
+
+      quoteList.innerHTML = filtered.length ? filtered.map((quote) => `
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-5 space-y-3 shadow-card">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-brand-border pb-2.5">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Cotización: ${escapeHtml(quote.id)}</p>
+              <h3 class="product-name font-sans text-base font-bold text-brand-black">${escapeHtml(quote.customer?.name || "Cliente sin nombre")}</h3>
+              <p class="text-xs text-brand-muted">${escapeHtml(quote.customer?.phone || "Sin teléfono")} &middot; ${escapeHtml(dateFromFirestore(quote.createdAt))}</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-xs font-bold uppercase tracking-wider text-brand-black">${escapeHtml(quoteStatusLabel(quote.status))}</span>
+              <select class="quote-status-select h-8 rounded-[0.25rem] border border-brand-border bg-white px-2 text-xs font-bold outline-none" data-id="${escapeHtml(quote.id)}">
+                <option value="draft" ${quote.status === "draft" ? "selected" : ""}>Pendiente</option>
+                <option value="preparing" ${quote.status === "preparing" ? "selected" : ""}>En preparación</option>
+                <option value="ready" ${quote.status === "ready" ? "selected" : ""}>Listo</option>
+                <option value="delivered" ${quote.status === "delivered" ? "selected" : ""}>Entregado</option>
               </select>
             </div>
-            <div class="mt-4 grid gap-3 md:grid-cols-2">
-              <div class="rounded-card bg-white p-4">
-                <strong class="block text-sm">Paquete a armar</strong>
-                <ul class="mt-2 grid gap-2 text-sm font-bold text-exel-muted">
-                  ${items.map((item) => `<li class="flex items-start gap-2"><span class="mt-1 grid h-4 w-4 shrink-0 place-items-center rounded border border-exel-line bg-exel-cream text-[10px]">□</span><span>${item.quantity}x ${item.name} (${item.size || ""})</span></li>`).join("") || "<li>Sin productos</li>"}
-                </ul>
-              </div>
-              <div class="rounded-card bg-white p-4">
-                <strong class="block text-sm">Direccion de envio</strong>
-                <p class="mt-2 text-sm font-bold leading-6 text-exel-muted">${shipping.label || quote.delivery || "Sin despacho"}</p>
-                <p class="text-sm font-bold leading-6 text-exel-muted">${shipping.address || "Sin direccion registrada"}</p>
-                <p class="text-sm font-bold leading-6 text-exel-muted">${shipping.city || ""}</p>
-                <p class="mt-2 text-xs font-bold leading-5 text-exel-muted">${shipping.notes || ""}</p>
-              </div>
-            </div>
-            <div class="mt-4 flex flex-wrap items-center justify-between gap-3 rounded-card bg-white p-4">
-              <span class="text-sm font-extrabold text-exel-muted">Total</span>
-              <strong class="text-2xl">${formatter.format(quote.totals?.total || 0)}</strong>
-              <button class="copy-package rounded-card border border-exel-line bg-exel-cream px-3 py-2 text-xs font-extrabold text-exel-ink" data-id="${quote.id}" type="button">Copiar paquete</button>
-            </div>
-          </article>
-        `;
-      }).join("") : '<p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">No hay solicitudes en este estado.</p>';
+          </div>
+          <div class="grid gap-1.5 text-xs text-brand-muted font-normal">
+            <p><strong>Despacho:</strong> ${escapeHtml(quote.shipping?.label || "Retiro")} &middot; ${escapeHtml(quote.shipping?.address || "Sin dirección")}</p>
+            <p><strong>Fórmulas:</strong> ${(quote.cart || []).map((item) => `${escapeHtml(item.quantity)}x ${escapeHtml(item.name)}`).join(", ")}</p>
+            <p class="serif text-sm font-bold text-brand-black pt-1">Total: ${formatter.format(quote.totals?.total || 0)}</p>
+          </div>
+        </article>
+      `).join("") : '<p class="rounded-[0.25rem] bg-brand-light p-4 text-xs text-brand-muted text-center border border-brand-border">No hay órdenes en este estado.</p>';
 
-      quoteList.querySelectorAll(".quote-status").forEach((select) => {
+      quoteList.querySelectorAll(".quote-status-select").forEach((select) => {
         select.addEventListener("change", async () => {
           await updateQuoteStatus(select.dataset.id, select.value);
-          adminStatus.textContent = `Solicitud ${select.dataset.id} actualizada.`;
+          adminStatus.textContent = `Estado actualizado a ${quoteStatusLabel(select.value)}.`;
           await loadData();
         });
       });
+    }
 
-      quoteList.querySelectorAll(".copy-package").forEach((button) => {
+    function renderCategories() {
+      const names = [...new Set([
+        ...categories.map((category) => category.name),
+        ...products.map((product) => product.category)
+      ].filter(Boolean))].sort((a, b) => a.localeCompare(b, "es"));
+      const current = categorySelect.value;
+      categorySelect.innerHTML = '<option value="">Selecciona una categoría</option>' + names.map((name) => `<option value="${escapeHtml(name)}">${escapeHtml(name)}</option>`).join("");
+      if (names.includes(current)) categorySelect.value = current;
+    }
+
+    function renderOrders() {
+      const filtered = orders.filter((order) => {
+        if (order.paymentStatus !== "approved") return false;
+        const search = window.EXEL_SITE.normalizeText(orderSearch?.value || "");
+        const dateFrom = orderDateFrom?.value ? new Date(`${orderDateFrom.value}T00:00:00`) : null;
+        const orderDate = order.createdAt?.seconds ? new Date(order.createdAt.seconds * 1000) : null;
+        const searchable = `${order.id} ${order.customer?.name || ""} ${order.customer?.email || ""} ${order.customer?.phone || ""} ${order.delivery?.address || ""} ${order.delivery?.commune || ""} ${order.trackingCode || ""} ${order.carrier || ""}`;
+        return (orderFilter.value === "todos" || (order.fulfillmentStatus || "new") === orderFilter.value)
+          && (!search || window.EXEL_SITE.normalizeText(searchable).includes(search))
+          && (!dateFrom || (orderDate && orderDate >= dateFrom));
+      });
+      orderList.innerHTML = filtered.length ? filtered.map((order) => `
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-5 shadow-card">
+          <div class="flex flex-wrap items-start justify-between gap-3 border-b border-brand-border pb-3">
+            <div>
+              <p class="text-[10px] font-bold uppercase tracking-wider text-brand-copper">Pedido ${escapeHtml(order.id.slice(0, 8))} · pago aprobado</p>
+              <h3 class="mt-1 text-base font-bold text-brand-black">${escapeHtml(order.customer?.name || "Datos de cliente pendientes")}</h3>
+              <p class="mt-0.5 text-xs text-brand-muted">${escapeHtml(order.customer?.email || "Sin correo")} · ${escapeHtml(order.customer?.phone || "Sin teléfono")}</p>
+            </div>
+            <strong class="serif text-lg text-brand-black">${formatter.format(order.total || 0)}</strong>
+          </div>
+          <div class="mt-3 grid gap-3 text-xs text-brand-muted sm:grid-cols-[1fr_190px]">
+            <div class="space-y-1.5">
+              <p><strong class="text-brand-black">Destino:</strong> ${escapeHtml(order.delivery?.address || "Sin dirección")} · ${escapeHtml(order.delivery?.commune || "Sin comuna")}</p>
+              ${order.delivery?.notes ? `<p><strong class="text-brand-black">Indicaciones:</strong> ${escapeHtml(order.delivery.notes)}</p>` : ""}
+              <p><strong class="text-brand-black">Fórmulas:</strong> ${(order.items || []).map((item) => `${escapeHtml(item.quantity)}x ${escapeHtml(item.title)}`).join(", ") || "Sin ítems"}</p>
+              <p class="text-[10px]">Recibido: ${escapeHtml(dateFromFirestore(order.createdAt))}</p>
+            </div>
+            <div class="grid gap-2">
+              <label class="grid gap-1 text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Estado guiado<select class="order-status-select h-9 rounded-[0.25rem] border border-brand-border bg-brand-light px-2 text-xs font-bold normal-case tracking-normal outline-none" data-id="${escapeHtml(order.id)}">
+                ${["new", "preparing", "ready", "dispatched", "delivered"].map((status) => `<option value="${status}" ${(order.fulfillmentStatus || "new") === status ? "selected" : ""}>${fulfillmentStatusLabel(status)}</option>`).join("")}
+              </select></label>
+              <input class="order-carrier h-9 rounded-[0.25rem] border border-brand-border bg-white px-2 text-xs outline-none" data-id="${escapeHtml(order.id)}" value="${escapeHtml(order.carrier || "")}" placeholder="Transportista (ej: Chilexpress)">
+              <input class="order-tracking h-9 rounded-[0.25rem] border border-brand-border bg-white px-2 text-xs outline-none" data-id="${escapeHtml(order.id)}" value="${escapeHtml(order.trackingCode || "")}" placeholder="Código de seguimiento">
+              <button class="save-order rounded-[0.25rem] bg-brand-black px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-white" data-id="${escapeHtml(order.id)}" type="button">Guardar despacho</button>
+            </div>
+          </div>
+        </article>
+      `).join("") : '<p class="rounded-[0.25rem] border border-brand-border bg-brand-light p-4 text-center text-xs text-brand-muted">No hay pedidos pagados en este estado.</p>';
+
+      orderList.querySelectorAll(".save-order").forEach((button) => {
         button.addEventListener("click", async () => {
-          const quote = quotes.find((item) => item.id === button.dataset.id);
-          if (!quote) return;
-          const items = (quote.cart || []).map((item) => `${item.quantity}x ${item.name} (${item.size || ""})`).join("\n");
-          const shipping = quote.shipping || {};
-          const customer = quote.customer || {};
-          const text = `Paquete ${quote.id}\nCliente: ${customer.name || quote.customerEmail || "Sin nombre"}\nTelefono: ${customer.phone || "Sin telefono"}\nDireccion: ${shipping.address || "Sin direccion"} ${shipping.city || ""}\n\nProductos:\n${items}`;
-          await navigator.clipboard.writeText(text);
-          adminStatus.textContent = `Paquete ${quote.id} copiado.`;
+          const id = button.dataset.id;
+          const status = orderList.querySelector(`.order-status-select[data-id="${id}"]`).value;
+          const trackingCode = orderList.querySelector(`.order-tracking[data-id="${id}"]`).value;
+          const carrier = orderList.querySelector(`.order-carrier[data-id="${id}"]`).value;
+          if (["dispatched", "delivered"].includes(status) && (!carrier.trim() || !trackingCode.trim())) {
+            adminStatus.textContent = "Para marcar como despachado o entregado, registra transportista y código de seguimiento.";
+            return;
+          }
+          try {
+            button.disabled = true;
+            await updateOrderFulfillment(id, { fulfillmentStatus: status, trackingCode, carrier });
+            adminStatus.textContent = `Pedido actualizado: ${fulfillmentStatusLabel(status)}.`;
+            await loadData();
+          } catch (error) {
+            adminStatus.textContent = error.message;
+          } finally {
+            button.disabled = false;
+          }
         });
       });
     }
 
     async function loadData() {
       try {
-        adminStatus.textContent = "Cargando datos...";
-        products = await listProducts();
-        quotes = await listQuotes();
+        [products, quotes, orders, categories, inventoryMovements, variantOptions, productLines] = await Promise.all([listProducts(), listQuotes(), listOrders(), listCategories(), listInventoryMovements(), listVariantOptions(), listProductLines()]);
+        await ensureExistingProductLines();
+        await ensureDefaultVariantOptions();
         renderMetrics();
         renderLineFilter();
         renderProducts();
         renderQuotes();
-        adminStatus.textContent = `${products.length} productos · ${quotes.length} solicitudes.`;
+        renderOrders();
+        renderCategories();
+        renderProductLineSelect();
+        renderInventoryHistory();
       } catch (error) {
-        adminStatus.textContent = `No se pudieron cargar datos: ${error.message}`;
+        adminStatus.textContent = error.message;
       }
     }
 
-    loginAdmin.addEventListener("click", async () => {
-      try {
-        adminStatus.textContent = "Abriendo login de Google...";
-        await loginWithGoogle();
-      } catch (error) {
-        adminStatus.textContent = `No se pudo iniciar sesion: ${error.message}`;
-      }
-    });
-    refreshAdmin.addEventListener("click", loadData);
-    productSearch.addEventListener("input", renderProducts);
-    lineFilter.addEventListener("change", renderProducts);
-    stockFilter.addEventListener("change", renderProducts);
-    quoteFilter.addEventListener("change", renderQuotes);
-    resetProductForm.addEventListener("click", () => {
-      productForm.reset();
-      productForm.elements.active.checked = true;
-      productFormMessage.textContent = "Formulario limpio.";
+    adminScreenLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        setAdminScreen(link.dataset.adminTarget, { updateHash: true });
+      });
     });
 
-    productForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const form = new FormData(productForm);
-      const product = Object.fromEntries(form.entries());
-      product.price = Number(product.price || 0);
-      product.compareAtPrice = Number(product.compareAtPrice || 0);
-      product.cost = Number(product.cost || 0);
-      product.stock = Number(product.stock || 0);
-      product.lowStockThreshold = Number(product.lowStockThreshold || 3);
-      product.sortOrder = Number(product.sortOrder || 0);
-      product.active = productForm.elements.active.checked;
-      product.featured = productForm.elements.featured.checked;
-      product.ingredients = String(product.ingredients || "").split(",").map((item) => item.trim()).filter(Boolean);
-      product.benefits = String(product.benefits || "").split(",").map((item) => item.trim()).filter(Boolean);
-      product.tags = String(product.tags || "").split(",").map((item) => item.trim()).filter(Boolean);
-      product.skinTypes = String(product.skinTypes || "").split(",").map((item) => item.trim()).filter(Boolean);
-      product.routines = String(product.routines || "").split(",").map((item) => item.trim()).filter(Boolean);
-      product.image = product.image || "./assets/catalogo-web/branding/logo-exel.webp";
-      try {
-        await upsertProduct(product);
-        productFormMessage.textContent = "Producto guardado en Firebase.";
-        productForm.reset();
-        await loadData();
-      } catch (error) {
-        productFormMessage.textContent = `No se pudo guardar: ${error.message}`;
-      }
-    });
+    window.addEventListener("popstate", () => setAdminScreen(window.location.hash.slice(1)));
 
-    onUserChange(async (user, status) => {
-      if (!status?.configured) {
-        adminStatus.textContent = status.message;
-        return;
-      }
+    onUserChange(async (user) => {
       if (!user) {
-        adminStatus.textContent = "Inicia sesion con Google para administrar.";
+        adminStatus.textContent = "Inicia sesión con tu cuenta Google para acceder al panel.";
         loginAdmin.classList.remove("hidden");
-        return;
-      }
-      if (!isAdminUser(user)) {
-        adminStatus.textContent = `Sin acceso admin para ${user.email}.`;
+        refreshAdmin.classList.add("hidden");
+        adminContent.classList.add("hidden");
         return;
       }
 
+      access = await getUserAccess(user);
+      if (!access.admin) {
+        await upsertUserProfile(user);
+        for (let attempt = 0; attempt < 3 && !access.admin; attempt += 1) {
+          await new Promise((resolve) => setTimeout(resolve, 1200));
+          access = await getUserAccess(user, true);
+        }
+      }
+      if (!access.admin) {
+        adminStatus.textContent = `La cuenta ${user.email} no tiene permisos administrativos activos.`;
+        loginAdmin.classList.add("hidden");
+        refreshAdmin.classList.add("hidden");
+        adminContent.classList.add("hidden");
+        return;
+      }
+
+      adminUserName.textContent = user.displayName ? user.displayName.split(" ")[0] : "Mi cuenta";
+      adminStatus.textContent = `Conectado como ${user.email}.`;
       loginAdmin.classList.add("hidden");
       refreshAdmin.classList.remove("hidden");
       adminContent.classList.remove("hidden");
+      teamPanel.classList.toggle("hidden", !access.superAdmin);
+      teamNavLink.classList.toggle("hidden", !access.superAdmin);
+      teamNavLink.classList.toggle("flex", access.superAdmin);
+      setAdminScreen(window.location.hash.slice(1));
       await loadData();
+    });
+
+    loginAdmin.addEventListener("click", () => loginWithGoogle());
+    refreshAdmin.addEventListener("click", () => loadData());
+    const resetInventoryPagination = () => {
+      inventoryPage = 1;
+      renderProducts();
+    };
+    productSearch.addEventListener("input", resetInventoryPagination);
+    lineFilter.addEventListener("change", resetInventoryPagination);
+    stockFilter.addEventListener("change", resetInventoryPagination);
+    quoteFilter.addEventListener("change", renderQuotes);
+    orderFilter.addEventListener("change", renderOrders);
+    orderSearch?.addEventListener("input", renderOrders);
+    orderDateFrom?.addEventListener("change", renderOrders);
+    productForm.addEventListener("input", (event) => {
+      if (event.target.name === "name") syncAutomaticProductId();
+      if (["name", "line"].includes(event.target.name)) syncCommercialSuggestions();
+      if (["name", "line", "sku"].includes(event.target.name)) syncVariantSkus();
+      renderProductPreview();
+    });
+    productForm.addEventListener("change", renderProductPreview);
+    addVariant.addEventListener("click", () => {
+      const row = document.createRange().createContextualFragment(variantRowHtml()).firstElementChild;
+      variantList.append(row);
+      bindVariantRow(row);
+      renderProductPreview();
+      window.refreshExelIcons?.();
+    });
+    productImageFile.addEventListener("change", async () => {
+      const file = productImageFile.files?.[0];
+      if (!file) return;
+      productImageStatus.textContent = "Optimizando y convirtiendo la imagen a WebP…";
+      try {
+        const webpBlob = await convertProductImageToWebp(file);
+        if (pendingProductImagePreviewUrl) URL.revokeObjectURL(pendingProductImagePreviewUrl);
+        pendingProductImageBlob = webpBlob;
+        pendingProductImagePreviewUrl = URL.createObjectURL(webpBlob);
+        productImageStatus.textContent = `Lista para guardar como WebP (${Math.round(webpBlob.size / 1024)} KB).`;
+        renderProductPreview();
+      } catch (error) {
+        clearPendingProductImage();
+        productImageStatus.textContent = error.message;
+      }
+    });
+    renderVariantRows([{}]);
+    setProductFormMode();
+    renderProductPreview();
+
+    resetProductForm.addEventListener("click", () => {
+      productForm.reset();
+      delete productForm.dataset.editingId;
+      clearPendingProductImage();
+      productForm.elements.active.value = "true";
+      productForm.elements.id.value = "";
+      renderVariantRows([{}]);
+      setProductFormMode();
+      productImageStatus.textContent = "Acepta imágenes de hasta 12 MB. Antes de guardar se optimiza y convierte automáticamente a WebP.";
+      productFormMessage.textContent = "Formulario limpio.";
+      renderProductPreview();
+    });
+
+    newProductButton.addEventListener("click", () => resetProductForm.click());
+
+    productForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        productFormMessage.textContent = "Guardando fórmula...";
+        saveProductButton.disabled = true;
+        saveProductButton.classList.add("opacity-60", "cursor-wait");
+        const formData = new FormData(productForm);
+        const data = Object.fromEntries(formData.entries());
+        delete data.imageFile;
+        if (!data.id) data.id = makeUniqueProductId(data.name);
+        data.active = productForm.elements.active.value !== "false";
+        data.featured = productForm.elements.featured.checked;
+        data.variants = getFormVariants(data.id);
+        if (!data.variants.length) throw new Error("Agrega al menos una presentación antes de publicar.");
+        const invalidVariant = data.variants.find((variant) => variant.active !== false && (!variant.price || !variant.sku || !variant.stockDefined));
+        if (invalidVariant) throw new Error("Cada presentación disponible necesita precio y stock para publicarse.");
+        data.variants.forEach((variant) => delete variant.stockDefined);
+        const duplicateSku = data.variants.map((variant) => variant.sku).filter(Boolean).find((sku, index, skus) => skus.indexOf(sku) !== index);
+        if (duplicateSku) throw new Error(`El SKU ${duplicateSku} está repetido entre presentaciones.`);
+        const purchasableVariants = data.variants.filter((variant) => variant.active !== false);
+        const prices = purchasableVariants.map((variant) => Number(variant.price || 0)).filter((price) => price > 0);
+        if (!prices.length) throw new Error("Agrega precio a al menos una presentación disponible.");
+        data.price = Math.min(...prices);
+        data.stock = purchasableVariants.reduce((total, variant) => total + Number(variant.stock || 0), 0);
+        data.cost = Math.min(...purchasableVariants.map((variant) => Number(variant.cost || 0)).filter((cost) => cost > 0), 0);
+        data.lowStockThreshold = Math.max(...purchasableVariants.map((variant) => Number(variant.lowStockThreshold ?? 3)), 0);
+        if (data.ingredients) data.ingredients = data.ingredients.split(",").map((s) => s.trim()).filter(Boolean);
+        if (data.benefits) data.benefits = data.benefits.split(",").map((s) => s.trim()).filter(Boolean);
+        if (data.category) await createCategory(data.category);
+        if (pendingProductImageBlob) {
+          productFormMessage.textContent = "Subiendo imagen WebP…";
+          data.image = await uploadProductImage(data.id, pendingProductImageBlob);
+        }
+        await upsertProduct(data.id, data);
+        const wasEditing = Boolean(productForm.dataset.editingId);
+        productForm.dataset.editingId = data.id;
+        setProductFormMode("editing", data.name);
+        productFormMessage.textContent = wasEditing ? "Cambios guardados correctamente." : "Producto creado correctamente. Ya puedes seguir editándolo.";
+        clearPendingProductImage();
+        productImageStatus.textContent = "Imagen WebP guardada en el catálogo.";
+        renderProductPreview();
+        await loadData();
+      } catch (error) {
+        productFormMessage.textContent = error.message;
+      } finally {
+        saveProductButton.disabled = false;
+        saveProductButton.classList.remove("opacity-60", "cursor-wait");
+      }
+    });
+
+    productForm.addEventListener("invalid", (event) => {
+      const label = event.target.closest("label")?.innerText?.split("\n")[0] || event.target.name || "Este campo";
+      productFormMessage.textContent = `${label} es obligatorio antes de publicar.`;
+    }, true);
+
+    quickCategorySave.addEventListener("click", async () => {
+      try {
+        await createCategory(quickCategoryName.value);
+        quickCategoryName.value = "";
+        productFormMessage.textContent = "Categoría creada y seleccionada.";
+      } catch (error) {
+        productFormMessage.textContent = error.message;
+      }
+    });
+
+    quickLineSave.addEventListener("click", async () => {
+      try {
+        await createProductLine(quickLineName.value);
+        quickLineName.value = "";
+        productFormMessage.textContent = "Línea creada y seleccionada.";
+      } catch (error) {
+        productFormMessage.textContent = error.message;
+      }
+    });
+
+    quickVariantOptionSave.addEventListener("click", async () => {
+      try {
+        await createVariantOption(variantOptionType.value, quickVariantOptionName.value);
+        productFormMessage.textContent = "Opción añadida y guardada para próximos productos.";
+        quickVariantOptionName.value = "";
+      } catch (error) {
+        productFormMessage.textContent = error.message;
+      }
+    });
+
+    adminRoleForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      try {
+        adminRoleMessage.textContent = "Actualizando permiso...";
+        const data = Object.fromEntries(new FormData(adminRoleForm).entries());
+        await manageAdminAccess(data.email, data.role);
+        adminRoleMessage.textContent = "Acceso actualizado. La persona deberá refrescar su sesión para recibir el nuevo rol.";
+        adminRoleForm.reset();
+      } catch (error) {
+        adminRoleMessage.textContent = error.message;
+      }
     });
   </script>
 </body>

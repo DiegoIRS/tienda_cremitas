@@ -12,7 +12,12 @@ service cloud.firestore {
 
     function isAdmin() {
       return signedIn()
-        && request.auth.token.email in ["diegoi.rojas.santander@gmail.com"];
+        && request.auth.token.admin == true;
+    }
+
+    function isSuperAdmin() {
+      return signedIn()
+        && request.auth.token.superAdmin == true;
     }
 
     match /users/{userId} {
@@ -21,16 +26,71 @@ service cloud.firestore {
     }
 
     match /quotes/{quoteId} {
+      // A customer can create and read only their own quote.  Operational
+      // fields such as the status are exclusively managed by the admin.
       allow create: if signedIn()
-        && request.resource.data.userId == request.auth.uid;
-      allow read, update, delete: if isAdmin();
-      allow read, update, delete: if signedIn()
-        && resource.data.userId == request.auth.uid;
+        && request.resource.data.keys().hasOnly([
+          "userId", "customerEmail", "status", "cart", "totals",
+          "delivery", "coupon", "shipping", "customer", "createdAt"
+        ])
+        && request.resource.data.keys().hasAll([
+          "userId", "customerEmail", "status", "cart", "totals",
+          "delivery", "createdAt"
+        ])
+        && request.resource.data.userId == request.auth.uid
+        && request.resource.data.customerEmail == request.auth.token.email
+        && request.resource.data.status == "draft"
+        && request.resource.data.cart is list
+        && request.resource.data.cart.size() > 0
+        && request.resource.data.cart.size() <= 50
+        && request.resource.data.totals is map
+        && request.resource.data.delivery is string;
+      allow read: if isAdmin()
+        || (signedIn() && resource.data.userId == request.auth.uid);
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "status", "fulfillmentNotes", "trackingCode", "assignedTo", "updatedAt"
+        ]);
+      allow delete: if isSuperAdmin();
     }
 
     match /products/{productId} {
       allow read: if true;
       allow write: if isAdmin();
+    }
+
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /variantOptions/{optionId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /productLines/{lineId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /inventoryMovements/{movementId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /adminAudit/{auditId} {
+      allow read: if isSuperAdmin();
+      allow write: if false;
+    }
+
+    match /orders/{orderId} {
+      allow read: if isAdmin();
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly([
+          "fulfillmentStatus", "fulfillmentNotes", "trackingCode", "assignedTo", "updatedAt"
+        ]);
+      allow create, delete: if false;
     }
   }
 }

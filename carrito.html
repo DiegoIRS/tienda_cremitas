@@ -1,240 +1,272 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXEL Chile | Carrito</title>
-  <meta name="description" content="Revisa tu carrito EXEL Chile, aplica cupones, selecciona despacho y envia la solicitud por WhatsApp.">
-  <meta property="og:title" content="EXEL Chile | Carrito">
+  <title>EXEL Chile | Bolsa & Despacho</title>
+  <meta name="description" content="Revisa tu bolsa EXEL Chile, aplica cupones de cortesía, selecciona despacho y envía la solicitud por WhatsApp con atención personalizada.">
+  <meta property="og:title" content="EXEL Chile | Bolsa Profesional">
   <meta property="og:description" content="Confirma productos, descuentos y despacho antes de solicitar por WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./assets/catalogo-web/ambiente/hero-productos.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            exel: {
-              ink: "#2f2b28",
-              muted: "#706861",
-              paper: "#fbf7f1",
-              cream: "#fffdf9",
-              sand: "#f3ece2",
-              warm: "#d8c8b4",
-              graphite: "#5c524a",
-              copper: "#b8895d",
-              line: "rgba(71, 55, 42, 0.13)"
-            }
-          },
-          boxShadow: {
-            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
-            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
-          },
-          borderRadius: {
-            card: "8px"
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
   <style>
     body {
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
-        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
     }
 
-    .serif {
-      font-family: "Cormorant Garamond", serif;
+    .serif, h1, h2, h3, .font-serif, .price-display {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      background-size: 0.85em;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
   </style>
 </head>
-<body class="text-exel-ink antialiased">
-  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
-    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
-      <a class="flex items-center gap-4" href="./preview.html">
-        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
-        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+<body class="text-brand-black antialiased bg-white min-h-screen">
+  <!-- Header Navigation (Expanded Width) -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Dermocosmética Profesional</span>
+        </div>
       </a>
-      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
-        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
-        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
-        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
-        <a class="transition hover:text-exel-ink" href="./login.html?returnTo=./carrito.html">Login</a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition hover:text-brand-black no-underline" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-brand-black no-underline" href="./perfil.html">Mi Perfil</a>
+        <a class="transition hover:text-brand-black no-underline" href="./index.html#diagnostico">Test Dérmico</a>
       </nav>
-      <details class="group relative md:hidden">
-        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
-          Menu
-          <span class="transition group-open:rotate-180">⌄</span>
-        </summary>
-        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html?returnTo=./carrito.html">Login</a>
-        </nav>
-      </details>
+
+      <div class="flex items-center gap-3">
+        <!-- Cart Badge Button (Bolsa) -->
+        <a href="./carrito.html" class="inline-flex min-h-[40px] items-center gap-2 rounded-[0.25rem] border border-brand-black bg-brand-black px-3.5 text-xs font-semibold text-white shadow-card uppercase tracking-wider no-underline">
+          <span>🛍️ Bolsa</span>
+          <span id="navCartBadge" class="rounded-[0.125rem] bg-white text-brand-black px-1.5 py-0.5 text-[10px] font-bold">0</span>
+        </a>
+
+        <a href="./tienda.html" class="hidden sm:inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider no-underline">
+          <span>+ Agregar más fórmulas</span>
+        </a>
+
+        <details class="group relative md:hidden">
+          <summary class="flex min-h-[38px] cursor-pointer list-none items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+            Menú
+            <span class="transition group-open:rotate-180 text-[10px]">⌄</span>
+          </summary>
+          <nav class="absolute right-0 top-11 z-50 grid min-w-48 gap-1.5 rounded-[0.5rem] border border-brand-border bg-white p-3 text-xs font-semibold text-brand-muted shadow-lift uppercase tracking-wider" aria-label="Navegación móvil">
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html">Presentación</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./tienda.html">Tienda</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./perfil.html">Mi Perfil</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html#diagnostico">🔬 Test Dérmico</a>
+          </nav>
+        </details>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="mx-auto grid w-[min(1180px,calc(100%-32px))] gap-8 py-10 lg:grid-cols-[1fr_390px] lg:py-16">
+  <main class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 py-8 sm:py-12">
+    <section class="grid gap-8 lg:grid-cols-[1fr_420px] items-start">
       <div>
-        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Carrito profesional</p>
-        <h1 class="serif max-w-3xl text-6xl font-bold leading-none md:text-7xl">Revisa tu carrito antes de cotizar.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-exel-muted">Ajusta cantidades, aplica descuentos y selecciona despacho. Prepararemos tu solicitud para confirmar disponibilidad y entrega por WhatsApp.</p>
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Bolsa de Pedidos</p>
+        <h1 class="serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-brand-black mt-1">
+          Confirma tu Selección
+        </h1>
+        <p class="mt-3 max-w-3xl text-sm sm:text-base leading-relaxed text-brand-muted font-normal">
+          Ajusta unidades, ingresa cupones y tus datos de despacho. Prepararemos tu cotización para confirmar stock de inmediato por WhatsApp.
+        </p>
 
-        <div id="emptyCart" class="mt-8 hidden rounded-card border border-exel-line bg-white/85 p-8 text-center shadow-soft">
-          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Carrito vacio</p>
-          <h2 class="serif mt-2 text-5xl font-semibold leading-none">Aun no tienes productos.</h2>
-          <a class="mt-6 inline-flex min-h-[50px] items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1" href="./tienda.html">
-            Volver a tienda
+        <!-- Empty Cart Notice -->
+        <div id="emptyCart" class="mt-8 hidden rounded-[0.5rem] border border-brand-border bg-white p-12 text-center shadow-card space-y-3">
+          <span class="text-4xl block">🌿</span>
+          <p class="text-[11px] font-bold uppercase tracking-[0.18em] text-brand-copper">Tu bolsa está vacía</p>
+          <h2 class="serif text-3xl font-medium text-brand-black">Aún no has agregado fórmulas.</h2>
+          <a class="mt-4 inline-flex min-h-[46px] items-center justify-center rounded-[0.25rem] bg-brand-black px-6 text-xs font-bold uppercase tracking-wider text-white shadow-card no-underline hover:bg-brand-dark" href="./tienda.html">
+            Explorar Catálogo &rarr;
           </a>
         </div>
 
+        <!-- Cart Items List -->
         <div id="cartList" class="mt-8 grid gap-4"></div>
 
-        <section class="mt-8 rounded-card border border-exel-line bg-white/85 p-5 shadow-soft">
+        <!-- Promo Banner -->
+        <section class="mt-8 rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
           <div class="flex items-start gap-4">
-            <span class="grid h-11 w-11 shrink-0 place-items-center rounded-card bg-exel-sand text-exel-copper">
-              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M4 7h16M7 7V5h10v2M6 7l1 12h10l1-12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
+            <span class="grid h-10 w-10 shrink-0 place-items-center rounded-[0.25rem] bg-brand-light text-brand-copper text-lg border border-brand-border">
+              🏷️
             </span>
             <div>
-              <h2 class="serif text-4xl font-semibold leading-none">Beneficios para tu compra</h2>
-              <p class="mt-3 leading-7 text-exel-muted">Usa <strong>EXEL10</strong> para 10% de descuento, <strong>INSUMOS5</strong> para 5% en compras de insumos, o <strong>ENVIOGRATIS</strong> para retirar el costo de despacho.</p>
+              <h2 class="serif text-2xl font-medium text-brand-black">Cupones & Cortesías</h2>
+              <p class="mt-1.5 text-xs leading-relaxed text-brand-muted font-normal">
+                Usa <strong>EXEL10</strong> para 10% de descuento en tu orden, <strong>INSUMOS5</strong> para 5% en insumos de cabina, o <strong>ENVIOGRATIS</strong> para anular el costo de despacho.
+              </p>
             </div>
           </div>
         </section>
 
-        <section class="mt-4 grid gap-3 sm:grid-cols-3">
-          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-            <strong class="block text-sm">Despacho confirmado</strong>
-            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Validamos cobertura y costo antes de cerrar la compra.</span>
+        <!-- Guarantees Cards -->
+        <section class="mt-4 grid gap-4 sm:grid-cols-3">
+          <div class="rounded-[0.5rem] border border-brand-border bg-white p-5 shadow-card">
+            <strong class="block text-xs font-bold text-brand-black">Despacho Confiable</strong>
+            <span class="mt-1 block text-[11px] leading-relaxed text-brand-muted font-normal">Validamos cobertura y trazabilidad antes del cobro.</span>
           </div>
-          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-            <strong class="block text-sm">Asesoria profesional</strong>
-            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Te ayudamos a elegir segun rutina, piel o necesidad.</span>
+          <div class="rounded-[0.5rem] border border-brand-border bg-white p-5 shadow-card">
+            <strong class="block text-xs font-bold text-brand-black">Asesoría Botánica</strong>
+            <span class="mt-1 block text-[11px] leading-relaxed text-brand-muted font-normal">Te guiamos en la rutina según tu diagnóstico de piel.</span>
           </div>
-          <div class="rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-            <strong class="block text-sm">Compra asistida</strong>
-            <span class="mt-1 block text-xs font-bold leading-5 text-exel-muted">Respondemos por WhatsApp en horario habil.</span>
+          <div class="rounded-[0.5rem] border border-brand-border bg-white p-5 shadow-card">
+            <strong class="block text-xs font-bold text-brand-black">Atención WhatsApp</strong>
+            <span class="mt-1 block text-[11px] leading-relaxed text-brand-muted font-normal">Respuesta personalizada en horario de gabinete.</span>
           </div>
         </section>
       </div>
 
-      <aside class="h-max rounded-card border border-exel-line bg-white/90 p-5 shadow-lift lg:sticky lg:top-24">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Resumen</p>
-        <h2 class="serif mt-2 text-4xl font-semibold">Total carrito</h2>
+      <!-- Checkout Summary Sidebar -->
+      <aside class="h-max rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card lg:sticky lg:top-28">
+        <p class="text-[11px] font-bold uppercase tracking-[0.16em] text-brand-copper">Resumen de Orden</p>
+        <h2 class="serif text-2xl sm:text-3xl font-medium text-brand-black mt-0.5">Total Bolsa</h2>
 
-        <label class="mt-5 block text-sm font-extrabold text-exel-muted" for="couponInput">Cupon de descuento</label>
-        <div class="mt-2 flex gap-2">
-          <input id="couponInput" class="min-h-[48px] min-w-0 flex-1 rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none transition focus:border-exel-copper" placeholder="EXEL10">
-          <button id="applyCoupon" class="rounded-card bg-exel-ink px-4 font-extrabold text-white transition hover:-translate-y-0.5" type="button">Aplicar</button>
-        </div>
-        <p id="couponMessage" class="mt-2 min-h-5 text-xs font-bold text-exel-muted"></p>
-
-        <label class="mt-5 block text-sm font-extrabold text-exel-muted" for="deliverySelect">Despacho</label>
-        <select id="deliverySelect" class="mt-2 min-h-[48px] w-full rounded-card border border-exel-line bg-exel-cream px-4 font-bold outline-none transition focus:border-exel-copper">
-          <option value="pickup">Retiro en tienda - $0</option>
-          <option value="santiago">Despacho Santiago - $3.990</option>
-          <option value="regiones">Despacho regiones - $6.990</option>
-        </select>
-
-        <div class="mt-5 grid gap-3 rounded-card border border-exel-line bg-exel-cream p-4">
-          <p class="text-sm font-extrabold text-exel-muted">Datos para preparar despacho</p>
-          <input id="customerName" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Nombre cliente">
-          <input id="customerPhone" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Telefono contacto">
-          <input id="shippingAddress" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Direccion de envio">
-          <input id="shippingCity" class="min-h-[44px] rounded-card border border-exel-line bg-white px-4 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Comuna / ciudad">
-          <textarea id="shippingNotes" class="min-h-20 rounded-card border border-exel-line bg-white px-4 py-3 text-sm font-bold outline-none transition focus:border-exel-copper" placeholder="Notas para preparar paquete"></textarea>
-        </div>
-
-        <div class="mt-6 grid gap-3 border-t border-exel-line pt-5 text-sm font-extrabold text-exel-muted">
-          <div class="flex justify-between gap-4">
-            <span>Productos</span>
-            <span id="summaryItems">0</span>
+        <!-- Coupon Input -->
+        <div class="mt-5">
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-subtle" for="couponInput">Cupón de Descuento</label>
+          <div class="mt-1.5 flex gap-2">
+            <input id="couponInput" class="h-10 min-w-0 flex-1 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none transition focus:border-brand-black" placeholder="Ej: EXEL10">
+            <button id="applyCoupon" class="rounded-[0.25rem] bg-brand-black px-4 text-xs font-bold uppercase tracking-wider text-white transition hover:bg-brand-dark" type="button">Aplicar</button>
           </div>
-          <div class="flex justify-between gap-4">
+          <p id="couponMessage" class="mt-1.5 min-h-4 text-[11px] font-bold text-brand-copper"></p>
+        </div>
+
+        <!-- Delivery Option -->
+        <div class="mt-3">
+          <label class="block text-[11px] font-bold uppercase tracking-wider text-brand-subtle" for="deliverySelect">Método de Entrega</label>
+          <select id="deliverySelect" class="mt-1.5 h-10 w-full rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs text-brand-black outline-none transition focus:border-brand-black">
+            <option value="pickup">Retiro en showroom / tienda - $0</option>
+            <option value="santiago">Despacho Santiago Urbano - $3.990</option>
+            <option value="regiones">Despacho a Regiones - $6.990</option>
+          </select>
+        </div>
+
+        <!-- Shipping Data Form -->
+        <div class="mt-5 grid gap-2.5 rounded-[0.25rem] border border-brand-border bg-brand-light p-4">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-brand-black">Datos para el Envío</p>
+          <input id="customerName" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none transition focus:border-brand-black" placeholder="Nombre completo">
+          <input id="customerPhone" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none transition focus:border-brand-black" placeholder="Teléfono WhatsApp (+56 9...)">
+          <input id="shippingAddress" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none transition focus:border-brand-black" placeholder="Calle y número de domicilio">
+          <input id="shippingCity" class="h-9 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs outline-none transition focus:border-brand-black" placeholder="Comuna / Ciudad">
+          <textarea id="shippingNotes" class="h-16 rounded-[0.25rem] border border-brand-border bg-white p-2.5 text-xs outline-none transition focus:border-brand-black resize-none" placeholder="Instrucciones para conserjería o courier"></textarea>
+        </div>
+
+        <!-- Subtotals breakdown -->
+        <div class="mt-5 grid gap-2 border-t border-brand-border pt-4 text-xs font-medium text-brand-muted">
+          <div class="flex justify-between">
+            <span>Fórmulas</span>
+            <span id="summaryItems" class="font-bold text-brand-black">0</span>
+          </div>
+          <div class="flex justify-between">
             <span>Subtotal</span>
-            <span id="summarySubtotal">$0</span>
+            <span id="summarySubtotal" class="font-bold text-brand-black">$0</span>
           </div>
-          <div class="flex justify-between gap-4">
+          <div class="flex justify-between">
             <span>Descuento</span>
-            <span id="summaryDiscount">$0</span>
+            <span id="summaryDiscount" class="text-brand-copper font-bold">$0</span>
           </div>
-          <div class="flex justify-between gap-4">
+          <div class="flex justify-between">
             <span>Despacho</span>
-            <span id="summaryDelivery">$0</span>
+            <span id="summaryDelivery" class="font-bold text-brand-black">$0</span>
           </div>
         </div>
 
-        <div class="mt-5 rounded-card bg-exel-sand p-4">
-          <span class="block text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted">Total estimado</span>
-          <strong id="summaryTotal" class="mt-1 block text-4xl">$0</strong>
+        <!-- Final Total in Bodoni/Playfair -->
+        <div class="mt-4 rounded-[0.25rem] bg-brand-light border border-brand-border p-4">
+          <span class="block text-[10px] font-bold uppercase tracking-wider text-brand-subtle">Total Estimado</span>
+          <strong id="summaryTotal" class="serif mt-0.5 block text-3xl font-bold text-brand-black">$0</strong>
         </div>
 
-        <div id="checkoutStatus" class="mt-4 grid gap-2 rounded-card border border-exel-line bg-exel-cream p-4 text-xs font-bold text-exel-muted"></div>
+        <div id="checkoutStatus" class="mt-3.5 grid gap-1.5 rounded-[0.25rem] border border-brand-border bg-white p-3 text-[11px] font-normal text-brand-muted"></div>
 
-        <a id="checkoutWhatsapp" class="mt-5 inline-flex min-h-[52px] w-full items-center justify-center gap-2 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#" target="_blank" rel="noreferrer">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M5 6h2l1.5 9h8.5l2-6H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M10 20h.01M17 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-          </svg>
-          Enviar carrito por WhatsApp
+        <!-- Main Action Buttons -->
+        <a id="checkoutWhatsapp" class="mt-4 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-[0.25rem] bg-brand-black px-5 text-xs font-bold uppercase tracking-wider text-white shadow-card transition hover:bg-brand-dark hover:shadow-lift no-underline" href="#" target="_blank" rel="noreferrer">
+          <span>💬 Enviar Pedido por WhatsApp</span>
         </a>
-        <button id="saveQuote" class="mt-3 inline-flex min-h-[46px] w-full items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">
-          Guardar cotizacion
+
+        <button id="saveQuote" class="mt-2.5 inline-flex min-h-[40px] w-full items-center justify-center rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-bold uppercase tracking-wider text-brand-black shadow-card transition hover:bg-brand-light" type="button">
+          Guardar Cotización
         </button>
-        <p id="saveQuoteMessage" class="mt-2 min-h-5 text-xs font-bold text-exel-muted"></p>
-        <button id="clearCart" class="mt-3 inline-flex min-h-[46px] w-full items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" type="button">
-          Vaciar carrito
+        <p id="saveQuoteMessage" class="mt-1 min-h-4 text-[10px] font-bold text-brand-copper text-center"></p>
+
+        <button id="clearCart" class="mt-1 inline-flex min-h-[36px] w-full items-center justify-center rounded-[0.25rem] text-[11px] font-bold uppercase tracking-wider text-brand-subtle hover:text-red-700 transition" type="button">
+          Vaciar Bolsa
         </button>
-        <p class="mt-3 text-xs leading-5 text-exel-muted">Confirmamos disponibilidad, descuentos y costo final de despacho antes de cerrar la compra.</p>
       </aside>
     </section>
   </main>
 
+  <!-- Cart Row Template -->
   <template id="cartItemTemplate">
-    <article class="cart-row rounded-card border border-exel-line bg-white/85 p-4 shadow-soft">
-      <div class="grid gap-4 sm:grid-cols-[116px_1fr_auto] sm:items-center">
-        <a class="detail-link overflow-hidden rounded-card bg-exel-sand" href="#">
-          <img class="product-image h-32 w-full object-cover sm:h-28" alt="">
+    <article class="cart-row rounded-[0.5rem] border border-brand-border bg-white p-4 shadow-card">
+      <div class="grid gap-4 sm:grid-cols-[100px_1fr_auto] sm:items-center">
+        <a class="detail-link overflow-hidden rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border" href="#">
+          <img class="product-image max-h-24 w-auto object-contain" alt="">
         </a>
-        <div>
-          <p class="product-line text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper"></p>
-          <a class="detail-link name-link block transition hover:text-exel-copper" href="#">
-            <h3 class="product-name serif mt-1 text-3xl font-semibold leading-none"></h3>
+        <div class="space-y-1">
+          <p class="product-line text-[9px] font-bold uppercase tracking-[0.16em] text-brand-copper"></p>
+          <a class="detail-link name-link block transition hover:text-brand-copper no-underline" href="#">
+            <h3 class="product-name font-sans text-sm sm:text-base font-bold leading-snug text-brand-black"></h3>
           </a>
-          <p class="product-meta mt-2 text-sm font-bold text-exel-muted"></p>
-          <p class="product-price mt-2 text-sm font-extrabold text-exel-ink"></p>
+          <p class="product-meta text-xs text-brand-muted font-normal"></p>
+          <p class="product-price serif text-sm font-bold text-brand-black"></p>
         </div>
         <div class="flex items-center justify-between gap-3 sm:block">
-          <div class="flex items-center gap-2 rounded-card bg-exel-sand p-1">
-            <button class="decrease grid h-10 w-10 place-items-center rounded-card border border-exel-line bg-white font-extrabold text-exel-muted transition hover:text-exel-ink" type="button" aria-label="Disminuir cantidad">-</button>
-            <span class="quantity grid h-10 min-w-12 place-items-center rounded-card bg-exel-cream px-3 font-extrabold">1</span>
-            <button class="increase grid h-10 w-10 place-items-center rounded-card bg-exel-ink font-extrabold text-white transition hover:-translate-y-0.5" type="button" aria-label="Aumentar cantidad">+</button>
+          <div class="flex items-center gap-1.5 rounded-[0.25rem] bg-brand-light border border-brand-border p-1">
+            <button class="decrease grid h-8 w-8 place-items-center rounded-[0.125rem] bg-white text-xs font-bold text-brand-dark transition hover:bg-gray-100 border border-brand-border" type="button" aria-label="Disminuir cantidad">-</button>
+            <span class="quantity grid h-8 min-w-8 place-items-center text-xs font-bold text-brand-black">1</span>
+            <button class="increase grid h-8 w-8 place-items-center rounded-[0.125rem] bg-brand-black text-xs font-bold text-white transition hover:bg-brand-dark" type="button" aria-label="Aumentar cantidad">+</button>
           </div>
-          <button class="remove mt-0 text-sm font-extrabold text-exel-muted transition hover:text-exel-ink sm:mt-3 sm:w-full" type="button">Eliminar</button>
+          <button class="remove mt-0 text-[11px] font-bold uppercase tracking-wider text-brand-subtle hover:text-red-700 transition sm:mt-2.5 sm:block sm:w-full text-center" type="button">Eliminar</button>
         </div>
       </div>
     </article>
   </template>
 
+  <!-- Footer -->
+  <footer class="border-t border-brand-border bg-white py-12 text-xs text-brand-muted font-normal mt-16">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img class="h-6 w-auto opacity-80" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Chile">
+        <span>&copy; 2026 EXEL Chile. Dermocosmética Profesional.</span>
+      </div>
+      <div class="flex gap-6 uppercase font-semibold text-[11px] tracking-wider">
+        <a href="./tienda.html" class="hover:text-brand-black">Tienda</a>
+        <a href="./carrito.html" class="hover:text-brand-black">Carrito</a>
+        <a href="https://wa.me/56981681536" target="_blank" rel="noreferrer" class="hover:text-brand-black">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
   <script src="./data/site-config.js"></script>
-  <script src="./data/product-data.js"></script>
+  <script src="./data/product-data.js?v=20260831-variants"></script>
   <script>
     const site = window.EXEL_SITE;
     const coupons = {
       EXEL10: { label: "10% de descuento", type: "percent", value: 0.1 },
-      INSUMOS5: { label: "5% en compra de insumos", type: "insumos", value: 0.05 },
-      ENVIOGRATIS: { label: "Despacho gratis", type: "shipping", value: 1 }
+      INSUMOS5: { label: "5% en insumos", type: "insumos", value: 0.05 },
+      ENVIOGRATIS: { label: "Despacho cortesía", type: "shipping", value: 1 }
     };
     const formatter = site.currencyFormatter;
 
@@ -273,8 +305,8 @@
 
     function deliveryCost(subtotal) {
       if (state.delivery === "pickup") return 0;
-      if (state.delivery === "santiago") return subtotal >= 60000 ? 0 : 3990;
-      return 6990;
+      if (state.delivery === "santiago") return subtotal >= 50000 ? 0 : 3990;
+      return subtotal >= 50000 ? 0 : 6990;
     }
 
     function calculateTotals() {
@@ -328,7 +360,7 @@
         node.querySelector(".product-line").textContent = item.line;
         node.querySelector(".product-name").textContent = item.name;
         node.querySelector(".product-meta").textContent = `${item.label} · ${item.size}`;
-        node.querySelector(".product-price").textContent = `${formatter.format(item.price)} c/u · ${formatter.format(item.price * item.quantity)}`;
+        node.querySelector(".product-price").textContent = `${formatter.format(item.price)} c/u · Total: ${formatter.format(item.price * item.quantity)}`;
         node.querySelector(".quantity").textContent = item.quantity;
         node.querySelector(".decrease").addEventListener("click", () => updateQuantity(item.name, -1));
         node.querySelector(".increase").addEventListener("click", () => updateQuantity(item.name, 1));
@@ -345,33 +377,33 @@
       document.querySelector("#summaryTotal").textContent = formatter.format(totals.total);
 
       const deliveryLabel = deliverySelect.options[deliverySelect.selectedIndex].textContent;
-      const couponText = state.coupon ? `Cupon aplicado: ${state.coupon}` : "Sin cupon";
+      const couponText = state.coupon ? `Cupón: ${state.coupon}` : "Sin cupón";
       const hasShippingAddress = state.delivery === "pickup" || shippingAddress.value.trim();
       checkoutStatus.innerHTML = `
-        <div class="flex items-center justify-between gap-3">
+        <div class="flex items-center justify-between">
           <span>Estado</span>
-          <strong class="${totals.items ? "text-exel-ink" : "text-exel-muted"}">${totals.items ? "Listo para solicitar" : "Carrito vacio"}</strong>
+          <strong class="${totals.items ? "text-brand-black" : "text-brand-subtle"} font-bold">${totals.items ? "Listo para solicitar" : "Bolsa vacía"}</strong>
         </div>
-        <div class="flex items-center justify-between gap-3">
-          <span>Cupon</span>
-          <strong class="${state.coupon ? "text-exel-copper" : "text-exel-muted"}">${state.coupon || "No aplicado"}</strong>
+        <div class="flex items-center justify-between">
+          <span>Cupón</span>
+          <strong class="${state.coupon ? "text-brand-copper" : "text-brand-subtle"} font-bold">${state.coupon || "Ninguno"}</strong>
         </div>
-        <div class="flex items-center justify-between gap-3">
-          <span>Despacho</span>
-          <strong class="text-exel-ink">${deliveryLabel}</strong>
+        <div class="flex items-center justify-between">
+          <span>Entrega</span>
+          <strong class="text-brand-black font-bold">${deliveryLabel}</strong>
         </div>
-        <div class="flex items-center justify-between gap-3">
-          <span>Direccion</span>
-          <strong class="${hasShippingAddress ? "text-exel-ink" : "text-exel-copper"}">${hasShippingAddress ? "Registrada" : "Pendiente"}</strong>
+        <div class="flex items-center justify-between">
+          <span>Domicilio</span>
+          <strong class="${hasShippingAddress ? "text-brand-black" : "text-brand-copper"} font-bold">${hasShippingAddress ? "Registrado" : "Pendiente"}</strong>
         </div>
       `;
-      const lines = totals.normalized.map((item) => `- ${item.quantity}x ${item.name} (${item.size})`).join("\n");
+      const lines = totals.normalized.map((item) => `• ${item.quantity}x ${item.name} (${item.size}) - ${formatter.format(item.price * item.quantity)}`).join("\n");
       const addressText = state.delivery === "pickup"
-        ? "Retiro en tienda"
-        : `${shippingAddress.value.trim() || "Direccion pendiente"}, ${shippingCity.value.trim() || "comuna pendiente"}`;
+        ? "Retiro en showroom"
+        : `${shippingAddress.value.trim() || "Dirección pendiente"}, ${shippingCity.value.trim() || "Comuna pendiente"}`;
       const message = totals.items
-        ? `Hola, quiero solicitar este carrito EXEL:\n${lines}\n${couponText}\nDespacho: ${deliveryLabel}\nDireccion: ${addressText}\nTotal estimado: ${formatter.format(totals.total)}`
-        : "Hola, quiero solicitar productos EXEL.";
+        ? `Hola EXEL Chile, deseo confirmar el siguiente pedido:\n${lines}\n\n${couponText}\nEntrega: ${deliveryLabel}\nDirección: ${addressText}\n\nTotal estimado: ${formatter.format(totals.total)}`
+        : "Hola EXEL Chile, deseo cotizar productos del catálogo.";
       document.querySelector("#checkoutWhatsapp").href = site.buildWhatsAppUrl(message);
       window.EXEL_CART_STATE = {
         cart: totals.normalized,
@@ -405,13 +437,13 @@
       const code = couponInput.value.trim().toUpperCase();
       if (!code) {
         state.coupon = "";
-        couponMessage.textContent = "Sin cupon aplicado.";
+        couponMessage.textContent = "Sin cupón.";
       } else if (coupons[code]) {
         state.coupon = code;
-        couponMessage.textContent = `${code}: ${coupons[code].label} aplicado.`;
+        couponMessage.textContent = `✓ ${code}: ${coupons[code].label}`;
       } else {
         state.coupon = "";
-        couponMessage.textContent = "Cupon no valido.";
+        couponMessage.textContent = "Cupón no válido.";
       }
       render();
     });
@@ -436,39 +468,50 @@
     render();
 
     site.loadProductsFromFirestore(products).then((loadedProducts) => {
-      products = loadedProducts;
-      state.cart = state.cart.map(normalizeCartItem);
-      saveCart();
-      render();
+      if (loadedProducts && loadedProducts.length > 0) {
+        products = loadedProducts;
+        state.cart = state.cart.map(normalizeCartItem);
+        saveCart();
+        render();
+      }
     });
   </script>
   <script type="module">
     import { getFirebaseStatus, saveQuote } from "./data/firebase-client.js";
 
-    const message = document.querySelector("#saveQuoteMessage");
-    const button = document.querySelector("#saveQuote");
-    const status = getFirebaseStatus();
+    const saveQuoteButton = document.querySelector("#saveQuote");
+    const saveQuoteMessage = document.querySelector("#saveQuoteMessage");
 
-    if (!status.configured) {
-      message.textContent = "Firestore queda listo al completar data/firebase-config.js.";
-    }
+    saveQuoteButton.addEventListener("click", async () => {
+      const quote = window.EXEL_CART_STATE;
+      if (!quote?.cart?.length) {
+        saveQuoteMessage.textContent = "Agrega productos a tu bolsa antes de guardar la cotización.";
+        return;
+      }
 
-    button.addEventListener("click", async () => {
+      const firebaseStatus = getFirebaseStatus();
+      if (!firebaseStatus.configured) {
+        saveQuoteMessage.textContent = "La cotización en línea aún no está disponible.";
+        return;
+      }
+
+      if (!firebaseStatus.auth.currentUser) {
+        saveQuoteMessage.textContent = "Inicia sesión en tu cuenta para guardar la cotización.";
+        return;
+      }
+
+      saveQuoteButton.disabled = true;
+      saveQuoteButton.textContent = "Guardando cotización...";
+      saveQuoteMessage.textContent = "";
+
       try {
-        if (!window.EXEL_CART_STATE?.cart?.length) {
-          message.textContent = "Agrega productos antes de guardar la cotizacion.";
-          return;
-        }
-        if (window.EXEL_CART_STATE.delivery !== "pickup" && !window.EXEL_CART_STATE.shipping?.address) {
-          message.textContent = "Agrega la direccion de envio antes de guardar.";
-          return;
-        }
-
-        message.textContent = "Guardando cotizacion...";
-        const docRef = await saveQuote(window.EXEL_CART_STATE);
-        message.textContent = `Cotizacion guardada: ${docRef.id}`;
+        await saveQuote(quote);
+        saveQuoteMessage.textContent = "Cotización guardada. La encontrarás en tu perfil.";
       } catch (error) {
-        message.textContent = error.message;
+        saveQuoteMessage.textContent = error.message || "No fue posible guardar la cotización.";
+      } finally {
+        saveQuoteButton.disabled = false;
+        saveQuoteButton.textContent = "Guardar Cotización";
       }
     });
   </script>

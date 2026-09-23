@@ -11,6 +11,8 @@
     description: "Gel facial ligero para retirar impurezas sin alterar el pH cutaneo.",
     use: "Aplicar sobre rostro humedo, masajear suavemente y enjuagar con agua tibia.",
     ingredients: ["Yerba mate", "Te verde", "Centella", "Manzanilla"],
+    inci: "ILEX PARAGUARIENSIS LEAF EXTRACT, LAURYL GLUCOSIDE, GLYCERIN, CAPRYLOYL/CAPROYL METHYL GLUCAMIDE, WATER (AQUA), XANTHAN GUM, CITRIC ACID, SODIUM LEVULINATE, CAMELLIA SINENSIS LEAF EXTRACT, CHAMOMILLA RECUTITA EXTRACT, CENTELLA ASIATICA EXTRACT, POTASSIUM SORBATE, ACACIA SENEGAL GUM, CITRUS LIMON PEEL OIL.",
+    inciSource: "https://exelgreenline.com/products/gel-de-limpieza",
     benefits: ["Limpieza diaria", "No altera el pH", "Deja la piel luminosa"]
   },
   {
@@ -25,6 +27,8 @@
     description: "Locion facial revitalizante con probioticos y extractos vegetales.",
     use: "Brumizar sobre rostro, cuello y escote preferentemente con la piel limpia.",
     ingredients: ["Te negro fermentado", "Hamamelis", "Aloe vera", "Extractos patagonicos"],
+    inci: "WATER (AQUA), PROPANEDIOL, GLYCERIN, SACCHAROMYCES/XYLINUM/BLACK TEA FERMENT, YEAST EXTRACT, ALOE BARBADENSIS LEAF EXTRACT, HAMAMELIS VIRGINIANA LEAF EXTRACT, SODIUM LEVULINATE, ALLANTOIN, POTASSIUM SORBATE, CARAMEL, ALCOHOL, SODIUM PCA, PLANTAGO LANCEOLATA LEAF EXTRACT, FABIANA IMBRICATA LEAF/STEM EXTRACT, VERBASCUM THAPSUS EXTRACT, ACHYROCLINE SATUREIOIDES FLOWER EXTRACT, CHAMOMILLA RECUTITA OIL.",
+    inciSource: "https://exelgreenline.com/products/esencia-de-te-de-kombucha",
     benefits: ["Revitaliza", "Aporta tonicidad", "Ayuda a recuperar luminosidad"]
   },
   {
@@ -39,6 +43,8 @@
     description: "Humectacion intensa con efecto de relleno para luminosidad y firmeza.",
     use: "Aplicar unas gotas sobre rostro y cuello luego de limpiar y tonificar.",
     ingredients: ["Acido hialuronico", "Acido poliglutamico", "Aloe vera", "Pantenol"],
+    inci: "ALOE BARBADENSIS LEAF EXTRACT, WATER (AQUA), PROPANEDIOL, SODIUM HYALURONATE, GLYCERIN, SODIUM LEVULINATE, SODIUM POLYGLUTAMATE, PANTHENOL, POTASSIUM SORBATE, ALCOHOL, SODIUM PCA, PLANTAGO LANCEOLATA LEAF EXTRACT, FABIANA IMBRICATA LEAF/STEM EXTRACT, VERBASCUM THAPSUS EXTRACT, ACHYROCLINE SATUREIOIDES FLOWER EXTRACT.",
+    inciSource: "https://exelgreenline.com/products/serum-reforzador-super-hidratante",
     benefits: ["Humectacion intensa", "Efecto filler", "Flexibilidad y firmeza"]
   },
   {
@@ -53,6 +59,8 @@
     description: "Serum antioxidante para iluminar y proteger frente a polucion.",
     use: "Aplicar unas gotas en rostro y cuello con suaves tecleos hasta su absorcion.",
     ingredients: ["Acido ascorbico", "Yuzu", "Maqui", "Acido ferulico"],
+    inci: "CITRUS JUNOS FRUIT EXTRACT, PROPANEDIOL, ASCORBIC ACID, WATER (AQUA), SODIUM HYALURONATE, GLYCERIN, ARISTOTELIA CHILENSIS FRUIT EXTRACT, FERULIC ACID, CAPRYLYL GLYCOL.",
+    inciSource: "https://exelgreenline.com/products/serum-iluminador",
     benefits: ["Ilumina", "Accion antioxidante", "Ayuda a mejorar la apariencia de firmeza"]
   },
   {
@@ -61,12 +69,21 @@
     line: "Green Line",
     concern: "reparacion",
     label: "Regenerativo",
-    size: "30 ml",
-    price: 31990,
+    size: "15 ml · 30 ml · 50 ml",
+    price: 19990,
+    stock: 28,
+    lowStockThreshold: 3,
+    variants: [
+      { id: "serum-regenerativo-v1", size: "15 ml", sku: "EXEL-SR-015", price: 19990, stock: 10, active: true },
+      { id: "serum-regenerativo-v2", size: "30 ml", sku: "EXEL-SR-030", price: 31990, stock: 12, active: true },
+      { id: "serum-regenerativo-v3", size: "50 ml", sku: "EXEL-SR-050", price: 45990, stock: 6, active: true }
+    ],
     image: "./assets/catalogo-web/productos/green-line/serum-retinol-vegano.webp",
     description: "Retinol vegano para atenuar lineas finas y unificar visualmente el tono.",
     use: "Aplicar por la noche sobre rostro y cuello, evitando contacto directo con ojos.",
     ingredients: ["Bakuchiol", "Rosa mosqueta", "Escualeno vegetal", "Niacinamida"],
+    inci: "WATER (AQUA), COCO-CAPRYLATE/CAPRATE, CETEARYL ALCOHOL, SUCROSE POLYSTEARATE, SQUALENE, BAKUCHIOL, GLYCERYL CITRATE/LACTATE/LINOLEATE/OLEATE, NIACINAMIDE, SODIUM LEVULINATE, ACACIA SENEGAL GUM, XANTHAN GUM, POTASSIUM SORBATE, PHOSPHOLIPIDS, ROSA MOSCHATA OIL, ALCOHOL, SODIUM BENZOATE, POTASSIUM PHOSPHATE, TOCOPHEROL.",
+    inciSource: "https://exelgreenline.com/products/serum-regenerativo",
     benefits: ["Atenua lineas finas", "Mejora textura", "Apoya tono uniforme"]
   },
   {
@@ -81,6 +98,8 @@
     description: "Crema liviana con Bakuchiol y Rosa Mosqueta para firmeza y nutricion.",
     use: "Aplicar sobre rostro, cuello y escote luego de limpiar y tonificar.",
     ingredients: ["Bakuchiol", "Rosa mosqueta", "Malva", "Aceite de argan"],
+    inci: "WATER (AQUA), COCO-CAPRYLATE/CAPRATE, GLYCERYL STEARATE S.E., PROPANEDIOL, CETYL ALCOHOL, GLYCERYL CITRATE/LACTATE/LINOLEATE/OLEATE, ALOE BARBADENSIS LEAF EXTRACT, ARGANIA SPINOSA KERNEL OIL, SIMMONDSIA CHINENSIS SEED OIL, CETEARYL ALCOHOL, SUCROSE COCOATE, BAKUCHIOL, CHAMOMILLA RECUTITA FLOWER EXTRACT, MALVA SYLVESTRIS FLOWER EXTRACT, TOCOPHERYL ACETATE, SODIUM LEVULINATE, POTASSIUM SORBATE, PHOSPHOLIPIDS, ROSA MOSCHATA OIL, ALCOHOL, SODIUM BENZOATE, POTASSIUM PHOSPHATE, TOCOPHEROL.",
+    inciSource: "https://exelgreenline.com/products/bakuchiol-crema-multi-reparadora",
     benefits: ["Nutre", "Suaviza", "Ayuda a mejorar firmeza"]
   },
   {
@@ -95,6 +114,8 @@
     description: "Balsamo reparador para labios secos con humectacion y brillo natural.",
     use: "Aplicar directamente sobre labios secos tantas veces como sea necesario.",
     ingredients: ["Acido hialuronico", "Dipalmitoyl hidroxyprolina"],
+    inci: "OLUS OIL, BIS-DIGLYCERYL POLYACYLADIPATE-2, CAPRYLIC/CAPRIC TRIGLYCERIDE, BUTYROSPERMUM PARKII BUTTER, CETYL ALCOHOL, STEARALKONIUM HECTORITE, CANDELILLA CERA, RICINUS COMMUNIS SEED OIL, PROPYLENE CARBONATE, TOCOPHERYL ACETATE, DIPALMITOYL HYDROXYPROLINE, CAPRYLYL GLYCOL, FRAGRANCE (PARFUM), SODIUM LEVULINATE, POTASSIUM SORBATE, SODIUM HYALURONATE.",
+    inciSource: "https://exelgreenline.com/products/balsamo-reparador-para-labios-lip-balm",
     benefits: ["Restaura labios secos", "Suaviza lineas", "Aporta brillo natural"]
   },
   {

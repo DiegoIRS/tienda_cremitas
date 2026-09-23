@@ -1,442 +1,676 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EXEL Chile | Tienda</title>
-  <meta name="description" content="Tienda EXEL Chile con filtros por linea, rutina, tipo de piel, objetivo y precio. Solicita productos por WhatsApp con asesoria profesional.">
-  <meta property="og:title" content="EXEL Chile | Tienda profesional">
-  <meta property="og:description" content="Explora productos EXEL por linea, rutina y necesidad. Carrito rapido y solicitud por WhatsApp.">
+  <title>EXEL Chile | Boutique & Tienda Profesional</title>
+  <meta name="description" content="Tienda oficial EXEL Chile: catálogo dermocosmético profesional con filtros avanzados por línea, activo, tipo de piel y objetivo cutáneo.">
+  <meta property="og:title" content="EXEL Chile | Tienda Profesional">
+  <meta property="og:description" content="Explora productos EXEL por línea, activo y necesidad. Pedidos y asesoría directa por WhatsApp.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="./assets/catalogo-web/ambiente/hero-productos.webp">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            exel: {
-              ink: "#2f2b28",
-              muted: "#706861",
-              paper: "#fbf7f1",
-              cream: "#fffdf9",
-              sand: "#f3ece2",
-              warm: "#d8c8b4",
-              graphite: "#5c524a",
-              copper: "#b8895d",
-              line: "rgba(71, 55, 42, 0.13)"
-            }
-          },
-          boxShadow: {
-            soft: "0 18px 46px rgba(73, 55, 39, 0.13)",
-            lift: "0 24px 50px rgba(73, 55, 39, 0.16)"
-          },
-          borderRadius: {
-            card: "8px"
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/tailwind.css">
   <style>
     body {
-      font-family: "Manrope", sans-serif;
-      background:
-        radial-gradient(circle at 12% 0%, rgba(231, 211, 186, 0.5), transparent 30%),
-        linear-gradient(180deg, #fbf7f1 0%, #fffdf9 48%, #f7f0e7 100%);
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: #ffffff;
+      color: #111827;
     }
 
-    .serif {
-      font-family: "Cormorant Garamond", serif;
+    .serif, h1, h2, h3, .font-serif, .price-display {
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234b5563' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.8rem center;
+      background-size: 0.85em;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f9fafb;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
     }
   </style>
 </head>
-<body class="text-exel-ink antialiased">
-  <header class="sticky top-0 z-30 border-b border-stone-200/70 bg-exel-paper/90 backdrop-blur-xl">
-    <div class="mx-auto flex min-h-[76px] w-[min(1240px,calc(100%-32px))] items-center justify-between gap-6">
-      <a class="flex items-center gap-4" href="./preview.html">
-        <img class="h-auto w-[104px]" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
-        <span class="hidden text-xs font-extrabold uppercase tracking-[0.08em] text-exel-muted sm:inline">Chile dermocosmetica</span>
+<body class="text-brand-black antialiased bg-white min-h-screen">
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-30 border-b border-brand-border bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-[76px] w-[min(1760px,calc(100%-32px))] items-center justify-between gap-6 px-2 sm:px-4">
+      <a class="flex items-center gap-3.5 no-underline group" href="./index.html">
+        <img class="h-8 w-auto transition-transform group-hover:scale-105" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Professional Line">
+        <div class="hidden sm:block">
+          <span class="font-bold text-[14px] tracking-tight block leading-none text-brand-black">EXEL Chile</span>
+          <span class="text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Dermocosmética Profesional</span>
+        </div>
       </a>
-      <nav class="hidden flex-wrap gap-5 text-sm font-extrabold text-exel-muted md:flex" aria-label="Navegacion principal">
-        <a class="transition hover:text-exel-ink" href="./preview.html">Presentacion</a>
-        <a class="transition hover:text-exel-ink" href="./tienda.html">Tienda</a>
-        <a class="transition hover:text-exel-ink" href="./carrito.html">Carrito</a>
-        <a class="transition hover:text-exel-ink" href="./login.html?returnTo=./tienda.html">Login</a>
+
+      <nav class="hidden flex-wrap gap-10 text-[13px] font-semibold tracking-wider text-brand-subtle md:flex uppercase" aria-label="Navegación principal">
+        <a class="transition hover:text-brand-black no-underline" href="./index.html">Presentación</a>
+        <a class="transition text-brand-black font-bold no-underline border-b-2 border-brand-black pb-0.5" href="./tienda.html">Tienda</a>
+        <a class="transition hover:text-brand-black no-underline" href="./perfil.html">Mi Perfil</a>
+        <a class="transition hover:text-brand-black no-underline" href="./index.html#diagnostico">Test Dérmico</a>
       </nav>
-      <details class="group relative md:hidden">
-        <summary class="flex min-h-[42px] cursor-pointer list-none items-center gap-2 rounded-card border border-exel-line bg-white px-4 text-sm font-extrabold text-exel-ink shadow-soft">
-          Menu
-          <span class="transition group-open:rotate-180">⌄</span>
-        </summary>
-        <nav class="absolute right-0 top-12 z-50 grid min-w-44 gap-2 rounded-card border border-exel-line bg-white p-3 text-sm font-extrabold text-exel-muted shadow-lift" aria-label="Navegacion movil">
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./preview.html">Presentacion</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./tienda.html">Tienda</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./carrito.html">Carrito</a>
-          <a class="rounded-card px-3 py-2 transition hover:bg-exel-sand hover:text-exel-ink" href="./login.html?returnTo=./tienda.html">Login</a>
-        </nav>
-      </details>
+
+      <div class="flex items-center gap-3">
+        <!-- Mobile Filter Trigger Button -->
+        <button id="openMobileFilters" class="lg:hidden inline-flex min-h-[38px] items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3.5 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+          <span>⚙️ Filtros</span>
+          <span id="activeFilterBadge" class="hidden rounded-[0.125rem] bg-brand-copper px-1 text-[10px] font-bold text-white">0</span>
+        </button>
+
+        <a href="#pedido" class="inline-flex min-h-[40px] items-center gap-2.5 rounded-[0.25rem] border border-brand-border bg-white px-4 text-xs font-semibold text-brand-black shadow-card transition hover:bg-brand-light uppercase tracking-wider">
+          <span>🛍️ Bolsa</span>
+          <span id="navCartBadge" class="rounded-[0.125rem] bg-brand-black px-1.5 py-0.5 text-[10px] font-bold text-white">0</span>
+        </a>
+
+        <details class="group relative md:hidden">
+          <summary class="flex min-h-[38px] cursor-pointer list-none items-center gap-2 rounded-[0.25rem] border border-brand-border bg-white px-3 text-xs font-semibold text-brand-black shadow-card uppercase tracking-wider">
+            Menú
+            <span class="transition group-open:rotate-180 text-[10px]">⌄</span>
+          </summary>
+          <nav class="absolute right-0 top-11 z-50 grid min-w-48 gap-1.5 rounded-[0.5rem] border border-brand-border bg-white p-3 text-xs font-semibold text-brand-muted shadow-lift uppercase tracking-wider">
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html">Presentación</a>
+            <a class="rounded-[0.25rem] px-3 py-2 bg-brand-light text-brand-black font-bold" href="./tienda.html">Tienda</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./perfil.html">Mi Perfil</a>
+            <a class="rounded-[0.25rem] px-3 py-2 transition hover:bg-brand-light hover:text-brand-black" href="./index.html#diagnostico">🔬 Test Dérmico</a>
+          </nav>
+        </details>
+      </div>
     </div>
   </header>
 
-  <main>
-    <section class="mx-auto w-[min(1240px,calc(100%-32px))] py-12 lg:py-16">
-      <div>
-        <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Tienda profesional</p>
-        <h1 class="serif max-w-4xl text-6xl font-bold leading-none md:text-7xl">Catalogo EXEL con filtros, precios y carrito rapido.</h1>
-        <p class="mt-5 max-w-2xl text-lg leading-8 text-exel-muted">
-          Pantalla de compra pensada para ordenar productos por linea, funcion, precio y disponibilidad.
-          Compra por linea, funcion y necesidad. Si necesitas asesoria, nuestro equipo puede confirmar disponibilidad y recomendar una rutina.
-        </p>
+  <!-- Expanded Main Container -->
+  <main class="mx-auto w-[min(1760px,calc(100%-32px))] py-8 sm:py-10 px-2 sm:px-4">
+    <!-- Store Header Intro -->
+    <div class="mb-8 space-y-3 max-w-4xl">
+      <div class="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-brand-copper">
+        <span>Boutique Oficial</span>
+        <span>&middot;</span>
+        <span>EXEL Professional Line</span>
       </div>
-    </section>
+      <h1 class="serif text-4xl sm:text-5xl md:text-6xl font-medium tracking-tight text-brand-black">
+        Catálogo & Fórmulas Dermocosméticas
+      </h1>
+      <p class="text-xs sm:text-sm text-brand-muted font-normal leading-relaxed">
+        Fórmulas dermo-activas de alta eficacia. Filtra por colección, principio activo o necesidad dérmica para armar tu rutina o pedido de gabinete.
+      </p>
 
-    <section class="border-y border-exel-line bg-exel-sand/75 py-5" id="tienda">
-      <div class="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-3 md:grid-cols-2 md:gap-4 xl:grid-cols-[1fr_auto_auto_auto_auto]">
-        <label class="relative block">
-          <span class="sr-only">Buscar producto</span>
-          <span class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-exel-muted">⌕</span>
-          <input id="searchInput" class="h-12 w-full rounded-card border border-exel-line bg-white pl-10 pr-4 font-bold outline-none transition focus:border-exel-graphite" placeholder="Buscar por producto, activo o funcion">
-        </label>
-
-        <select id="concernSelect" class="h-12 rounded-card border border-exel-line bg-white px-4 font-bold text-exel-muted outline-none">
-          <option value="todos">Todas las funciones</option>
-          <option value="limpieza">Limpieza</option>
-          <option value="hidratacion">Hidratacion</option>
-          <option value="antioxidante">Antioxidante</option>
-          <option value="reparacion">Reparacion</option>
-          <option value="pestanas">Pestanas y cejas</option>
-          <option value="papeleria">Papeleria sanitaria</option>
-          <option value="proteccion">Proteccion</option>
-          <option value="clinico">Uso clinico</option>
-          <option value="limpieza-profesional">Limpieza profesional</option>
-        </select>
-
-        <select id="routineSelect" class="h-12 rounded-card border border-exel-line bg-white px-4 font-bold text-exel-muted outline-none">
-          <option value="todos">Todas las rutinas</option>
-          <option value="limpieza">Rutina limpieza</option>
-          <option value="hidratacion">Piel seca / hidratacion</option>
-          <option value="luminosidad">Luminosidad</option>
-          <option value="reparacion">Textura y reparacion</option>
-          <option value="pestanas">Pestanas y cejas</option>
-          <option value="profesional">Cabina / centro profesional</option>
-        </select>
-
-        <select id="skinSelect" class="h-12 rounded-card border border-exel-line bg-white px-4 font-bold text-exel-muted outline-none">
-          <option value="todos">Todo tipo de piel</option>
-          <option value="seca">Piel seca</option>
-          <option value="apagada">Piel apagada</option>
-          <option value="sensible">Piel sensible</option>
-          <option value="profesional">Uso profesional</option>
-        </select>
-
-        <select id="priceSelect" class="h-12 rounded-card border border-exel-line bg-white px-4 font-bold text-exel-muted outline-none">
-          <option value="todos">Todos los precios</option>
-          <option value="0-9999">Hasta $9.999</option>
-          <option value="10000-19999">$10.000 a $19.999</option>
-          <option value="20000-29999">$20.000 a $29.999</option>
-          <option value="30000-999999">Sobre $30.000</option>
-        </select>
-
-        <select id="sortSelect" class="h-12 rounded-card border border-exel-line bg-white px-4 font-bold text-exel-muted outline-none">
-          <option value="featured">Orden recomendado</option>
-          <option value="price-asc">Precio menor a mayor</option>
-          <option value="price-desc">Precio mayor a menor</option>
-          <option value="name">Nombre A-Z</option>
-        </select>
+      <!-- Announcement Banner below Title -->
+      <div class="inline-flex flex-wrap items-center gap-2 rounded-[0.25rem] bg-brand-light border border-brand-border px-4 py-2 text-xs text-brand-dark shadow-sm">
+        <span>🚚 <strong class="font-bold text-brand-black">DESPACHO CORTESÍA</strong> SOBRE $50.000 CLP &middot; ASESORÍA BOTÁNICA DIRECTA POR WHATSAPP</span>
       </div>
+    </div>
 
-      <div class="mx-auto mt-4 flex w-[min(1240px,calc(100%-32px))] flex-wrap gap-3" id="lineFilters">
-        <button class="line-filter active rounded-card border border-exel-line bg-gradient-to-br from-exel-ink to-exel-graphite px-4 py-3 font-extrabold text-white" data-line="todos">Todos</button>
-        <button class="line-filter rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" data-line="Green Line">Green Line</button>
-        <button class="line-filter rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" data-line="Promoter">Promoter</button>
-        <button class="line-filter rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" data-line="Hydra 10">Hydra 10</button>
-        <button class="line-filter rounded-card border border-exel-line bg-white px-4 py-3 font-extrabold text-exel-muted transition hover:-translate-y-0.5" data-line="Insumos">Insumos</button>
-      </div>
-    </section>
-
-    <section class="mx-auto grid w-[min(1240px,calc(100%-32px))] gap-6 py-10 lg:grid-cols-[1fr_320px]">
-      <div>
-        <div class="mb-5 flex items-center justify-between gap-4">
-          <h2 class="serif text-4xl font-semibold">Productos</h2>
-          <p class="text-sm font-extrabold text-exel-muted"><span id="resultCount">11</span> resultados</p>
-        </div>
-        <div class="grid grid-cols-2 gap-3 md:gap-4 xl:grid-cols-3" id="productGrid"></div>
-      </div>
-
-      <aside class="h-max rounded-card border border-exel-line bg-white/85 p-5 shadow-soft lg:sticky lg:top-24" id="pedido">
-        <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Carrito rapido</p>
-        <h2 class="serif mt-2 text-4xl font-semibold">Seleccion</h2>
-        <div class="mt-4 grid gap-3" id="cartItems">
-          <p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">Agrega productos para armar tu carrito.</p>
-        </div>
-        <div class="mt-5 border-t border-exel-line pt-4">
-          <div class="flex justify-between text-sm font-extrabold text-exel-muted">
-            <span>Total estimado</span>
-            <span id="cartTotal">$0</span>
+    <!-- 3-Column Layout: [ Left Sidebar (300px) | Product Gallery (Flexible 1fr) | Live Cart (340px) ] -->
+    <div class="grid gap-8 lg:grid-cols-[300px_1fr] 2xl:grid-cols-[300px_1fr_340px] items-start">
+      
+      <!-- ========================================================================= -->
+      <!-- 1. BARRA VERTICAL DE FILTROS PRO (PANTALLA IZQUIERDA BLANCA Y CLARA) -->
+      <!-- ========================================================================= -->
+      <aside id="filterSidebar" class="hidden lg:block lg:sticky lg:top-24 max-h-[calc(100vh-120px)] overflow-y-auto pr-3 space-y-6 rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card">
+        
+        <!-- Sidebar Header & Clear Button -->
+        <div class="flex items-center justify-between border-b border-brand-border pb-3.5">
+          <div class="flex items-center gap-2">
+            <span class="text-sm">🎛️</span>
+            <h2 class="serif text-xl font-medium text-brand-black">Filtros Pro</h2>
           </div>
-          <a id="whatsappLink" class="mt-4 inline-flex min-h-[48px] w-full items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-soft transition hover:-translate-y-1 hover:shadow-lift" href="#" target="_blank" rel="noreferrer">
-            Solicitar por WhatsApp
-          </a>
-          <a class="mt-3 inline-flex min-h-[46px] w-full items-center justify-center rounded-card border border-exel-warm/70 bg-exel-cream px-5 font-extrabold text-exel-ink shadow-soft transition hover:-translate-y-1" href="./carrito.html">
-            Ver carrito completo
-          </a>
-          <p class="mt-3 text-xs leading-5 text-exel-muted">Respondemos en horario habil para confirmar disponibilidad, despacho y recomendacion profesional.</p>
+          <button id="resetAllFilters" class="text-[11px] font-semibold uppercase tracking-wider text-brand-copper hover:underline" type="button">
+            Limpiar todo
+          </button>
+        </div>
+
+        <!-- Filter: Quick Search Input -->
+        <div class="space-y-1.5">
+          <label for="sidebarSearch" class="block text-[10px] font-semibold uppercase tracking-[0.14em] text-brand-subtle">Búsqueda Directa</label>
+          <div class="relative">
+            <span class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-xs text-brand-subtle">🔍</span>
+            <input
+              id="sidebarSearch"
+              class="h-10 w-full rounded-[0.25rem] border border-brand-border bg-white pl-8 pr-3 text-xs text-brand-black outline-none transition focus:border-brand-black"
+              placeholder="Bakuchiol, Urea, Kombucha..."
+            >
+          </div>
+        </div>
+
+        <!-- Filter 1: Línea / Colección -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Línea & Colección</p>
+          <div class="grid gap-1 text-xs" id="lineFilterGroup">
+            <label class="flex items-center justify-between p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <input type="radio" name="lineRadio" value="todos" class="accent-[#111827]" checked>
+                <span class="font-semibold text-brand-black">Todas las colecciones</span>
+              </span>
+              <span class="text-[10px] text-brand-subtle font-semibold">19</span>
+            </label>
+            <label class="flex items-center justify-between p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <input type="radio" name="lineRadio" value="Green Line" class="accent-[#111827]">
+                <span class="text-brand-black">🌿 Green Line (Vegana)</span>
+              </span>
+              <span class="text-[10px] text-brand-subtle">7</span>
+            </label>
+            <label class="flex items-center justify-between p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <input type="radio" name="lineRadio" value="Promoter" class="accent-[#111827]">
+                <span class="text-brand-black">👁️ Promoter (Mirada)</span>
+              </span>
+              <span class="text-[10px] text-brand-subtle">2</span>
+            </label>
+            <label class="flex items-center justify-between p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <input type="radio" name="lineRadio" value="Hydra 10" class="accent-[#111827]">
+                <span class="text-brand-black">💧 Hydra 10 (Nano-Urea)</span>
+              </span>
+              <span class="text-[10px] text-brand-subtle">2</span>
+            </label>
+            <label class="flex items-center justify-between p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <span class="flex items-center gap-2.5">
+                <input type="radio" name="lineRadio" value="Insumos" class="accent-[#111827]">
+                <span class="text-brand-black">🏥 Insumos de Cabina</span>
+              </span>
+              <span class="text-[10px] text-brand-subtle">8</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter 2: Pasos del Protocolo / Rutina -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Fase del Protocolo</p>
+          <div class="grid gap-1 text-xs" id="routineFilterGroup">
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="routineRadio" value="todos" class="accent-[#111827]" checked>
+              <span>Todos los pasos</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="routineRadio" value="limpieza" class="accent-[#111827]">
+              <span><strong>01.</strong> Higiene & Limpieza</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="routineRadio" value="luminosidad" class="accent-[#111827]">
+              <span><strong>02.</strong> Preparar & Tonificar</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="routineRadio" value="reparacion" class="accent-[#111827]">
+              <span><strong>03.</strong> Tratar (Serums & Retinol)</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="routineRadio" value="hidratacion" class="accent-[#111827]">
+              <span><strong>04.</strong> Sellar & Proteger</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter 3: Tipo de Piel & Diagnóstico -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Diagnóstico Cutáneo</p>
+          <div class="grid gap-1 text-xs" id="skinFilterGroup">
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="skinRadio" value="todos" class="accent-[#111827]" checked>
+              <span>Todo tipo de piel</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="skinRadio" value="seca" class="accent-[#111827]">
+              <span>Piel seca o deshidratada</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="skinRadio" value="apagada" class="accent-[#111827]">
+              <span>Piel apagada / Manchas / Glow</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="skinRadio" value="sensible" class="accent-[#111827]">
+              <span>Piel sensible o reactiva</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="skinRadio" value="profesional" class="accent-[#111827]">
+              <span>Gabinete & Aparatología</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter 4: Activos Botánicos Clave -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Activos Clave</p>
+          <div class="flex flex-wrap gap-1.5" id="activeIngredientChips">
+            <button type="button" data-active-tag="bakuchiol" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Bakuchiol</button>
+            <button type="button" data-active-tag="hialuronico" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Ácido Hialurónico</button>
+            <button type="button" data-active-tag="kombucha" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Kombucha</button>
+            <button type="button" data-active-tag="urea" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Urea 10%</button>
+            <button type="button" data-active-tag="liposomas" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Liposomas</button>
+            <button type="button" data-active-tag="retinol" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Retinol Vegano</button>
+            <button type="button" data-active-tag="vitamina" class="active-tag-btn rounded-[0.25rem] border border-brand-border bg-white px-2.5 py-1 text-[11px] font-medium text-brand-dark hover:border-brand-black transition">Vitaminas</button>
+          </div>
+        </div>
+
+        <!-- Filter 5: Rango de Precio (CLP) -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Rango de Precio</p>
+          <div class="grid gap-1 text-xs" id="priceFilterGroup">
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="priceRadio" value="todos" class="accent-[#111827]" checked>
+              <span>Todos los precios</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="priceRadio" value="0-14990" class="accent-[#111827]">
+              <span>Hasta $14.990 CLP</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="priceRadio" value="15000-24990" class="accent-[#111827]">
+              <span>$15.000 a $24.990 CLP</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="priceRadio" value="25000-34990" class="accent-[#111827]">
+              <span>$25.000 a $34.990 CLP</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-2 rounded-[0.25rem] hover:bg-brand-light cursor-pointer">
+              <input type="radio" name="priceRadio" value="35000-999999" class="accent-[#111827]">
+              <span>Sobre $35.000 CLP</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Filter 6: Sellos & Certificaciones -->
+        <div class="space-y-2 border-t border-brand-border pt-4">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Certificaciones</p>
+          <div class="grid gap-2 text-xs text-brand-muted font-medium">
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input type="checkbox" id="sealVegan" class="accent-[#111827] rounded-[0.125rem]">
+              <span>🌿 Vegano & Cruelty Free</span>
+            </label>
+            <label class="flex items-center gap-2.5 cursor-pointer">
+              <input type="checkbox" id="sealDermo" class="accent-[#111827] rounded-[0.125rem]">
+              <span>🧪 Dermatológicamente Testeado</span>
+            </label>
+          </div>
         </div>
       </aside>
-    </section>
+
+      <!-- ========================================================================= -->
+      <!-- 2. GALERÍA DE PRODUCTOS (COLUMNA CENTRAL BLANCA & CLARA) -->
+      <!-- ========================================================================= -->
+      <section class="space-y-6">
+        
+        <!-- Diagnostic Quiz CTA Banner -->
+        <div class="rounded-[0.5rem] border border-brand-border bg-brand-light p-4 sm:p-5 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <span class="text-2xl">🔬</span>
+            <div>
+              <strong class="block text-xs sm:text-sm font-bold text-brand-black">¿No sabes qué fórmula botánica elegir?</strong>
+              <span class="text-xs text-brand-muted">Descubre tu biotipo dérmico, subtono y colorimetría en nuestro test de 2 minutos.</span>
+            </div>
+          </div>
+          <a href="./index.html#diagnostico" class="inline-flex min-h-[38px] items-center justify-center rounded-[0.25rem] bg-brand-black px-4 text-xs font-bold uppercase tracking-wider text-white hover:bg-brand-dark shadow-sm no-underline shrink-0">
+            Hacer Test Dérmico &rarr;
+          </a>
+        </div>
+
+        <!-- Top Control Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-4 rounded-[0.5rem] border border-brand-border bg-white p-4 sm:p-5 shadow-card">
+          <div>
+            <span class="text-xs font-semibold uppercase tracking-wider text-brand-black">
+              <strong id="resultCount" class="serif text-xl font-bold text-brand-black">11</strong> fórmulas encontradas
+            </span>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <label for="sortSelect" class="text-[11px] font-semibold uppercase tracking-wider text-brand-subtle hidden sm:inline">Ordenar por:</label>
+            <select id="sortSelect" class="h-10 rounded-[0.25rem] border border-brand-border bg-white pl-3 pr-8 text-xs font-medium text-brand-black outline-none transition focus:border-brand-black">
+              <option value="featured">Recomendados</option>
+              <option value="price-asc">Precio: menor a mayor</option>
+              <option value="price-desc">Precio: mayor a menor</option>
+              <option value="name">Nombre A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Active Filter Badges Bar -->
+        <div id="activePillsContainer" class="hidden flex-wrap items-center gap-2 pt-1">
+          <span class="text-[10px] font-semibold uppercase tracking-wider text-brand-subtle">Filtros activos:</span>
+          <div id="activePillsList" class="flex flex-wrap gap-1.5"></div>
+        </div>
+
+        <!-- Product Grid (Responsive: 2 cols on mobile, 3 cols on medium, 4 cols on large/2xl) -->
+        <div class="grid grid-cols-2 gap-3.5 sm:gap-5 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4" id="productGrid"></div>
+        <nav id="productPagination" class="mt-8 hidden items-center justify-center gap-1.5" aria-label="Paginación de productos"></nav>
+      </section>
+
+      <!-- ========================================================================= -->
+      <!-- 3. BOLSA DE PEDIDOS EN VIVO (STICKY DERECHA) -->
+      <!-- ========================================================================= -->
+      <aside class="h-max rounded-[0.5rem] border border-brand-border bg-white p-6 shadow-card lg:sticky lg:top-24 hidden 2xl:block" id="pedido">
+        <div class="flex items-center justify-between border-b border-brand-border pb-3.5">
+          <div>
+            <p class="text-[10px] font-semibold uppercase tracking-[0.16em] text-brand-copper">Bolsa de Pedidos</p>
+            <h2 class="serif text-2xl font-medium text-brand-black">Tu Selección</h2>
+          </div>
+          <span class="text-xl">🛍️</span>
+        </div>
+
+        <!-- Free Shipping Meter -->
+        <div class="py-3.5 border-b border-brand-border">
+          <div class="flex justify-between text-[11px] font-medium mb-1.5" id="shippingStatusText">
+            <span>Despacho Cortesía</span>
+            <span class="text-brand-copper font-semibold" id="shippingPercentText">0%</span>
+          </div>
+          <div class="h-1.5 w-full bg-brand-light rounded-full overflow-hidden">
+            <div id="shippingProgressBar" class="h-full bg-brand-copper rounded-full transition-all duration-500 w-0"></div>
+          </div>
+        </div>
+
+        <!-- Cart Items List -->
+        <div class="my-3.5 grid gap-2.5 max-h-[320px] overflow-y-auto pr-1" id="cartItems">
+          <p class="rounded-[0.25rem] bg-brand-light p-4 text-xs font-normal text-brand-subtle text-center">
+            Tu bolsa está vacía.<br>Agrega fórmulas para cotizar o pedir por WhatsApp.
+          </p>
+        </div>
+
+        <!-- Cart Totals & Actions -->
+        <div class="border-t border-brand-border pt-4 space-y-3">
+          <div class="flex justify-between items-baseline text-xs font-semibold uppercase tracking-wider text-brand-muted">
+            <span>Subtotal</span>
+            <span id="cartTotal" class="serif text-2xl font-bold text-brand-black">$0</span>
+          </div>
+
+          <a
+            id="whatsappLink"
+            class="inline-flex min-h-[46px] w-full items-center justify-center gap-2 rounded-[0.25rem] bg-brand-black px-4 text-xs font-semibold uppercase tracking-wider text-white shadow-card transition hover:bg-brand-dark no-underline"
+            href="#"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>💬 Solicitar por WhatsApp</span>
+          </a>
+
+          <a
+            class="inline-flex min-h-[40px] w-full items-center justify-center rounded-[0.25rem] border border-brand-border bg-white px-4 text-[11px] font-semibold uppercase tracking-wider text-brand-black shadow-card transition hover:bg-brand-light no-underline"
+            href="./carrito.html"
+          >
+            Ir a Bolsa Completa &rarr;
+          </a>
+        </div>
+      </aside>
+    </div>
   </main>
 
-  <a class="fixed bottom-4 right-4 z-40 inline-flex min-h-[52px] items-center gap-3 rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-5 font-extrabold text-white shadow-lift lg:hidden" href="./carrito.html" aria-label="Ver carrito">
-    <span class="grid h-7 w-7 place-items-center rounded-full bg-white/15">
-      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-        <path d="M5 6h2l1.5 9h8.5l2-6H8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M10 20h.01M17 20h.01" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-      </svg>
-    </span>
-    <span>Carrito</span>
-    <span id="floatingCartCount" class="grid h-6 min-w-6 place-items-center rounded-full bg-exel-cream px-2 text-xs text-exel-ink">0</span>
+  <!-- Mobile Floating Cart Button -->
+  <a class="fixed bottom-5 right-5 z-40 inline-flex min-h-[46px] items-center gap-2.5 rounded-[0.25rem] bg-brand-black px-4 text-xs font-semibold uppercase tracking-wider text-white shadow-lift 2xl:hidden no-underline border border-white/20" href="./carrito.html" aria-label="Ver carrito">
+    <span>🛍️ Bolsa</span>
+    <span id="floatingCartCount" class="grid h-5 min-w-5 place-items-center rounded-[0.125rem] bg-brand-copper px-1 text-[10px] text-white font-bold">0</span>
   </a>
 
-  <div id="cartToast" class="fixed left-4 right-4 top-24 z-50 hidden rounded-card border border-exel-line bg-white/95 p-4 shadow-lift md:left-auto md:w-[360px]" role="status" aria-live="polite">
-    <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-exel-copper">Producto agregado</p>
-    <p id="cartToastText" class="mt-1 font-extrabold"></p>
-    <a class="mt-3 inline-flex min-h-[42px] w-full items-center justify-center rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-4 text-sm font-extrabold text-white" href="./carrito.html">Ver carrito</a>
+  <!-- Mobile Filter Modal Drawer -->
+  <div id="mobileFilterDrawer" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm transition-opacity">
+    <div class="absolute left-0 top-0 bottom-0 w-[min(340px,85vw)] bg-white p-6 overflow-y-auto space-y-6 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-brand-border pb-3">
+        <h3 class="serif text-xl font-medium text-brand-black">Filtros Pro</h3>
+        <button id="closeMobileFilters" class="text-lg font-bold text-brand-black p-1">&times;</button>
+      </div>
+      <div id="mobileFiltersMount"></div>
+      <button id="applyMobileFilters" class="w-full min-h-[44px] rounded-[0.25rem] bg-brand-black text-xs font-semibold uppercase tracking-wider text-white shadow-card">
+        Ver Resultados
+      </button>
+    </div>
   </div>
 
+  <!-- Toast Notification -->
+  <div id="cartToast" class="fixed left-4 right-4 top-24 z-50 hidden rounded-[0.5rem] border border-brand-border bg-white/95 p-4 shadow-lift md:left-auto md:w-[340px] backdrop-blur-md" role="status" aria-live="polite">
+    <div class="flex items-center gap-2">
+      <span class="text-sm">✨</span>
+      <p class="text-[11px] font-semibold uppercase tracking-[0.14em] text-brand-copper">Añadido a la bolsa</p>
+    </div>
+    <p id="cartToastText" class="mt-1 text-xs font-semibold text-brand-black"></p>
+    <a class="mt-2.5 inline-flex min-h-[34px] w-full items-center justify-center rounded-[0.25rem] bg-brand-black px-4 text-[11px] font-semibold uppercase tracking-wider text-white no-underline" href="./carrito.html">
+      Ver Bolsa &rarr;
+    </a>
+  </div>
+
+  <!-- Product Card Template (Ultra Clear Legibility & Clean White Background) -->
   <template id="productTemplate">
-    <article class="product-card group overflow-hidden rounded-card border border-exel-line bg-white/85 shadow-soft transition hover:-translate-y-1 hover:shadow-lift">
-      <div class="relative h-36 overflow-hidden md:h-64">
-        <a class="image-link block h-full" href="#" aria-label="">
-          <img class="product-image h-full w-full object-cover transition duration-700 group-hover:scale-105" alt="">
+    <article class="product-card group flex flex-col justify-between overflow-hidden rounded-[0.5rem] border border-brand-border bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift hover:border-brand-subtle">
+      <!-- Media Container with Pure White Background -->
+      <div class="relative h-48 sm:h-56 xl:h-60 overflow-hidden bg-[#fafafa] flex items-center justify-center p-4 border-b border-brand-border/60">
+        <a class="image-link block h-full w-full flex items-center justify-center" href="#">
+          <img class="product-image max-h-full w-auto object-contain transition-transform duration-700 group-hover:scale-105" alt="" loading="lazy">
         </a>
-        <span class="product-line absolute left-2 top-2 rounded-full bg-exel-cream/90 px-2 py-1 text-[10px] font-extrabold text-exel-graphite shadow md:left-4 md:top-4 md:px-3 md:py-2 md:text-xs"></span>
+        <span class="product-line absolute left-2.5 top-2.5 rounded-[0.25rem] bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-copper shadow-sm border border-brand-border"></span>
       </div>
-      <div class="p-3 md:p-5">
-        <div class="mb-2 flex flex-wrap gap-1.5 md:mb-3 md:gap-2">
-          <span class="product-concern rounded-full bg-exel-warm/30 px-2 py-1 text-[10px] font-extrabold text-exel-graphite md:px-3 md:py-2 md:text-xs"></span>
-          <span class="product-size rounded-full bg-exel-sand px-2 py-1 text-[10px] font-extrabold text-exel-muted md:px-3 md:py-2 md:text-xs"></span>
-          <span class="product-ideal rounded-full bg-white px-2 py-1 text-[10px] font-extrabold text-exel-muted shadow-soft md:px-3 md:py-2 md:text-xs"></span>
+
+      <!-- Card Body -->
+      <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+        <div>
+          <div class="mb-1.5 flex flex-wrap items-center gap-1.5">
+            <span class="product-concern rounded-[0.25rem] bg-brand-light px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-brand-muted border border-brand-border/50"></span>
+            <span class="product-size rounded-[0.25rem] bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-dark border border-brand-border"></span>
+          </div>
+
+          <!-- Product Title: Clear, bold and ultra-legible -->
+          <a class="name-link block transition hover:text-brand-copper no-underline pt-0.5" href="#">
+            <h3 class="product-name font-sans text-sm sm:text-base font-bold text-brand-black leading-snug tracking-tight"></h3>
+          </a>
+
+          <p class="product-description mt-1.5 text-xs leading-relaxed text-brand-muted line-clamp-2 font-normal"></p>
         </div>
-        <a class="name-link block transition hover:text-exel-copper" href="#">
-          <h3 class="product-name serif text-xl font-semibold leading-none md:text-3xl"></h3>
-        </a>
-        <p class="product-description mt-3 hidden min-h-[84px] leading-7 text-exel-muted md:block"></p>
-        <div class="mt-3 grid gap-3 border-t border-exel-line pt-3 md:mt-4 md:flex md:items-end md:justify-between md:pt-4">
+
+        <!-- Price in Bodoni/Playfair & Add Button -->
+        <div class="pt-3 border-t border-brand-border flex items-center justify-between gap-2">
           <div>
-            <span class="block text-[10px] font-extrabold uppercase tracking-[0.08em] text-exel-muted md:text-xs">Precio lista</span>
-            <strong class="product-price text-base md:text-xl"></strong>
+            <span class="block text-[9px] font-semibold uppercase tracking-wider text-brand-subtle">Precio oficial</span>
+            <strong class="product-price serif text-base sm:text-lg font-bold text-brand-black"></strong>
           </div>
-          <div class="flex items-center gap-2">
-            <button class="add-button min-h-[40px] w-full rounded-card bg-gradient-to-br from-exel-ink to-exel-graphite px-3 py-2 text-xs font-extrabold text-white transition hover:-translate-y-0.5 md:w-auto md:px-4 md:py-3 md:text-sm">Agregar</button>
-          </div>
+          <button class="add-button min-h-[34px] rounded-[0.25rem] bg-brand-black px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-white transition hover:bg-brand-dark active:scale-95 shadow-sm">
+            + Añadir
+          </button>
         </div>
       </div>
     </article>
   </template>
 
+  <!-- Trust & Certifications (Educativo & Detallado) -->
+  <section class="bg-brand-light py-20 border-t border-brand-border mt-16" id="confianza">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4">
+      <div class="mb-12 max-w-4xl space-y-2.5">
+        <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-copper">Garantía & Estándares Internacionales</p>
+        <h2 class="serif text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight text-brand-black">Respaldo científico y trazabilidad botánica.</h2>
+        <p class="text-xs sm:text-sm leading-relaxed text-brand-muted font-normal pt-1">
+          Fórmulas desarrolladas bajo rigurosos protocolos dermatológicos internacionales, libres de crueldad y parabenos. Conoce qué significa cada uno de nuestros sellos de calidad:
+        </p>
+      </div>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- 1. Dermatologically Tested -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/dermatologically-tested.webp" alt="Dermatologically tested">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Seguridad Dérmica</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">Dermatologically Tested</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Testeado Dermatológicamente</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Fórmulas evaluadas mediante ensayos clínicos bajo supervisión médica de dermatólogos para certificar máxima tolerancia cutánea y minimizar riesgos de reactividad.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Apto para pieles reactivas y sensibles
+          </div>
+        </article>
+
+        <!-- 2. Vegan -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/vegan.webp" alt="Vegan">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">100% Origen Vegetal</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">Vegan</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Fórmula 100% Vegana</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Totalmente libre de ingredientes o subproductos de origen animal (sin lanolina, cera de abejas ni colágeno animal). Creado a base de botánica pura patagónica.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Activos puros de la flora patagónica
+          </div>
+        </article>
+
+        <!-- 3. Not Tested on Animals -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/not-tested-on-animals.webp" alt="No tested on animals">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Ética Certificada</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">No Tested on Animals</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Libre de Crueldad Animal (Cruelty Free)</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Compromiso ético internacional. Ninguna fórmula terminada ni sus ingredientes han sido testeados en animales en ninguna fase de investigación o manufactura.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Compromiso cruelty-free verificado
+          </div>
+        </article>
+
+        <!-- 4. Paraben Free -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/paraben-free.webp" alt="Paraben free">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Fórmula Limpia</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">Paraben Free</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Libre de Parabenos</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Sistemas de conservación limpios sin conservantes sintéticos controvertidos. Preserva el equilibrio del microbioma cutáneo y la salud dérmica a largo plazo.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Respeta el microbioma fisiológico
+          </div>
+        </article>
+
+        <!-- 5. TACC Free -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/tacc-free.webp" alt="TACC free">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">Sin Gluten</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">TACC Free</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Libre de Gluten / Sin TACC</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Elaboradas sin trazas de trigo, avena, cebada ni centeno. Seguridad absoluta para personas celíacas o con alta sensibilidad dérmica al gluten.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Apto para personas con celiaquía
+          </div>
+        </article>
+
+        <!-- 6. Mineral Oil Free -->
+        <article class="rounded-[0.5rem] border border-brand-border bg-white p-6 sm:p-7 shadow-card flex flex-col justify-between space-y-4 transition hover:-translate-y-1 hover:shadow-lift">
+          <div class="space-y-3.5">
+            <div class="flex items-center justify-between">
+              <div class="h-14 w-14 rounded-[0.25rem] bg-[#fafafa] p-2 flex items-center justify-center border border-brand-border">
+                <img class="h-full w-full object-contain" src="./assets/catalogo-web/iconos/mineral-oil-free.webp" alt="Mineral oil free">
+              </div>
+              <span class="rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-copper">No Comedogénico</span>
+            </div>
+            <div>
+              <h3 class="serif text-xl sm:text-2xl font-bold text-brand-black">Mineral Oil Free</h3>
+              <p class="text-[11px] font-semibold text-brand-subtle uppercase tracking-wider mt-0.5">Sin Aceites Minerales</p>
+            </div>
+            <p class="text-xs leading-relaxed text-brand-muted font-normal">
+              Libre de derivados del petróleo o parafinas oclusivas. Utilizamos aceites vegetales biocompatibles que nutren y permiten a la piel respirar naturalmente.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-brand-border/60 text-[11px] font-bold text-brand-dark flex items-center gap-1.5">
+            <span class="text-emerald-600">✓</span> Permite la oxigenación celular sin oclusión
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-brand-border bg-white py-12 text-xs text-brand-muted font-normal">
+    <div class="mx-auto w-[min(1760px,calc(100%-32px))] px-2 sm:px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img class="h-6 w-auto opacity-80" src="./assets/catalogo-web/branding/logo-exel.webp" alt="EXEL Chile">
+        <span>&copy; 2026 EXEL Chile. Dermocosmética Profesional.</span>
+      </div>
+      <div class="flex gap-6 uppercase font-semibold text-[11px] tracking-wider">
+        <a href="./tienda.html" class="hover:text-brand-black">Tienda</a>
+        <a href="./carrito.html" class="hover:text-brand-black">Carrito</a>
+        <a href="https://wa.me/56981681536" target="_blank" rel="noreferrer" class="hover:text-brand-black">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="./data/site-config.js"></script>
-  <script src="./data/product-data.js"></script>
+  <script src="./data/product-data.js?v=20260831-variants"></script>
   <script>
-    const site = window.EXEL_SITE;
-    let products = window.EXEL_PRODUCTS || [
-      {
-        name: "Gel de Limpieza",
-        line: "Green Line",
-        concern: "limpieza",
-        label: "Limpieza",
-        size: "100 ml",
-        price: 18990,
-        image: "./assets/catalogo-web/productos/green-line/gel-limpieza.webp",
-        description: "Gel facial ligero para retirar impurezas sin alterar el pH cutaneo."
+    const site = window.EXEL_SITE || {
+      currencyFormatter: new Intl.NumberFormat("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 }),
+      normalizeText: (str) => (str || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""),
+      loadCart: () => {
+        try {
+          return JSON.parse(localStorage.getItem("exel_chile_cart_v1") || "[]");
+        } catch { return []; }
       },
-      {
-        name: "Esencia de Te de Kombucha",
-        line: "Green Line",
-        concern: "antioxidante",
-        label: "Antioxidante",
-        size: "120 ml",
-        price: 24990,
-        image: "./assets/catalogo-web/productos/green-line/esencia-kombucha.webp",
-        description: "Locion facial revitalizante con probioticos y extractos vegetales."
+      saveCart: (cart) => {
+        try {
+          localStorage.setItem("exel_chile_cart_v1", JSON.stringify(cart));
+        } catch {}
       },
-      {
-        name: "Serum Super Hidratante",
-        line: "Green Line",
-        concern: "hidratacion",
-        label: "Hidratacion",
-        size: "30 ml",
-        price: 29990,
-        image: "./assets/catalogo-web/productos/green-line/serum-super-hidratante.webp",
-        description: "Humectacion intensa con efecto de relleno para luminosidad y firmeza."
-      },
-      {
-        name: "Serum Iluminador",
-        line: "Green Line",
-        concern: "antioxidante",
-        label: "Luminosidad",
-        size: "30 ml",
-        price: 28990,
-        image: "./assets/catalogo-web/productos/green-line/serum-iluminador.webp",
-        description: "Serum antioxidante para iluminar y proteger frente a polucion."
-      },
-      {
-        name: "Serum Regenerativo",
-        line: "Green Line",
-        concern: "reparacion",
-        label: "Regenerativo",
-        size: "30 ml",
-        price: 31990,
-        image: "./assets/catalogo-web/productos/green-line/serum-retinol-vegano.webp",
-        description: "Retinol vegano para atenuar lineas finas y unificar visualmente el tono."
-      },
-      {
-        name: "Bakuchiol Crema Multireparadora",
-        line: "Green Line",
-        concern: "reparacion",
-        label: "Reparacion",
-        size: "48 ml",
-        price: 34990,
-        image: "./assets/catalogo-web/productos/green-line/bakuchiol-crema.webp",
-        description: "Crema liviana con Bakuchiol y Rosa Mosqueta para firmeza y nutricion."
-      },
-      {
-        name: "Lip Balm Reparador",
-        line: "Green Line",
-        concern: "hidratacion",
-        label: "Labios",
-        size: "9 ml",
-        price: 12990,
-        image: "./assets/catalogo-web/productos/green-line/lip-balm.webp",
-        description: "Balsamo reparador para labios secos con humectacion y brillo natural."
-      },
-      {
-        name: "Promoter Liposomas en Spray",
-        line: "Promoter",
-        concern: "pestanas",
-        label: "Pestanas",
-        size: "15 ml",
-        price: 26990,
-        image: "./assets/catalogo-web/productos/promoter/liposomas-spray.webp",
-        description: "Spray para ayudar a fortalecer la apariencia de pestanas y cejas."
-      },
-      {
-        name: "Promoter Espuma Micelar",
-        line: "Promoter",
-        concern: "limpieza",
-        label: "Higiene ojos",
-        size: "50 ml",
-        price: 21990,
-        image: "./assets/catalogo-web/productos/promoter/espuma-micelar.webp",
-        description: "Espuma suave para contorno de ojos, pestanas, extensiones y cejas."
-      },
-      {
-        name: "Hydra 10 Facial",
-        line: "Hydra 10",
-        concern: "hidratacion",
-        label: "Facial",
-        size: "50 ml",
-        price: 27990,
-        image: "./assets/catalogo-web/productos/hydra-10/hydra-10-facial.webp",
-        description: "Crema ultra humectante con tecnologia de nano encapsulamiento."
-      },
-      {
-        name: "Hydra 10 Corporal",
-        line: "Hydra 10",
-        concern: "hidratacion",
-        label: "Corporal",
-        size: "250 ml",
-        price: 24990,
-        image: "./assets/catalogo-web/productos/hydra-10/hydra-10-corporal.webp",
-        description: "Emulsion dermoprotectora para pieles secas o extremadamente secas."
-      },
-      {
-        name: "Papel Higienico Jumbo",
-        line: "Insumos",
-        concern: "papeleria",
-        label: "Papeleria",
-        size: "Pack jumbo",
-        price: 18990,
-        image: "./assets/catalogo-web/productos/insumos/papel-higienico-jumbo.webp",
-        description: "Formato institucional de alto rendimiento para banos de alto trafico."
-      },
-      {
-        name: "Gel Conductor",
-        line: "Insumos",
-        concern: "clinico",
-        label: "Equipos",
-        size: "5 litros",
-        price: 15990,
-        image: "./assets/catalogo-web/productos/insumos/gel-conductor-5-litros.webp",
-        description: "Gel conductor para aparatologia estetica, uso profesional y rendimiento extendido."
-      },
-      {
-        name: "Guantes de Nitrilo Extra Resistentes",
-        line: "Insumos",
-        concern: "proteccion",
-        label: "Proteccion",
-        size: "Caja",
-        price: 12990,
-        image: "./assets/catalogo-web/productos/insumos/guantes-nitrilo-extra-resistente.webp",
-        description: "Guantes gruesos de nitrilo para trabajos que requieren mayor resistencia."
-      },
-      {
-        name: "Toallas Interfoliadas Doble Hoja",
-        line: "Insumos",
-        concern: "papeleria",
-        label: "Papeleria",
-        size: "200 unidades",
-        price: 6990,
-        image: "./assets/catalogo-web/productos/insumos/toallas-interfoliadas-doble-hoja.webp",
-        description: "Toallas interfoliadas doble hoja para higiene diaria y reposicion profesional."
-      },
-      {
-        name: "Jabon Liquido Vital Clean Premium",
-        line: "Insumos",
-        concern: "limpieza-profesional",
-        label: "Higiene",
-        size: "5 litros",
-        price: 11990,
-        image: "./assets/catalogo-web/productos/insumos/jabon-liquido-premium.webp",
-        description: "Jabon liquido premium para reposicion en dispensadores y estaciones de lavado."
-      },
-      {
-        name: "Baja Lenguas",
-        line: "Insumos",
-        concern: "clinico",
-        label: "Clinico",
-        size: "Caja",
-        price: 3990,
-        image: "./assets/catalogo-web/productos/insumos/baja-lenguas.webp",
-        description: "Baja lenguas de madera para evaluaciones, procedimientos y uso profesional."
-      },
-      {
-        name: "Cloro Liquido",
-        line: "Insumos",
-        concern: "limpieza-profesional",
-        label: "Desinfeccion",
-        size: "5 litros",
-        price: 5990,
-        image: "./assets/catalogo-web/productos/insumos/cloro-liquido-5-litros.webp",
-        description: "Cloro liquido en formato bidon para limpieza y desinfeccion de superficies."
-      },
-      {
-        name: "Detergente Enzimatico",
-        line: "Insumos",
-        concern: "limpieza-profesional",
-        label: "Instrumental",
-        size: "1 litro",
-        price: 17990,
-        image: "./assets/catalogo-web/productos/insumos/detergente-enzimatico.webp",
-        description: "Detergente enzimatico para limpieza tecnica previa a procesos de sanitizacion."
-      }
-    ];
+      buildWhatsAppUrl: (msg) => `https://wa.me/56981681536?text=${encodeURIComponent(msg)}`,
+      loadProductsFromFirestore: (p) => Promise.resolve(p)
+    };
 
+    let products = window.EXEL_PRODUCTS || [];
     const formatter = site.currencyFormatter;
+    const FREE_SHIPPING_GOAL = 50000;
 
     function loadCart() {
       return site.loadCart();
@@ -448,41 +682,53 @@
 
     const state = {
       line: "todos",
-      concern: "todos",
       routine: "todos",
       skin: "todos",
       price: "todos",
+      activeTag: "",
+      sealVegan: false,
+      sealDermo: false,
       search: "",
       sort: "featured",
+      page: 1,
       cart: loadCart()
     };
 
     const productGrid = document.querySelector("#productGrid");
+    const productPagination = document.querySelector("#productPagination");
     const template = document.querySelector("#productTemplate");
     const resultCount = document.querySelector("#resultCount");
-    const routineSelect = document.querySelector("#routineSelect");
-    const skinSelect = document.querySelector("#skinSelect");
-    const priceSelect = document.querySelector("#priceSelect");
     const cartItems = document.querySelector("#cartItems");
     const cartTotal = document.querySelector("#cartTotal");
     const whatsappLink = document.querySelector("#whatsappLink");
     const floatingCartCount = document.querySelector("#floatingCartCount");
+    const navCartBadge = document.querySelector("#navCartBadge");
+    const activeFilterBadge = document.querySelector("#activeFilterBadge");
     const cartToast = document.querySelector("#cartToast");
     const cartToastText = document.querySelector("#cartToastText");
+    const shippingProgressBar = document.querySelector("#shippingProgressBar");
+    const shippingStatusText = document.querySelector("#shippingStatusText");
+    const shippingPercentText = document.querySelector("#shippingPercentText");
+    const activePillsContainer = document.querySelector("#activePillsContainer");
+    const activePillsList = document.querySelector("#activePillsList");
     let cartToastTimeout;
 
     function normalize(value) {
       return site.normalizeText(value);
     }
 
-    function getIdealLabel(product) {
-      if (product.line === "Insumos") return "Uso profesional";
-      if (product.concern === "hidratacion") return "Piel seca";
-      if (product.concern === "antioxidante") return "Luminosidad";
-      if (product.concern === "reparacion") return "Textura";
-      if (product.concern === "limpieza") return "Rutina diaria";
-      if (product.concern === "pestanas") return "Pestanas";
-      return product.label;
+    function productVariants(product) {
+      return Array.isArray(product?.variants) ? product.variants.filter((variant) => variant && variant.active !== false) : [];
+    }
+
+    function productPriceLabel(product) {
+      const variants = productVariants(product);
+      if (!variants.length) return formatter.format(product.price);
+      const prices = variants.map((variant) => Number(variant.price || 0)).filter((price) => price > 0);
+      if (!prices.length) return formatter.format(product.price);
+      const lowest = Math.min(...prices);
+      const highest = Math.max(...prices);
+      return lowest === highest ? `Desde ${formatter.format(lowest)}` : `Desde ${formatter.format(lowest)} hasta ${formatter.format(highest)}`;
     }
 
     function matchesSkin(product) {
@@ -501,16 +747,26 @@
       return product.price >= min && product.price <= max;
     }
 
+    function matchesSeals(product) {
+      if (state.sealVegan && product.line !== "Green Line") return false;
+      return true;
+    }
+
+    function matchesActiveTag(product) {
+      if (!state.activeTag) return true;
+      const text = normalize(`${product.name} ${product.description} ${(product.ingredients || []).join(" ")} ${(product.benefits || []).join(" ")}`);
+      return text.includes(normalize(state.activeTag));
+    }
+
     function getFilteredProducts() {
       const query = normalize(state.search);
       let list = products.filter((product) => {
         const matchesLine = state.line === "todos" || product.line === state.line;
-        const matchesConcern = state.concern === "todos" || product.concern === state.concern;
         const searchable = normalize(`${product.name} ${product.line} ${product.label} ${product.description} ${product.use || ""} ${(product.benefits || []).join(" ")}`);
         const matchesRoutine = state.routine === "todos" || searchable.includes(normalize(state.routine)) || (
           state.routine === "profesional" && ["Insumos", "Hydra 10"].includes(product.line)
         );
-        return matchesLine && matchesConcern && matchesRoutine && matchesSkin(product) && matchesPrice(product) && searchable.includes(query);
+        return matchesLine && matchesRoutine && matchesSkin(product) && matchesPrice(product) && matchesSeals(product) && matchesActiveTag(product) && searchable.includes(query);
       });
 
       if (state.sort === "price-asc") list = list.sort((a, b) => a.price - b.price);
@@ -520,40 +776,218 @@
       return list;
     }
 
+    function renderActivePills() {
+      const pills = [];
+      if (state.line !== "todos") pills.push({ label: `Línea: ${state.line}`, reset: () => setLineFilter("todos") });
+      if (state.routine !== "todos") pills.push({ label: `Fase: ${state.routine}`, reset: () => setRoutineFilter("todos") });
+      if (state.skin !== "todos") pills.push({ label: `Piel: ${state.skin}`, reset: () => setSkinFilter("todos") });
+      if (state.price !== "todos") pills.push({ label: `Precio: ${state.price}`, reset: () => setPriceFilter("todos") });
+      if (state.activeTag) pills.push({ label: `Activo: ${state.activeTag}`, reset: () => setActiveTag("") });
+      if (state.sealVegan) pills.push({ label: "Vegano", reset: () => setSealVegan(false) });
+      if (state.search) pills.push({ label: `"${state.search}"`, reset: () => setSearchFilter("") });
+
+      if (pills.length > 0) {
+        activePillsContainer.classList.remove("hidden");
+        activePillsContainer.classList.add("flex");
+        activePillsList.innerHTML = pills.map((pill, index) => `
+          <button data-pill-index="${index}" class="inline-flex items-center gap-1.5 rounded-[0.25rem] bg-brand-light border border-brand-border px-2.5 py-1 text-[11px] font-semibold text-brand-dark hover:bg-gray-100 transition">
+            <span>${pill.label}</span>
+            <span class="text-brand-copper text-xs font-bold">&times;</span>
+          </button>
+        `).join("");
+
+        activePillsList.querySelectorAll("button").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const idx = Number(btn.dataset.pillIndex);
+            if (pills[idx]) pills[idx].reset();
+          });
+        });
+
+        if (activeFilterBadge) {
+          activeFilterBadge.textContent = pills.length;
+          activeFilterBadge.classList.remove("hidden");
+        }
+      } else {
+        activePillsContainer.classList.add("hidden");
+        activePillsContainer.classList.remove("flex");
+        if (activeFilterBadge) activeFilterBadge.classList.add("hidden");
+      }
+    }
+
+    const PRODUCTS_PER_PAGE = 24;
+
+    function renderProductPagination(totalPages) {
+      productPagination.classList.toggle("hidden", totalPages <= 1);
+      productPagination.classList.toggle("flex", totalPages > 1);
+      if (totalPages <= 1) {
+        productPagination.innerHTML = "";
+        return;
+      }
+      productPagination.innerHTML = Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => `
+        <button type="button" data-product-page="${page}" aria-label="Ir a la página ${page}" aria-current="${page === state.page ? "page" : "false"}"
+          class="h-10 min-w-10 rounded-[0.25rem] border px-3 text-xs font-bold transition ${page === state.page ? "border-brand-black bg-brand-black text-white" : "border-brand-border bg-white text-brand-dark hover:border-brand-copper hover:text-brand-copper"}">${page}</button>
+      `).join("");
+      productPagination.querySelectorAll("[data-product-page]").forEach((button) => {
+        button.addEventListener("click", () => {
+          state.page = Number(button.dataset.productPage);
+          renderProducts();
+          productGrid.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+    }
+
     function renderProducts() {
       const list = getFilteredProducts();
       productGrid.innerHTML = "";
       resultCount.textContent = list.length;
+      renderActivePills();
 
-      list.forEach((product) => {
+      const totalPages = Math.ceil(list.length / PRODUCTS_PER_PAGE);
+      if (state.page > totalPages) state.page = 1;
+
+      if (list.length === 0) {
+        productGrid.innerHTML = `
+          <div class="col-span-full py-20 text-center bg-white rounded-[0.5rem] border border-brand-border p-8 space-y-2">
+            <span class="text-3xl block mb-2">🌿</span>
+            <h3 class="serif text-2xl font-medium text-brand-black">No encontramos fórmulas con estos filtros</h3>
+            <p class="text-xs text-brand-muted font-normal">Prueba desmarcando algunos criterios o limpiando la barra de búsqueda.</p>
+            <button onclick="resetAllFilters()" class="mt-3 inline-flex items-center rounded-[0.25rem] bg-brand-black px-4 py-2 text-xs font-semibold text-white uppercase tracking-wider">
+              Limpiar todos los filtros
+            </button>
+          </div>
+        `;
+        renderProductPagination(0);
+        return;
+      }
+
+      const pageStart = (state.page - 1) * PRODUCTS_PER_PAGE;
+      list.slice(pageStart, pageStart + PRODUCTS_PER_PAGE).forEach((product) => {
+        const variants = productVariants(product);
         const node = template.content.firstElementChild.cloneNode(true);
         node.querySelector(".product-image").src = product.image;
         node.querySelector(".product-image").alt = product.name;
         node.querySelector(".product-line").textContent = product.line;
         node.querySelector(".product-concern").textContent = product.label;
-        node.querySelector(".product-size").textContent = product.size;
-        node.querySelector(".product-ideal").textContent = getIdealLabel(product);
+        node.querySelector(".product-size").textContent = variants.length ? `${variants.length} presentaciones` : product.size;
         node.querySelector(".product-name").textContent = product.name;
         node.querySelector(".product-description").textContent = product.description;
-        node.querySelector(".product-price").textContent = formatter.format(product.price);
-        const detailHref = `./detalle-producto.html?id=${encodeURIComponent(product.id || product.name)}`;
+        node.querySelector(".product-price").textContent = productPriceLabel(product);
+        const detailHref = variants.length ? `./index.html#detalle?id=${encodeURIComponent(product.id || product.name)}` : `./detalle-producto.html?id=${encodeURIComponent(product.id || product.name)}`;
         node.querySelector(".image-link").href = detailHref;
         node.querySelector(".image-link").setAttribute("aria-label", `Ver detalle de ${product.name}`);
         node.querySelector(".name-link").href = detailHref;
-        node.querySelector(".add-button").addEventListener("click", (event) => addToCart(product, event.currentTarget));
+        const addButton = node.querySelector(".add-button");
+        if (variants.length) {
+          addButton.textContent = "Elegir";
+          addButton.addEventListener("click", () => { window.location.href = detailHref; });
+        } else {
+          addButton.addEventListener("click", (event) => addToCart(product, event.currentTarget));
+        }
         productGrid.appendChild(node);
       });
 
       if (window.gsap) {
-        gsap.fromTo(".product-card", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.04, ease: "power3.out" });
+        gsap.fromTo(".product-card", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.03, ease: "power3.out" });
       }
+      renderProductPagination(totalPages);
     }
 
+    function setLineFilter(val) {
+      state.line = val;
+      state.page = 1;
+      document.querySelectorAll('input[name="lineRadio"]').forEach(r => r.checked = r.value === val);
+      renderProducts();
+    }
+
+    function setRoutineFilter(val) {
+      state.routine = val;
+      state.page = 1;
+      document.querySelectorAll('input[name="routineRadio"]').forEach(r => r.checked = r.value === val);
+      renderProducts();
+    }
+
+    function setSkinFilter(val) {
+      state.skin = val;
+      state.page = 1;
+      document.querySelectorAll('input[name="skinRadio"]').forEach(r => r.checked = r.value === val);
+      renderProducts();
+    }
+
+    function setPriceFilter(val) {
+      state.price = val;
+      state.page = 1;
+      document.querySelectorAll('input[name="priceRadio"]').forEach(r => r.checked = r.value === val);
+      renderProducts();
+    }
+
+    function setActiveTag(tag) {
+      state.activeTag = state.activeTag === tag ? "" : tag;
+      state.page = 1;
+      document.querySelectorAll(".active-tag-btn").forEach(btn => {
+        const active = btn.dataset.activeTag === state.activeTag;
+        btn.classList.toggle("bg-brand-black", active);
+        btn.classList.toggle("text-white", active);
+        btn.classList.toggle("border-brand-black", active);
+        btn.classList.toggle("bg-white", !active);
+        btn.classList.toggle("text-brand-dark", !active);
+      });
+      renderProducts();
+    }
+
+    function setSealVegan(val) {
+      state.sealVegan = val;
+      state.page = 1;
+      const cb = document.querySelector("#sealVegan");
+      if (cb) cb.checked = val;
+      renderProducts();
+    }
+
+    function setSearchFilter(str) {
+      state.search = str;
+      state.page = 1;
+      const sInput = document.querySelector("#sidebarSearch");
+      if (sInput) sInput.value = str;
+      renderProducts();
+    }
+
+    function resetAllFilters() {
+      state.line = "todos";
+      state.routine = "todos";
+      state.skin = "todos";
+      state.price = "todos";
+      state.activeTag = "";
+      state.sealVegan = false;
+      state.sealDermo = false;
+      state.search = "";
+      state.sort = "featured";
+      state.page = 1;
+
+      document.querySelectorAll('input[name="lineRadio"]').forEach(r => r.checked = r.value === "todos");
+      document.querySelectorAll('input[name="routineRadio"]').forEach(r => r.checked = r.value === "todos");
+      document.querySelectorAll('input[name="skinRadio"]').forEach(r => r.checked = r.value === "todos");
+      document.querySelectorAll('input[name="priceRadio"]').forEach(r => r.checked = r.value === "todos");
+      document.querySelectorAll(".active-tag-btn").forEach(b => {
+        b.classList.remove("bg-brand-black", "text-white", "border-brand-black");
+        b.classList.add("bg-white", "text-brand-dark");
+      });
+      const cbV = document.querySelector("#sealVegan");
+      if (cbV) cbV.checked = false;
+      const cbD = document.querySelector("#sealDermo");
+      if (cbD) cbD.checked = false;
+      const sInput = document.querySelector("#sidebarSearch");
+      if (sInput) sInput.value = "";
+      document.querySelector("#sortSelect").value = "featured";
+
+      renderProducts();
+    }
+
+    window.resetAllFilters = resetAllFilters;
+
     function showCartToast(product) {
-      cartToastText.textContent = `${product.name} ya esta en tu carrito.`;
+      cartToastText.textContent = `${product.name} (${product.size})`;
       cartToast.classList.remove("hidden");
       clearTimeout(cartToastTimeout);
-      cartToastTimeout = setTimeout(() => cartToast.classList.add("hidden"), 3200);
+      cartToastTimeout = setTimeout(() => cartToast.classList.add("hidden"), 3000);
     }
 
     function addToCart(product, button) {
@@ -567,31 +1001,41 @@
       showCartToast(product);
       if (button) {
         const original = button.textContent;
-        button.textContent = "Agregado";
-        button.classList.add("bg-exel-copper");
+        button.textContent = "✓ Añadido";
+        button.classList.add("bg-brand-copper");
         setTimeout(() => {
           button.textContent = original;
-          button.classList.remove("bg-exel-copper");
+          button.classList.remove("bg-brand-copper");
         }, 1200);
       }
     }
 
+    function updateCartQuantity(name, delta) {
+      const item = state.cart.find((entry) => entry.name === name);
+      if (item) {
+        item.quantity += delta;
+        if (item.quantity <= 0) {
+          state.cart = state.cart.filter(e => e.name !== name);
+        }
+      }
+      renderCart();
+    }
+
     function renderCart() {
       if (!state.cart.length) {
-        cartItems.innerHTML = '<p class="rounded-card bg-exel-sand p-4 text-sm font-bold text-exel-muted">Agrega productos para armar tu carrito.</p>';
+        cartItems.innerHTML = '<p class="rounded-[0.25rem] bg-brand-light p-4 text-xs font-normal text-brand-subtle text-center">Tu bolsa está vacía.<br>Agrega fórmulas para cotizar o pedir por WhatsApp.</p>';
       } else {
         cartItems.innerHTML = state.cart.map((item) => `
-          <div class="flex gap-3 rounded-card border border-exel-line bg-exel-cream p-3">
-            <img class="h-16 w-16 shrink-0 rounded-card object-cover" src="${item.image}" alt="${item.name}">
+          <div class="flex items-center gap-2.5 rounded-[0.25rem] border border-brand-border bg-white p-2.5 shadow-card">
+            <img class="h-10 w-10 shrink-0 rounded-[0.25rem] object-contain bg-[#fafafa] p-0.5" src="${item.image}" alt="${item.name}">
             <div class="min-w-0 flex-1">
-              <div class="flex justify-between gap-3">
-                <strong class="text-sm leading-5">${item.name}</strong>
-                <span class="text-sm font-extrabold">${item.quantity}x</span>
-              </div>
-              <div class="mt-2 flex justify-between gap-3 text-sm font-bold text-exel-muted">
-                <span>${item.size}</span>
-                <span>${formatter.format(item.price * item.quantity)}</span>
-              </div>
+              <strong class="text-[11px] font-semibold leading-tight block truncate text-brand-black">${item.name}</strong>
+              <span class="text-[10px] text-brand-copper font-semibold block mt-0.5 serif">${formatter.format(item.price * item.quantity)}</span>
+            </div>
+            <div class="flex items-center gap-1 bg-brand-light px-1.5 py-0.5 rounded-[0.25rem]">
+              <button onclick="updateCartQuantity('${item.name}', -1)" class="w-3.5 h-3.5 rounded-[0.125rem] bg-white text-[10px] font-semibold flex items-center justify-center border border-brand-border">-</button>
+              <span class="text-[10px] font-semibold px-0.5">${item.quantity}</span>
+              <button onclick="updateCartQuantity('${item.name}', 1)" class="w-3.5 h-3.5 rounded-[0.125rem] bg-white text-[10px] font-semibold flex items-center justify-center border border-brand-border">+</button>
             </div>
           </div>
         `).join("");
@@ -600,72 +1044,127 @@
       const total = state.cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
       const quantity = state.cart.reduce((sum, item) => sum + item.quantity, 0);
       saveCart();
+
       cartTotal.textContent = formatter.format(total);
-      floatingCartCount.textContent = quantity;
+      if (floatingCartCount) floatingCartCount.textContent = quantity;
+      if (navCartBadge) navCartBadge.textContent = quantity;
+
+      const percent = Math.min(100, Math.round((total / FREE_SHIPPING_GOAL) * 100));
+      if (shippingProgressBar) shippingProgressBar.style.width = `${percent}%`;
+      if (shippingPercentText) shippingPercentText.textContent = `${percent}%`;
+      if (shippingStatusText) {
+        if (total >= FREE_SHIPPING_GOAL) {
+          shippingStatusText.innerHTML = '<span class="text-brand-copper font-semibold">✓ Cortesía Desbloqueada</span>';
+        } else {
+          const remaining = FREE_SHIPPING_GOAL - total;
+          shippingStatusText.innerHTML = `<span>Faltan <strong>${formatter.format(remaining)}</strong></span>`;
+        }
+      }
+
       const message = state.cart.length
-        ? `Hola, quiero solicitar estos productos EXEL:\n${state.cart.map((item) => `- ${item.quantity}x ${item.name} (${item.size})`).join("\n")}\nTotal estimado: ${formatter.format(total)}`
-        : "Hola, quiero solicitar productos EXEL.";
+        ? `Hola EXEL Chile, deseo solicitar las siguientes fórmulas:\n${state.cart.map((item) => `• ${item.quantity}x ${item.name} (${item.size}) - ${formatter.format(item.price * item.quantity)}`).join("\n")}\n\nTotal estimado: ${formatter.format(total)}`
+        : "Hola EXEL Chile, deseo cotizar productos del catálogo.";
       whatsappLink.href = site.buildWhatsAppUrl(message);
     }
 
-    document.querySelectorAll(".line-filter").forEach((button) => {
-      button.addEventListener("click", () => {
-        state.line = button.dataset.line;
-        document.querySelectorAll(".line-filter").forEach((item) => {
-          const active = item === button;
-          item.classList.toggle("active", active);
-          item.classList.toggle("bg-white", !active);
-          item.classList.toggle("text-exel-muted", !active);
-          item.classList.toggle("text-white", active);
-          item.classList.toggle("bg-gradient-to-br", active);
-          item.classList.toggle("from-exel-ink", active);
-          item.classList.toggle("to-exel-graphite", active);
-        });
-        renderProducts();
+    // Event Listeners
+    document.querySelectorAll('input[name="lineRadio"]').forEach(r => {
+      r.addEventListener("change", (e) => setLineFilter(e.target.value));
+    });
+
+    document.querySelectorAll('input[name="routineRadio"]').forEach(r => {
+      r.addEventListener("change", (e) => setRoutineFilter(e.target.value));
+    });
+
+    document.querySelectorAll('input[name="skinRadio"]').forEach(r => {
+      r.addEventListener("change", (e) => setSkinFilter(e.target.value));
+    });
+
+    document.querySelectorAll('input[name="priceRadio"]').forEach(r => {
+      r.addEventListener("change", (e) => setPriceFilter(e.target.value));
+    });
+
+    document.querySelectorAll(".active-tag-btn").forEach(btn => {
+      btn.addEventListener("click", () => setActiveTag(btn.dataset.activeTag));
+    });
+
+    document.querySelector("#sealVegan")?.addEventListener("change", (e) => setSealVegan(e.target.checked));
+
+    document.querySelector("#sidebarSearch")?.addEventListener("input", (e) => setSearchFilter(e.target.value));
+
+    document.querySelector("#sortSelect")?.addEventListener("change", (e) => {
+      state.sort = e.target.value;
+      state.page = 1;
+      renderProducts();
+    });
+
+    document.querySelector("#resetAllFilters")?.addEventListener("click", resetAllFilters);
+
+    // Mobile Drawer Setup
+    const openMobileBtn = document.querySelector("#openMobileFilters");
+    const closeMobileBtn = document.querySelector("#closeMobileFilters");
+    const applyMobileBtn = document.querySelector("#applyMobileFilters");
+    const mobileDrawer = document.querySelector("#mobileFilterDrawer");
+    const mobileMount = document.querySelector("#mobileFiltersMount");
+    const sidebar = document.querySelector("#filterSidebar");
+
+    openMobileBtn?.addEventListener("click", () => {
+      mobileMount.innerHTML = sidebar.innerHTML;
+      mobileMount.querySelectorAll('input[name="lineRadio"]').forEach(r => {
+        r.checked = r.value === state.line;
+        r.addEventListener("change", (e) => setLineFilter(e.target.value));
       });
+      mobileMount.querySelectorAll('input[name="routineRadio"]').forEach(r => {
+        r.checked = r.value === state.routine;
+        r.addEventListener("change", (e) => setRoutineFilter(e.target.value));
+      });
+      mobileMount.querySelectorAll('input[name="skinRadio"]').forEach(r => {
+        r.checked = r.value === state.skin;
+        r.addEventListener("change", (e) => setSkinFilter(e.target.value));
+      });
+      mobileMount.querySelectorAll('input[name="priceRadio"]').forEach(r => {
+        r.checked = r.value === state.price;
+        r.addEventListener("change", (e) => setPriceFilter(e.target.value));
+      });
+      mobileMount.querySelectorAll(".active-tag-btn").forEach(btn => {
+        const active = btn.dataset.activeTag === state.activeTag;
+        btn.classList.toggle("bg-brand-black", active);
+        btn.classList.toggle("text-white", active);
+        btn.addEventListener("click", () => setActiveTag(btn.dataset.activeTag));
+      });
+      const mSearch = mobileMount.querySelector("#sidebarSearch");
+      if (mSearch) {
+        mSearch.value = state.search;
+        mSearch.addEventListener("input", (e) => setSearchFilter(e.target.value));
+      }
+      mobileMount.querySelector("#resetAllFilters")?.addEventListener("click", () => {
+        resetAllFilters();
+        mobileMount.innerHTML = sidebar.innerHTML;
+      });
+
+      mobileDrawer.classList.remove("hidden");
     });
 
-    document.querySelector("#searchInput").addEventListener("input", (event) => {
-      state.search = event.target.value;
-      renderProducts();
+    closeMobileBtn?.addEventListener("click", () => mobileDrawer.classList.add("hidden"));
+    applyMobileBtn?.addEventListener("click", () => mobileDrawer.classList.add("hidden"));
+    mobileDrawer?.addEventListener("click", (e) => {
+      if (e.target === mobileDrawer) mobileDrawer.classList.add("hidden");
     });
 
-    document.querySelector("#concernSelect").addEventListener("change", (event) => {
-      state.concern = event.target.value;
-      renderProducts();
-    });
-
-    routineSelect.addEventListener("change", (event) => {
-      state.routine = event.target.value;
-      renderProducts();
-    });
-
-    skinSelect.addEventListener("change", (event) => {
-      state.skin = event.target.value;
-      renderProducts();
-    });
-
-    priceSelect.addEventListener("change", (event) => {
-      state.price = event.target.value;
-      renderProducts();
-    });
-
-    document.querySelector("#sortSelect").addEventListener("change", (event) => {
-      state.sort = event.target.value;
-      renderProducts();
-    });
-
+    // Initial render
     renderProducts();
     renderCart();
 
     site.loadProductsFromFirestore(products).then((loadedProducts) => {
-      products = loadedProducts;
-      state.cart = state.cart.map((cartItem) => {
-        const latest = products.find((product) => product.id === cartItem.id || product.name === cartItem.name);
-        return latest ? { ...latest, quantity: cartItem.quantity || 1 } : cartItem;
-      });
-      renderProducts();
-      renderCart();
+      if (loadedProducts && loadedProducts.length > 0) {
+        products = loadedProducts;
+        state.cart = state.cart.map((cartItem) => {
+          const latest = products.find((product) => product.id === cartItem.id || product.name === cartItem.name);
+          return latest ? { ...latest, quantity: cartItem.quantity || 1 } : cartItem;
+        });
+        renderProducts();
+        renderCart();
+      }
     });
   </script>
 </body>
